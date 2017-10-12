@@ -15,7 +15,7 @@ public class MySqlConnection
 {
     private static final String URL = "jdbc:mysql://localhost/Forum?useSSL=false";
     private static final String UID = "blogStandard";
-    private static final String PWD = "HowestHoneypot2017@";
+    private static final String PWD = "HowestHoneypot2017@"; //sucker als je naar deze file kijk kan je toch maar vanaf de localhost inloggen :P
     
     // loading the class is only required for web applications
     static
