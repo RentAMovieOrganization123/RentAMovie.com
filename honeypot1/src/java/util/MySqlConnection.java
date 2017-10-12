@@ -14,8 +14,8 @@ import java.sql.SQLException;
 public class MySqlConnection
 {
     private static final String URL = "jdbc:mysql://localhost/Forum?useSSL=false";
-    private static final String UID = "java";
-    private static final String PWD = "java";
+    private static final String UID = "blogStandard";
+    private static final String PWD = "HowestHoneypot2017@";
     
     // loading the class is only required for web applications
     static
