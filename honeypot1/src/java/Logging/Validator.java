@@ -2,18 +2,52 @@ package Logging;
 
 import java.util.Iterator;
 import java.util.Map;
-
+import javax.servlet.ServletRequest;
 
 public class Validator {
-    
-    public static void validateRequest(Map map){
-    Iterator i = map.keySet().iterator();
+
+    public static void validateRequest(ServletRequest request) {
+        Map map = request.getParameterMap();
+        Iterator i = map.keySet().iterator();
 
         while (i.hasNext()) {
             String key = (String) i.next();
             String value = ((String[]) map.get(key))[0];
-            
+            if (stringContainsItemFromList(value,sqliCharacters)) {
+                
+            }
+            if (stringContainsItemFromList(value,xssCharacters)) {
+                
+            }
         }
     }
-    
+
+     static String[] sqliCharacters = {
+        "'",
+        "--",
+        " OR ",
+        " or ",
+        " Or",
+        " oR ",
+        "\\",
+        "\"",
+        "%"
+    };
+
+     static String[] xssCharacters = {
+        "<",
+        ">",
+        "javascript:",
+        "&",
+        "\"",
+        "'",};
+
+    public static boolean stringContainsItemFromList(String inputStr, String[] items) {
+        for (int i = 0; i < items.length; i++) {
+            if (inputStr.contains(items[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
