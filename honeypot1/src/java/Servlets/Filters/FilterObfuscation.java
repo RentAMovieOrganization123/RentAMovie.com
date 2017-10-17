@@ -47,7 +47,7 @@ public class FilterObfuscation implements Filter {
         response.setHeader("Server", " Microsoft-IIS/5.0 ");
         response.setHeader("X-Powered-By", "PHP/5.4.4-14+b1");
 
-        Validator.validateRequest( request.getParameterMap());
+        Validator.validateRequest( request);
         
     }
 
