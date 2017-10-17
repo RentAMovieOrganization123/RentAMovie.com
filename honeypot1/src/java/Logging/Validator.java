@@ -1,5 +1,7 @@
 package Logging;
 
+import static Logging.Logger.logSqli;
+import static Logging.Logger.logXss;
 import java.util.Iterator;
 import java.util.Map;
 import javax.servlet.ServletRequest;
@@ -9,15 +11,15 @@ public class Validator {
     public static void validateRequest(ServletRequest request) {
         Map map = request.getParameterMap();
         Iterator i = map.keySet().iterator();
-
+        
         while (i.hasNext()) {
             String key = (String) i.next();
             String value = ((String[]) map.get(key))[0];
             if (stringContainsItemFromList(value,sqliCharacters)) {
-                
+              logSqli(request);  
             }
             if (stringContainsItemFromList(value,xssCharacters)) {
-                
+                logXss(request);
             }
         }
     }
