@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AXANO
  */
-@WebServlet(name = "Forum", urlPatterns = {"/Forum"})
+@WebServlet(name = "Forum", urlPatterns = {"/forum.php"})
 public class Forum extends HttpServlet {
 
     /**

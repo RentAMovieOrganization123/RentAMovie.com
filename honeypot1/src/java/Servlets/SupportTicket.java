@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AXANO
  */
-@WebServlet(name = "SupportTicket", urlPatterns = {"/SupportTicket"})
+@WebServlet(name = "SupportTicket", urlPatterns = {"/support.php"})
 public class SupportTicket extends HttpServlet {
 
     /**

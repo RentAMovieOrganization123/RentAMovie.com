@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AXANO
  */
-@WebServlet(name = "ProfileManagement", urlPatterns = {"/ProfileManagement"})
+@WebServlet(name = "ProfileManagement", urlPatterns = {"/profile.php"})
 public class ProfileManagement extends HttpServlet {
 
     /**
