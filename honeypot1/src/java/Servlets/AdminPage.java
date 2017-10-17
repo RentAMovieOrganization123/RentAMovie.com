@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AXANO
  */
-@WebServlet(name = "AdminPage", urlPatterns = {"/admin.php"})
+@WebServlet(name = "AdminPage", urlPatterns = {"/AX7882BR19Olzze543Dr"})
 public class AdminPage extends HttpServlet {
 
     /**
