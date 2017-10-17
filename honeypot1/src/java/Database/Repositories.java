@@ -5,13 +5,11 @@
  */
 package Database;
 
-/**
- *
- * @author frederic.vlummens
- */
+
 public class Repositories
 {
-    private static final ReactionRepository movieRepository = new MySqlReactionRepository();
+    //private static final ReactionRepository movieRepository = new MySqlReactionRepository();
+    //private static final LogEventRepository LogEventRepository = new MySqlLogEventRepository();
     
     
     private Repositories()
@@ -20,8 +18,12 @@ public class Repositories
     
     public static ReactionRepository getMovieRepository()
     {
-        return movieRepository;
+        return new MySqlReactionRepository();
     }
     
-
+ public static LogEventRepository getLogEventRepository()
+    {
+        return  new MySqlLogEventRepository();
+    }
+    
 }
