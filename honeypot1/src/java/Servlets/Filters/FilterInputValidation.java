@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */ 
-package Servlets;
+package Servlets.Filters;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -21,8 +21,8 @@ import javax.servlet.annotation.WebFilter;
  *
  * @author AHANO
  */
-@WebFilter(filterName = "Obfuscation", urlPatterns = {"/*"})
-public class FilterObfuscation implements Filter {
+@WebFilter(filterName = "FilterInputValidation", urlPatterns = {"/*"})
+public class FilterInputValidation implements Filter {
     
     private static final boolean debug = true;
 
@@ -31,13 +31,13 @@ public class FilterObfuscation implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
     
-    public FilterObfuscation() {
+    public FilterInputValidation() {
     }    
     
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("Obfuscation:DoBeforeProcessing");
+            log("FilterInputValidation:DoBeforeProcessing");
         }
 
         // Write code here to process the request and/or response before
@@ -65,7 +65,7 @@ public class FilterObfuscation implements Filter {
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("Obfuscation:DoAfterProcessing");
+            log("FilterInputValidation:DoAfterProcessing");
         }
 
         // Write code here to process the request and/or response after
@@ -101,7 +101,7 @@ public class FilterObfuscation implements Filter {
             throws IOException, ServletException {
         
         if (debug) {
-            log("Obfuscation:doFilter()");
+            log("FilterInputValidation:doFilter()");
         }
         
         doBeforeProcessing(request, response);
@@ -161,7 +161,7 @@ public class FilterObfuscation implements Filter {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
             if (debug) {                
-                log("Obfuscation:Initializing filter");
+                log("FilterInputValidation:Initializing filter");
             }
         }
     }
@@ -172,9 +172,9 @@ public class FilterObfuscation implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("Obfuscation()");
+            return ("FilterInputValidation()");
         }
-        StringBuffer sb = new StringBuffer("Obfuscation(");
+        StringBuffer sb = new StringBuffer("FilterInputValidation(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());
