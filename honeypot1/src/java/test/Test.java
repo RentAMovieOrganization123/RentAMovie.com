@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servlets;
+package test;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AXANO
  */
-@WebServlet(name = "Home", urlPatterns = {"/index.php"})
-public class Home extends HttpServlet {
+@WebServlet(name = "Test.php", urlPatterns = {"/Test.php"})
+public class Test extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,22 +37,10 @@ public class Home extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Index.php</title>");            
+            out.println("<title>Servlet Test</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Test Form</h1>");
-            
-             out.println(" <form action = \"Test.php\" method = \"GET\">");
-            out.println("Genre ID: <input type = \"text\" name = \"testInput\">");
-            out.println("<br />\n"
-                    + "extra: <input type = \"text\" name = \"extra\" />\n"
-                    + "<input type = \"submit\" name = \"submit\" value = \"Get!!!!\" />");
-            out.println("</form>");
-            
-            
-            
-            
-            
+            out.println("<h1>" + request.getParameter("testInput") + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
