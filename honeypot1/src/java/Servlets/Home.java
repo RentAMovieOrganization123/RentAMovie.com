@@ -40,6 +40,9 @@ public class Home extends HttpServlet {
             out.println("<title>Index.php</title>");            
             out.println("</head>");
             out.println("<body>");
+            //header
+            
+            
             out.println("<h1>Test Form</h1>");
             
              out.println(" <form action = \"Test.php\" method = \"GET\">");
@@ -51,7 +54,7 @@ public class Home extends HttpServlet {
             
             
             
-            
+            //footer
             
             out.println("</body>");
             out.println("</html>");
