@@ -4,6 +4,8 @@ import Model.LogEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.MySqlConnection;
 
 
@@ -28,9 +30,9 @@ public class MySqlLogEventRepository implements LogEventRepository{
             prep.setString(6, logEvent.getTimeOfEvent());
             
             prep.executeUpdate();
-            } catch (SQLException ex) {
-            
-            }
+            } catch (SQLException ex) { 
+          Logger.getLogger(MySqlLogEventRepository.class.getName()).log(Level.SEVERE, null, ex);
+      } 
         }
 
 }

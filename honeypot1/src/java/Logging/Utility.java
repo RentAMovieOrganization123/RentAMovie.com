@@ -13,7 +13,7 @@ public class Utility {
  public static String getMac(String ip)  {
      try {
          String systemInput = "";
-         Runtime.getRuntime().exec("arp -a");
+         Runtime.getRuntime().exec("arp -a"); 
          Scanner s = new Scanner(Runtime.getRuntime()
                  .exec("arp -a " + ip)
                  .getInputStream())

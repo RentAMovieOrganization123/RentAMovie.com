@@ -1,5 +1,6 @@
 package Logging;
 
+import Database.Repositories;
 import static Logging.Utility.getMac;
 import static Logging.Utility.getVendorByMac;
 import Model.LogEvent;
@@ -40,6 +41,6 @@ public class Logger {
 
         LogEvent logEvent = new LogEvent(ip, mac, vendor, reason, uri);
         System.out.println(logEvent.toString());
-        //TODO Implement database insert
+        Repositories.getLogEventRepository().insertLogEntry(logEvent);
     }
 }
