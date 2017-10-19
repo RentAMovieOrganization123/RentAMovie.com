@@ -17,8 +17,7 @@ public class Validator {
             String value = ((String[]) map.get(key))[0];
             if (stringContainsItemFromList(value,sqliCharacters)) {
               logSqli(request);  
-            }
-            if (stringContainsItemFromList(value,xssCharacters)) {
+            }else if (stringContainsItemFromList(value,xssCharacters)) {
                 logXss(request);
             }
         }
@@ -41,8 +40,7 @@ public class Validator {
         ">",
         "javascript:",
         "&",
-        "\"",
-        "'",};
+        "\""};
 
     public static boolean stringContainsItemFromList(String inputStr, String[] items) {
         for (int i = 0; i < items.length; i++) {
