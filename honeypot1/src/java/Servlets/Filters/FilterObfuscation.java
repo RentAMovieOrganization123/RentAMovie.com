@@ -5,13 +5,10 @@
  */
 package Servlets.Filters;
 
-import Logging.Validator;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Iterator;
-import java.util.Map;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -47,14 +44,17 @@ public class FilterObfuscation implements Filter {
         response.setHeader("Server", " Microsoft-IIS/10.0 ");
         response.setHeader("X-Powered-By", "PHP/5.4.4-14+b1");
 
-        Validator.validateRequest( request);
+        //Validator.validateRequest( request);
         
     }
 
-    private void doAfterProcessing(ServletRequest request, ServletResponse response)
+    private void doAfterProcessing(ServletRequest request, ServletResponse _response)
             throws IOException, ServletException {
         if (debug) {
             log("Obfuscation:DoAfterProcessing");
+            HttpServletResponse response = (HttpServletResponse) _response;
+        response.setHeader("Server", " Microsoft-IIS/10.0 ");
+        response.setHeader("X-Powered-By", "PHP/5.4.4-14+b1");
         }
 
         
