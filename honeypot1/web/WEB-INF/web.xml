@@ -33,7 +33,7 @@
         </session-timeout>
     </session-config>
     <security-constraint>
-        <display-name>Constraint1</display-name>
+        <display-name>restricted http methods</display-name>
         <web-resource-collection>
             <web-resource-name>Restricted HTTP methods</web-resource-name>
             <description/>
@@ -44,5 +44,8 @@
             <http-method>TRACE</http-method>
             <http-method>DELETE</http-method>
         </web-resource-collection>
+        <auth-constraint>
+            <description/>
+        </auth-constraint>
     </security-constraint>
 </web-app>
