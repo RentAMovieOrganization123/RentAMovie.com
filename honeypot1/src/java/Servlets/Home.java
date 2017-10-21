@@ -52,6 +52,10 @@ public class Home extends HttpServlet {
             out.println("</header>");
             //end header
             
+            
+            //content
+            
+            out.println("<content>");
             out.println("<h1>Test Form</h1>");
             
              out.println(" <form action = \"Test.php\" method = \"GET\">");
@@ -61,13 +65,15 @@ public class Home extends HttpServlet {
                     + "<input type = \"submit\" name = \"submit\" value = \"Get!!!!\" />");
             out.println("</form>");
             
+            out.println("</content>");
+            //end content
             
             
             //footer
             out.println("<footer>");
-            out.println("<img>");
-            out.println("<p>Heb je problemen? <a href='support.php'>Contacteer ons!</a> </p>");
-            out.println("<p>Honeypot project - Groep 19 </p>");
+            out.println("<a href='http://www.howest.be'><img></a>");
+            out.println("<p>Heb je problemen? <a href='support.php' id='contact'>Contacteer ons!</a> </p>");
+            out.println("<p>Hogeschool Howest Brugge - Honeypot project </p>");
             out.println("</footer>");
             //end footer
             
