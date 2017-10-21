@@ -37,11 +37,19 @@ public class Home extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
             out.println("<title>Index.php</title>");            
             out.println("</head>");
             out.println("<body>");
             //header
-            
+            out.println("<header>");
+            out.println("<nav>");
+            out.println("<li><a href='index.php'>Home</a></li>");
+            out.println("<li><a href='forum.php'>Forum</a></li>");
+            out.println("<li><a href='profile.php'>Profile</a></li>");
+            out.println("<li><a href='login.php'>Login</a></li>");
+            out.println("</nav>");
+            out.println("</header>");
             
             out.println("<h1>Test Form</h1>");
             

@@ -41,7 +41,7 @@ public class FilterObfuscation implements Filter {
             log("Obfuscation:DoBeforeProcessing");
         }
         HttpServletResponse response = (HttpServletResponse) _response;
-        response.setHeader("Server", " Microsoft-IIS/10.0 ");
+        response.setHeader("Server", "Microsoft-IIS/10.0");
         response.setHeader("X-Powered-By", "PHP/5.4.4-14+b1");
 
         //Validator.validateRequest( request);
