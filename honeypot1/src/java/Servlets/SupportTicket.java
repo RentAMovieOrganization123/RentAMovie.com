@@ -29,10 +29,34 @@ public class SupportTicket extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
             out.println("<title>Servlet SupportTicket</title>");            
             out.println("</head>");
             out.println("<body>");
+            //header
+            out.println("<header>");
+            out.println("<nav>");
+            out.println("<li><a href='index.php'>Home</a></li>");
+            out.println("<li><a href='forum.php'>Forum</a></li>");
+            out.println("<li><a href='profile.php'>Profile</a></li>");
+            out.println("<li><a href='login.php'>Login</a></li>");
+            out.println("</nav>");
+            out.println("</header>");
+            //end header
+                      
+            //content
+            out.println("<content>");
             out.println("<h1>Servlet SupportTicket at " + request.getContextPath() + "</h1>");
+            out.println("</content>");
+            //end content
+            
+            //footer
+            out.println("<footer>");
+            out.println("<a href='http://www.howest.be'><img></a>");
+            out.println("<p>Heb je problemen? <a href='support.php' id='contact'>Contacteer ons!</a> </p>");
+            out.println("<p>Hogeschool Howest Brugge - Honeypot project </p>");
+            out.println("</footer>");
+            //end footer
             out.println("</body>");
             out.println("</html>");
         }

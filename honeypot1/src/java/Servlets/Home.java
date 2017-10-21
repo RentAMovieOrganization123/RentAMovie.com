@@ -51,10 +51,8 @@ public class Home extends HttpServlet {
             out.println("</nav>");
             out.println("</header>");
             //end header
-            
-            
+                      
             //content
-            
             out.println("<content>");
             out.println("<h1>Test Form</h1>");
             
@@ -67,7 +65,6 @@ public class Home extends HttpServlet {
             
             out.println("</content>");
             //end content
-            
             
             //footer
             out.println("<footer>");
