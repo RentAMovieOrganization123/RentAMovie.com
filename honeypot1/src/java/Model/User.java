@@ -1,18 +1,13 @@
 package Model;
 
 import java.util.Date;
-import java.util.logging.Logger;
 
 
 public class User {
     
     private String name;
-    private static int profilePicIdCounter = 1;
-    private final int profilePicId = profilePicIdCounter;
-    
-     public int getProfilePicId() {
-        return this.profilePicId;
-    }
+    private static int profilePicGlobalId = 0;
+    private final int profilePicId = profilePicGlobalId;
     private String firstName;
     private Date birthDate;
     private int age;
@@ -25,7 +20,7 @@ public class User {
         this.country = country;
         
         calculateAge();
-        incrementProfilePicId();
+        incrementProfilePicGlobalId();
     }
     
     
@@ -53,6 +48,10 @@ public class User {
         int age = (int) Math.floor(yearsBetween);
         this.setAge(age);
     }
+    
+     public int getProfilePicId() {
+        return this.profilePicId;
+    }
 
     public void setCountry(String country) {
         this.country = country;
@@ -78,7 +77,7 @@ public class User {
         return country;
     }
 
-    private void incrementProfilePicId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void incrementProfilePicGlobalId() {
+        profilePicGlobalId = profilePicGlobalId + 1;
     }
 }
