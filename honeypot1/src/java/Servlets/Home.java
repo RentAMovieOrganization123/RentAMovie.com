@@ -50,6 +50,7 @@ public class Home extends HttpServlet {
             out.println("<li><a href='login.php'>Login</a></li>");
             out.println("</nav>");
             out.println("</header>");
+            //end header
             
             out.println("<h1>Test Form</h1>");
             
@@ -63,6 +64,13 @@ public class Home extends HttpServlet {
             
             
             //footer
+            out.println("<footer>");
+            out.println("<img>");
+            out.println("<p>Heb je problemen? <a href='support.php'>Contacteer ons!</a> </p>");
+            out.println("<p>Honeypot project - Groep 19 </p>");
+            out.println("</footer>");
+            //end footer
+            
             
             out.println("</body>");
             out.println("</html>");
