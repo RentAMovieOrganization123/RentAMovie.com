@@ -1,0 +1,16 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 21-okt-2017, 18:33:56
+    Author     : tom.watteny
+*/
+
+
+content form li {
+    display: inline-block;
+    border-color: #C1CFDD;
+    border-style: groove;
+}
