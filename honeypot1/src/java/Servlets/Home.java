@@ -37,7 +37,7 @@ public class Home extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<link rel='stylesheet' href='assets/)css/template.css'/>");
+            out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
             out.println("<title>Index.php</title>");            
             out.println("</head>");
             out.println("<body>");

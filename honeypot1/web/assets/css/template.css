@@ -8,3 +8,15 @@ and open the template in the editor.
     Author     : tom.watteny
 */
 
+header {
+    width:100%;
+    height: 50px;
+    background-color:#C1CFDD;
+    border-bottom:#000000; 
+}
+
+header nav li{
+      float:left;
+      width: 100px;
+      
+}
