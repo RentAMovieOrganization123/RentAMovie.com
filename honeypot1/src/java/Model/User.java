@@ -7,7 +7,7 @@ public class User {
     
     private String name;
     private static int profilePicGlobalId = 0;
-    private final int profilePicId = profilePicGlobalId;
+    private final int profilePicId;
     private String firstName;
     private Date birthDate;
     private int age;
@@ -18,6 +18,7 @@ public class User {
         this.firstName = firstName;
         this.birthDate = birthDate;
         this.country = country;
+        profilePicId = profilePicGlobalId;
         
         calculateAge();
         incrementProfilePicGlobalId();

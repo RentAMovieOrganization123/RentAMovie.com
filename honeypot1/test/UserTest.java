@@ -22,23 +22,22 @@ public class UserTest {
     Model.User u2;
     
     public UserTest() {
+      
     }
     
     @Test
     public void User1CorrectAge(){
+        u1 = new Model.User("Cornelis", "Cedric", new Date(766281600000L), "Belgium"); //long value = 14 april 1994 in unix timestamp
         assertTrue(u1.getAge() == 23);
     }
     
     @Test
-    public void User1CorrectId(){
+    public void User1And2CorrectIds(){
+        u1 = new Model.User("Cornelis", "Cedric", new Date(766281600000L), "Belgium"); //long value = 14 april 1994 in unix timestamp
+        u2 = new Model.User("Cornelis1", "Cedric1", new Date(766281600000L), "Canada"); //long value = 14 april 1994 in unix timestamp
         System.out.println(u1.getProfilePicId());
-        assertTrue(u1.getProfilePicId() == 0);
-    }
-    
-    @Test
-    public void User2CorrectId(){
         System.out.println(u2.getProfilePicId());
-        assertTrue(u2.getProfilePicId() == 1);
+        assertTrue(u1.getProfilePicId() == 0 && u2.getProfilePicId() == 1);
     }
     
     @BeforeClass
@@ -51,8 +50,7 @@ public class UserTest {
     
     @Before
     public void setUp() {
-       u1 = new Model.User("Cornelis", "Cedric", new Date(766281600000L), "Belgium"); //long value = 14 april 1994 in unix timestamp
-       u2 = new Model.User("Cornelis1", "Cedric1", new Date(766281600000L), "Canada"); //long value = 14 april 1994 in unix timestamp
+      
     }
     
     @After
