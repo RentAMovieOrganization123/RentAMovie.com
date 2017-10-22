@@ -38,7 +38,7 @@ public class SecurityFilter implements Filter {
             log("SecurityFilter:DoBeforeProcessing");
         }
         HttpServletResponse response = (HttpServletResponse) _response;
-        response.addHeader("X-FRAME-OPTIONS", "DENY");
+        response.addHeader("X-Frame-Options", "DENY");
        
     }    
     
