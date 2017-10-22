@@ -1,0 +1,11 @@
+BEVEILIGING TEGEN XSS
+comments van gebruikers te representere doe het volgende
+
+ 
+ import org.owasp.encoder.Encode
+ 
+ en
+ 
+ String message = "Onvertrouwbaar bericht gehaald uit databes";
+ String veiligeMessage = Encode.forHtml(message);
+ out.println(veiligeMessage);
