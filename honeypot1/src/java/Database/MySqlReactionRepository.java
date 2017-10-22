@@ -22,15 +22,13 @@ import java.util.logging.Logger;
 public class MySqlReactionRepository
         implements ReactionRepository
 {
-    private static final String SQL_SELECT_ALL_MOVIES = "select * from reaction";
-    private static final String SQL_SELECT_MOVIES_BY_GENRE_ID = "select * from reaction where subject_id = ?";
-    private static final String SQL_ADD_MOVIE = "insert into reaction(title, subject_id, year, stars) values(?, ?, ?, ?)";
+    private static final String SQL_SELECT_ALL_REACTIONS = "select * from reaction";
+    private static final String SQL_SELECT_REACTIONS_BY_ID = "select * from reaction where subject_id = ?";
+    private static final String SQL_ADD_REACTION = "insert into reaction(title, subject_id, year, stars) values(?, ?, ?, ?)";
 
-    private static final String FIELD_ID = "id";
-    private static final String FIELD_TITLE = "title";
-    private static final String FIELD_GENRE_ID = "subject_id";
-    private static final String FIELD_YEAR = "year";
-    private static final String FIELD_STARS = "stars";
+
+    private static final String FIELD_REACTION_ID = "subject_id";
+    
 
     MySqlReactionRepository()
     {
@@ -39,7 +37,7 @@ public class MySqlReactionRepository
     public List<Reaction> getReactions()
     {
         try(Connection con = MySqlConnection.getConnection();
-            PreparedStatement prep = con.prepareStatement(SQL_SELECT_ALL_MOVIES);
+            PreparedStatement prep = con.prepareStatement(SQL_SELECT_ALL_REACTIONS);
             ResultSet rs = prep.executeQuery())
         {
             List<Reaction> reactions = new ArrayList<>();
@@ -63,7 +61,7 @@ public class MySqlReactionRepository
     {
         List<Reaction> reactions = new ArrayList<>();
         try(Connection con = MySqlConnection.getConnection();
-            PreparedStatement prep = con.prepareStatement(SQL_SELECT_MOVIES_BY_GENRE_ID);
+            PreparedStatement prep = con.prepareStatement(SQL_SELECT_REACTIONS_BY_ID);
             )
         {
             
@@ -94,7 +92,7 @@ public class MySqlReactionRepository
     public void addReaction(Reaction reaction)
     {
         try(Connection con = MySqlConnection.getConnection();
-            PreparedStatement prep = con.prepareStatement(SQL_ADD_MOVIE, PreparedStatement.RETURN_GENERATED_KEYS))
+            PreparedStatement prep = con.prepareStatement(SQL_ADD_REACTION, PreparedStatement.RETURN_GENERATED_KEYS))
         {
             //prep.setString(1, reaction.getTitle());
             //prep.setInt(2, reaction.getSubject().getId());
@@ -128,14 +126,7 @@ public class MySqlReactionRepository
     
     private Reaction resultSet2Subject(ResultSet rs) throws SQLException
     {
-        int id = rs.getInt(FIELD_ID);
-        String title = rs.getString(FIELD_TITLE);
-
-        int subjectId = rs.getInt(FIELD_GENRE_ID);
-        //Subject subject = Repositories.getSubjectRepository().getSubject(subjectId);
-
-        int year = rs.getInt(FIELD_YEAR);
-        int stars = rs.getInt(FIELD_STARS);
+        
 
         //Reaction reaction = new Reaction(id, title, subject, year, stars);
         Reaction reaction = new Reaction();
