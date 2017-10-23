@@ -5,6 +5,7 @@
  */
 package test;
 
+import googleReCAPTCHAv2.VerifyRecaptcha;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -33,6 +34,8 @@ public class Test extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+            boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -40,7 +43,7 @@ public class Test extends HttpServlet {
             out.println("<title>Servlet Test</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>" + request.getParameter("testInput") + "</h1>");
+            out.println("<h1>" + verify + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

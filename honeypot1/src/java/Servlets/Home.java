@@ -20,15 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Home", urlPatterns = {"/index.php"})
 public class Home extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+  
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -38,6 +30,7 @@ public class Home extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
+            out.println("<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>");
             out.println("<title>Index.php</title>");            
             out.println("</head>");
             out.println("<body>");
@@ -57,6 +50,8 @@ public class Home extends HttpServlet {
             out.println("<h1>Test Form</h1>");
             
              out.println(" <form action = \"Test.php\" method = \"GET\">");
+              out.println("<div class=\"g-recaptcha\" data-sitekey=\"6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ\"></div>");
+
             out.println("Genre ID: <input type = \"text\" name = \"testInput\">");
             out.println("<br />\n"
                     + "extra: <input type = \"text\" name = \"extra\" />\n"

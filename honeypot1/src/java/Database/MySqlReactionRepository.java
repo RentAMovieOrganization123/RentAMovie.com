@@ -129,9 +129,9 @@ public class MySqlReactionRepository
         
 
         //Reaction reaction = new Reaction(id, title, subject, year, stars);
-        Reaction reaction = new Reaction();
+        //Reaction reaction = new Reaction();
 
-        return reaction;
+        return null;
     }
 
     @Override
