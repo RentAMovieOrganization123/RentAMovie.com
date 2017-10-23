@@ -77,6 +77,9 @@ public class Register extends HttpServlet {
             out.println("<td><label>Profielfoto: </td>");
             out.println("<td></td>"); //to add
             out.println("</tr>");
+            out.println("<tr>");
+            out.println("<td><input type = \"submit\" name = \"submit\" value = \"Get!!!!\" /></td>");
+            out.println("</tr>");
             out.println("</tbody>");
             out.println("</table>");
             out.println("<div class=\"g-recaptcha\" data-sitekey=\"6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ\"></div>");
