@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AXANO
  */
-@WebServlet(name = "CSFR.php", urlPatterns = {"/CSFR.php"})
+@WebServlet(name = "CSRF.php", urlPatterns = {"/CSRF.php"})
 public class CSFR extends HttpServlet {
 
     /**
@@ -46,7 +46,7 @@ public class CSFR extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
              Thread.sleep(5000);
-             response.sendRedirect("192.168.30.29");
+             response.sendRedirect("/");
         } catch (InterruptedException ex) {
             Logger.getLogger(CSFR.class.getName()).log(Level.SEVERE, null, ex);
         }

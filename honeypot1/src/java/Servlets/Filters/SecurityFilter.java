@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -38,18 +39,24 @@ public class SecurityFilter implements Filter {
             log("SecurityFilter:DoBeforeProcessing");
         }
         HttpServletResponse response = (HttpServletResponse) _response;
+        HttpServletRequest _request = (HttpServletRequest) request;
         response.addHeader("X-Frame-Options", "DENY");
+        String path = ((HttpServletRequest) request).getRequestURI();
+        String test = _request.getHeader("X-Requested-By");
         
-        response.addHeader("X-Requested-By", "192.168.30.29");
+         
+           
+        
        
     }    
     
-    private void doAfterProcessing(ServletRequest request, ServletResponse response)
+    private void doAfterProcessing(ServletRequest request, ServletResponse _response)
             throws IOException, ServletException {
         if (debug) {
             log("SecurityFilter:DoAfterProcessing");
         }
-
+        HttpServletResponse response = (HttpServletResponse) _response;
+        response.addHeader("X-Requested-By", "192.168.30.29");  
         
     }
 

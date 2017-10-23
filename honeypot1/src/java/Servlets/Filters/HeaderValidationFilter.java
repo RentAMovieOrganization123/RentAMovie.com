@@ -59,7 +59,7 @@ public class HeaderValidationFilter implements Filter {
 	    }
 	    log(buf.toString());
 	}
-         */
+         */ 
     }    
     
     private void doAfterProcessing(ServletRequest request, ServletResponse response)

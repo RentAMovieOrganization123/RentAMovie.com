@@ -30,6 +30,7 @@ public class SupportTicket extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
+            out.println("<script type=\"text/javascript\" src=\"assets/javascript/javascript.js\" ></script>");
             out.println("<title>Servlet SupportTicket</title>");            
             out.println("</head>");
             out.println("<body>");

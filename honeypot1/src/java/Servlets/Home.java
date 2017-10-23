@@ -30,6 +30,7 @@ public class Home extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
+            out.println("<script type=\"text/javascript\" src=\"assets/javascript/javascript.js\" ></script>");
             out.println("<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>");
             out.println("<title>Index.php</title>");            
             out.println("</head>");
@@ -72,6 +73,7 @@ public class Home extends HttpServlet {
             
             out.println("</body>");
             out.println("</html>");
+            
         }
     }
 
