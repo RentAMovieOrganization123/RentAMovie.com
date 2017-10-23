@@ -8,7 +8,7 @@ console.log("ready");
     script.onreadystatechange = handler;
     script.onload = handler;
     head.appendChild(script);
-
+    
 //TODO ADD X-Requested-By header to prevent CSRF!
 
 

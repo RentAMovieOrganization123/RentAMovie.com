@@ -40,9 +40,12 @@ public class Test extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            
-            out.println("<title>Servlet Test</title>");            
+            out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
+            out.println("<script type=\"text/javascript\" src=\"assets/javascript/javascript.js\" ></script>");
+            out.println("<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>");
+            out.println("<title>Index.php</title>");            
             out.println("</head>");
+
             out.println("<body>");
              //header
             out.println("<header>");
@@ -54,7 +57,9 @@ public class Test extends HttpServlet {
             out.println("</nav>");
             out.println("</header>");
             //end header
+            out.println("<content>");
             out.println("<h1>Test</h1>");
+            out.println("</content>");
              //footer
             out.println("<footer>");
             out.println("<a href='http://www.howest.be'><img></a>");

@@ -39,6 +39,7 @@ public class Register extends HttpServlet {
             out.println("<head>");
             out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
             out.println("<script type=\"text/javascript\" src=\"assets/javascript/javascript.js\" ></script>");
+             out.println("<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>");
             out.println("<link rel='stylesheet' href='assets/css/register.css'/>");
             out.println("<title>Servlet Register</title>");            
             out.println("</head>");
@@ -57,7 +58,7 @@ public class Register extends HttpServlet {
             //content
             out.println("<content>");
             out.println("<h1>Registreer je gratis</h1>");
-            out.println("<form action='register' method='post'>");
+            out.println("<form action='register.php' method='post'>");
             out.println("<table>");
             out.println("<tbody>");
             out.println("<tr>");
@@ -78,6 +79,7 @@ public class Register extends HttpServlet {
             out.println("</tr>");
             out.println("</tbody>");
             out.println("</table>");
+            out.println("<div class=\"g-recaptcha\" data-sitekey=\"6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ\"></div>");
             out.println("</form>");
             out.println("</content>");
             //end content

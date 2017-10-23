@@ -40,8 +40,10 @@ public class Home extends HttpServlet {
             out.println("<nav>");
             out.println("<li><a href='index.php'>Home</a></li>");
             out.println("<li><a href='forum.php'>Forum</a></li>");
+            out.println("<li><a href='register.php'>Register</a></li>");
             out.println("<li><a href='profile.php'>Profile</a></li>");
             out.println("<li><a href='login.php'>Login</a></li>");
+            
             out.println("</nav>");
             out.println("</header>");
             //end header
