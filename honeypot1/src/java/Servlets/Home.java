@@ -51,12 +51,13 @@ public class Home extends HttpServlet {
             out.println("<h1>Test Form</h1>");
             
              out.println(" <form action = \"Test.php\" method = \"GET\">");
-              out.println("<div class=\"g-recaptcha\" data-sitekey=\"6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ\"></div>");
+              
 
             out.println("Genre ID: <input type = \"text\" name = \"testInput\">");
             out.println("<br />\n"
                     + "extra: <input type = \"text\" name = \"extra\" />\n"
                     + "<input type = \"submit\" name = \"submit\" value = \"Get!!!!\" />");
+            out.println("<div class=\"g-recaptcha\" data-sitekey=\"6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ\"></div>");
             out.println("</form>");
             
             out.println("</content>");

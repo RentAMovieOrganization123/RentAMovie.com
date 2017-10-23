@@ -43,7 +43,7 @@ public class SecurityFilter implements Filter {
         response.addHeader("X-Frame-Options", "DENY");
         String path = ((HttpServletRequest) request).getRequestURI();
         String test = _request.getHeader("X-Requested-By");
-        
+        response.addHeader("X-Requested-By", "192.168.30.29");
          
            
         
@@ -56,7 +56,7 @@ public class SecurityFilter implements Filter {
             log("SecurityFilter:DoAfterProcessing");
         }
         HttpServletResponse response = (HttpServletResponse) _response;
-        response.addHeader("X-Requested-By", "192.168.30.29");  
+          
         
     }
 
