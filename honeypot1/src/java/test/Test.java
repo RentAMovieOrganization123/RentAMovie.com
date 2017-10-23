@@ -40,10 +40,28 @@ public class Test extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            
             out.println("<title>Servlet Test</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>" + verify + "</h1>");
+             //header
+            out.println("<header>");
+            out.println("<nav>");
+            out.println("<li><a href='index.php'>Home</a></li>");
+            out.println("<li><a href='forum.php'>Forum</a></li>");
+            out.println("<li><a href='profile.php'>Profile</a></li>");
+            out.println("<li><a href='login.php'>Login</a></li>");
+            out.println("</nav>");
+            out.println("</header>");
+            //end header
+            out.println("<h1>Test</h1>");
+             //footer
+            out.println("<footer>");
+            out.println("<a href='http://www.howest.be'><img></a>");
+            out.println("<p>Heb je problemen? <a href='support.php' id='contact'>Contacteer ons!</a> </p>");
+            out.println("<p>Hogeschool Howest Brugge - Honeypot project </p>");
+            out.println("</footer>");
+            //end footer
             out.println("</body>");
             out.println("</html>");
         }

@@ -53,7 +53,7 @@ public class Home extends HttpServlet {
              out.println(" <form action = \"Test.php\" method = \"GET\">");
               
 
-            out.println("Genre ID: <input type = \"text\" name = \"testInput\">");
+            out.println("Name: <input type = \"text\" name = \"testInput\">");
             out.println("<br />\n"
                     + "extra: <input type = \"text\" name = \"extra\" />\n"
                     + "<input type = \"submit\" name = \"submit\" value = \"Get!!!!\" />");
