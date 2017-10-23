@@ -16,50 +16,92 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author AXANO
  */
-@WebFilter(filterName = "SecurityFilter", urlPatterns = {"/*"})
-public class SecurityFilter implements Filter {
+@WebFilter(filterName = "HeaderValidationFilter", urlPatterns = {"/*"})
+public class HeaderValidationFilter implements Filter {
     
     private static final boolean debug = true;
 
+    // The filter configuration object we are associated with.  If
+    // this value is null, this filter instance is not currently
+    // configured. 
     private FilterConfig filterConfig = null;
     
-    public SecurityFilter() {
+    public HeaderValidationFilter() {
     }    
     
-    private void doBeforeProcessing(ServletRequest request, ServletResponse _response)
+    private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("SecurityFilter:DoBeforeProcessing");
+            log("HeaderValidationFilter:DoBeforeProcessing");
         }
-        HttpServletResponse response = (HttpServletResponse) _response;
-        response.addHeader("X-Frame-Options", "DENY");
-        
-        response.addHeader("X-Requested-By", "192.168.30.29");
-       
+
+        // Write code here to process the request and/or response before
+        // the rest of the filter chain is invoked.
+        // For example, a logging filter might log items on the request object,
+        // such as the parameters.
+        /*
+	for (Enumeration en = request.getParameterNames(); en.hasMoreElements(); ) {
+	    String name = (String)en.nextElement();
+	    String values[] = request.getParameterValues(name);
+	    int n = values.length;
+	    StringBuffer buf = new StringBuffer();
+	    buf.append(name);
+	    buf.append("=");
+	    for(int i=0; i < n; i++) {
+	        buf.append(values[i]);
+	        if (i < n-1)
+	            buf.append(",");
+	    }
+	    log(buf.toString());
+	}
+         */
     }    
     
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("SecurityFilter:DoAfterProcessing");
+            log("HeaderValidationFilter:DoAfterProcessing");
         }
 
-        
+        // Write code here to process the request and/or response after
+        // the rest of the filter chain is invoked.
+        // For example, a logging filter might log the attributes on the
+        // request object after the request has been processed. 
+        /*
+	for (Enumeration en = request.getAttributeNames(); en.hasMoreElements(); ) {
+	    String name = (String)en.nextElement();
+	    Object value = request.getAttribute(name);
+	    log("attribute: " + name + "=" + value.toString());
+
+	}
+         */
+        // For example, a filter might append something to the response.
+        /*
+	PrintWriter respOut = new PrintWriter(response.getWriter());
+	respOut.println("<P><B>This has been appended by an intrusive filter.</B>");
+         */
     }
 
- 
+    /**
+     *
+     * @param request The servlet request we are processing
+     * @param response The servlet response we are creating
+     * @param chain The filter chain we are processing
+     *
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet error occurs
+     */
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
         
         if (debug) {
-            log("SecurityFilter:doFilter()");
+            log("HeaderValidationFilter:doFilter()");
         }
         
         doBeforeProcessing(request, response);
@@ -68,7 +110,9 @@ public class SecurityFilter implements Filter {
         try {
             chain.doFilter(request, response);
         } catch (Throwable t) {
-            
+            // If an exception is thrown somewhere down the filter chain,
+            // we still want to execute our after processing, and then
+            // rethrow the problem after that.
             problem = t;
             t.printStackTrace();
         }
@@ -117,7 +161,7 @@ public class SecurityFilter implements Filter {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
             if (debug) {                
-                log("SecurityFilter:Initializing filter");
+                log("HeaderValidationFilter:Initializing filter");
             }
         }
     }
@@ -128,9 +172,9 @@ public class SecurityFilter implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("SecurityFilter()");
+            return ("HeaderValidationFilter()");
         }
-        StringBuffer sb = new StringBuffer("SecurityFilter(");
+        StringBuffer sb = new StringBuffer("HeaderValidationFilter(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());
