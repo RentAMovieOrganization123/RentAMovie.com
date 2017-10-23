@@ -47,7 +47,7 @@ public class SupportTicket extends HttpServlet {
                       
             //content
             out.println("<content>");
-            out.println("<h1>Servlet SupportTicket at " + request.getContextPath() + "</h1>");
+            out.println("<h1>SupportTicket</h1>");
             out.println("</content>");
             //end content
             

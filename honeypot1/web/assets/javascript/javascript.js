@@ -16,4 +16,12 @@ console.log("ready");
     function handler(){
        console.log('jquery added :)');
        //XMLHttpRequest.setRequestHeader("X-Requested-By", "192.168.30.29");
+        $("form").submit(function(event) {
+
+   var recaptcha = $("#g-recaptcha-response").val();
+   if (recaptcha === "") {
+      event.preventDefault();
+      alert("Please check the recaptcha");
+   }
+});
     }

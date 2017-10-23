@@ -55,7 +55,7 @@ public class ProfileManagement extends HttpServlet {
                       
             //content
             out.println("<content>");
-            out.println("<h1>Servlet ProfileManagement at " + request.getContextPath() + "</h1>");
+            out.println("<h1>ProfileManagement</h1>");
             out.println("</content>");
             //end content
             

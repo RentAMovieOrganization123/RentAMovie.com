@@ -55,7 +55,7 @@ public class Forum extends HttpServlet {
                       
             //content
             out.println("<content>");
-            out.println("<h1>Servlet Forum at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Forum </h1>");
             out.println("</content>");
             //end content
             

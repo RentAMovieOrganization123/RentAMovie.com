@@ -10,6 +10,8 @@ and open the template in the editor.
 
 body {
     margin: 0px;
+    background-color: #222930;
+    color: #E9E9E9;
 }
 header {
     width:100%;
