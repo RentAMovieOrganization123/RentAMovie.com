@@ -14,7 +14,7 @@ public class User {
     private int age;
     private String country;
 
-    public User(String name, String firstName, Date birthDate, String country) {
+    public User(String name, String firstName,String password, Date birthDate, String country) {
         this.name = name;
         this.firstName = firstName;
         this.password = password;

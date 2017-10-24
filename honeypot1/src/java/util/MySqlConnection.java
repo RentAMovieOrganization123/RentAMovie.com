@@ -5,7 +5,7 @@
  */
 package util;
 
-import exceptions.ReactionException;
+import exceptions.UserException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -26,7 +26,7 @@ public class MySqlConnection
         }
         catch (ClassNotFoundException ex)
         {
-            throw new ReactionException("Unable to load database driver.", ex);
+            throw new UserException("Unable to load database driver.", ex);
         }
     }
     

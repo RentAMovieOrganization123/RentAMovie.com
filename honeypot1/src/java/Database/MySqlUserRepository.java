@@ -7,7 +7,7 @@ package Database;
 
 import Model.Reaction;
 import Model.User;
-import exceptions.ReactionException;
+import exceptions.UserException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,7 @@ public class MySqlUserRepository implements UserRepository {
     //alle collomen namen worden bijgehouden in static final vaiabele zo dat ze makelijk kunnen aangepast worden.
     private static final String NAME_COLUMN = "name";
     private static final String FIRST_NAME_COLUMN = "firstname";
+    private static final String PASSWORD_COLUMN = "password";
     private static final String BIRTH_DATE_COLUMN = "birthdate";
     private static final String COUNTRY_COLUMN = "country";
 
@@ -49,7 +50,7 @@ public class MySqlUserRepository implements UserRepository {
 
                 return users;
             } catch (SQLException ex) {
-                throw new ReactionException("Unable to get reactions from database.", ex);
+                throw new UserException("Unable to get users from database.");
             }
         }
     }
@@ -59,12 +60,18 @@ public class MySqlUserRepository implements UserRepository {
         try {
             String username = rs.getString(NAME_COLUMN);
             String userFirstName = rs.getString(FIRST_NAME_COLUMN);
+            String password = rs.getString(PASSWORD_COLUMN);
             int userBirthDate = rs.getInt(BIRTH_DATE_COLUMN);
             String userCountry = rs.getString(COUNTRY_COLUMN);
-            user = new User(username, userFirstName, new Date(userBirthDate), userCountry);
+            user = new User(username, userFirstName,password, new Date(userBirthDate), userCountry);
         } catch (SQLException ex) {
-            Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
+            throw new UserException("Unable to make a user from result set.");
         }
         return user;
+    }
+
+    @Override
+    public User getUserByName(String name) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

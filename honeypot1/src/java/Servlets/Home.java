@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Home", urlPatterns = {"/index.php"})
 public class Home extends HttpServlet {
-
+   
   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -51,15 +51,17 @@ public class Home extends HttpServlet {
             //content
             out.println("<content>");
             out.println("<h1>Test Form</h1>");
-            
+            String loginFailed = (String)request.getSession().getAttribute("failedLogin");
+            System.out.println((String)(String)request.getSession().getAttribute("failedLogin"));
+            checkLoginStatus(loginFailed, out, request);
              out.println(" <form action = \"Test.php\" method = \"GET\">");
               
 
-            out.println("Name: <input type = \"text\" name = \"testInput\">");
+            out.println("Username: <input type = \"text\" name = \"userName\">");
             out.println("<br />\n"
-                    + "extra: <input type = \"text\" name = \"extra\" />\n"
+                    + "Password: <input type = \"password\" name = \"password\" />\n"
                     + "<input type = \"submit\" name = \"submit\" value = \"Get!!!!\" />");
-            out.println("<div class=\"g-recaptcha\" data-sitekey=\"6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ\"></div>");
+            //out.println("<div class=\"g-recaptcha\" data-sitekey=\"6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ\"></div>");
             out.println("</form>");
             
             out.println("</content>");
@@ -78,6 +80,13 @@ public class Home extends HttpServlet {
             out.println("</html>");
             
         }
+    }
+
+    private void checkLoginStatus(String loginFailed, final PrintWriter out, HttpServletRequest request) {
+        if (loginFailed != null &&loginFailed.equals("true")){
+            out.println("<h2>Something went wrong please try logging in again</h2>");
+        }
+        request.getSession().setAttribute("failedLogin", "false");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

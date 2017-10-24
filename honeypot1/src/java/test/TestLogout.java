@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package errorServlets;
+package test;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AXANO
  */
-@WebServlet(name = "CSRF.php", urlPatterns = {"/CSRF.php"})
-public class CSFR extends HttpServlet {
+@WebServlet(name = "TestLogout.php", urlPatterns = {"/TestLogout.php"})
+public class TestLogout extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,17 +34,10 @@ public class CSFR extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>CSFR.php</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>WARNING YOU ARE EITHER A VICTIM OF CSRF OR YOU ACCESSED THIS WEBSITE IN A ILLEGITIMATE WAY</h1>");
-            out.println("</body>");
-            out.println("</html>");
-
-    }}
+           request.getSession().invalidate();
+           response.sendRedirect("/index.php");
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

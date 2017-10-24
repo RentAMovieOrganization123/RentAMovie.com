@@ -26,4 +26,9 @@ public class Repositories
         return  new MySqlLogEventRepository();
     }
     
+ public static UserRepository getUserRepository()
+    {
+        return  new MySqlUserRepository();
+    }
+    
 }

@@ -81,13 +81,13 @@ public class MySqlReactionRepository
         }
         catch (SQLException ex)
         {
-            throw new ReactionException("Unable to get reactions from database.", ex);
+            throw new ReactionException("Unable to get reactions from database.");
         }
        
     }   catch (SQLException ex) {
-            Logger.getLogger(MySqlReactionRepository.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ReactionException("Unable to get reactions from database.");
         }
-         return reactions;
+         //return reactions;
     }
     public void addReaction(Reaction reaction)
     {
@@ -120,7 +120,7 @@ public class MySqlReactionRepository
         }
         catch (SQLException ex)
         {
-            throw new ReactionException("Unable to add reaction to database.", ex);
+            throw new ReactionException("Unable to add reaction to database.");
         }
     }
     

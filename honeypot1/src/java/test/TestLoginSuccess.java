@@ -5,7 +5,6 @@
  */
 package test;
 
-import googleReCAPTCHAv2.VerifyRecaptcha;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AXANO
  */
-@WebServlet(name = "Test.php", urlPatterns = {"/Test.php"})
-public class Test extends HttpServlet {
+@WebServlet(name = "TestLoginSuccess.php", urlPatterns = {"/TestLoginSuccess.php"})
+public class TestLoginSuccess extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,40 +33,25 @@ public class Test extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-            boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
             /* TODO output your page here. You may use following sample code. */
+            if (request.getSession().getAttribute("userName")==null) {
+                request.getSession().setAttribute("failedLogin", "true");
+                response.sendRedirect("/index.php");
+                return;
+            }
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
-            out.println("<script type=\"text/javascript\" src=\"assets/javascript/javascript.js\" ></script>");
-            out.println("<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>");
-            out.println("<title>Index.php</title>");            
+            out.println("<title>Servlet TestLoginSuccess</title>");            
             out.println("</head>");
-
             out.println("<body>");
-             //header
-            out.println("<header>");
-            out.println("<nav>");
-            out.println("<li><a href='index.php'>Home</a></li>");
-            out.println("<li><a href='forum.php'>Forum</a></li>");
-            out.println("<li><a href='register.php'>Register</a></li>");
-            out.println("<li><a href='profile.php'>Profile</a></li>");
-            out.println("<li><a href='login.php'>Login</a></li>");
-            out.println("</nav>");
-            out.println("</header>");
-            //end header
-            out.println("<content>");
-            out.println("<h1>Test</h1>");
-            out.println("</content>");
-             //footer
-            out.println("<footer>");
-            out.println("<a href='http://www.howest.be'><img></a>");
-            out.println("<p>Heb je problemen? <a href='support.php' id='contact'>Contacteer ons!</a> </p>");
-            out.println("<p>Hogeschool Howest Brugge - Honeypot project </p>");
-            out.println("</footer>");
-            //end footer
+            out.println("<h1>HI "+request.getSession().getAttribute("userName")+"</h1>");
+            out.println("<form action = \"TestLogout.php\" method = \"GET\">");
+              
+
+            out.println( "<input type = \"submit\" name = \"submit\" value = \"Logout\" />");
+            //out.println("<div class=\"g-recaptcha\" data-sitekey=\"6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ\"></div>");
+            out.println("</form>");
             out.println("</body>");
             out.println("</html>");
         }

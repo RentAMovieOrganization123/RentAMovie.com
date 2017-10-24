@@ -1,6 +1,7 @@
 package Database;
 
 import Model.LogEvent;
+import exceptions.LogEventException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -31,7 +32,7 @@ public class MySqlLogEventRepository implements LogEventRepository{
             
             prep.executeUpdate();
             } catch (SQLException ex) { 
-          Logger.getLogger(MySqlLogEventRepository.class.getName()).log(Level.SEVERE, null, ex);
+          throw new LogEventException("Cannot log event");
       } 
         }
 

@@ -3,50 +3,54 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package errorServlets;
+package test;
 
+import Database.Repositories;
+import Model.User;
+import googleReCAPTCHAv2.VerifyRecaptcha;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author AXANO
  */
-@WebServlet(name = "CSRF.php", urlPatterns = {"/CSRF.php"})
-public class CSFR extends HttpServlet {
+@WebServlet(name = "Test.php", urlPatterns = {"/Test.php"})
+public class TestLogin extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    //VERWERKT EEN REQUEST EN CONTROLEERD OF DE PWD CORRECT IS 
+    //ALS DIT ZO IS INITIALISEERD DEZE CLASS DE SESSION MET EEN PARAMETER
+    //userName EN MET ALS WAARDE DE NAAM VAN HET USER OBJECT
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>CSFR.php</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>WARNING YOU ARE EITHER A VICTIM OF CSRF OR YOU ACCESSED THIS WEBSITE IN A ILLEGITIMATE WAY</h1>");
-            out.println("</body>");
-            out.println("</html>");
-
-    }}
+           HttpSession session = request.getSession();
+           String username = request.getParameter("username");
+           String userPassword = request.getParameter("password");
+            System.out.println(userPassword);
+            
+            //User user=Repositories.getUserRepository().getUserByName(username);
+            User user = new User("BAKOUROS","MICHALIS","PEPIS",new Date(),"Greece");
+            if (userPassword.equals(user.getPassword())) {
+                out.println("password correct");
+                session.setAttribute("userName", user.getName());
+                response.sendRedirect("/TestLoginSuccess.php");
+            }
+            else{
+                
+                session.setAttribute("failedLogin", "true");
+                response.sendRedirect("/index.php");
+            }
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
