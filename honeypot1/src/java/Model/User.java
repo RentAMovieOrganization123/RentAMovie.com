@@ -8,6 +8,7 @@ public class User {
     private String name;
     private static int profilePicGlobalId = 0;
     private final int profilePicId;
+    private String password;
     private String firstName;
     private Date birthDate;
     private int age;
@@ -16,6 +17,7 @@ public class User {
     public User(String name, String firstName, Date birthDate, String country) {
         this.name = name;
         this.firstName = firstName;
+        this.password = password;
         this.birthDate = birthDate;
         this.country = country;
         profilePicId = profilePicGlobalId;
@@ -32,6 +34,10 @@ public class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+    
+    public void setPassword(String password){
+        this.password = password;
     }
 
     public void setBirthDate(Date birthDate) {
@@ -60,6 +66,10 @@ public class User {
 
     public String getName() {
         return name;
+    }
+    
+    public String getPassword(){
+        return password;
     }
 
     public String getFirstName() {
