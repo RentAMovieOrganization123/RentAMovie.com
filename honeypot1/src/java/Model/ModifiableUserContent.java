@@ -11,18 +11,24 @@ import java.util.Date;
  *
  * @author Cedric Cornelis
  */
-public class ModifiableUserContent {
+public class ModifiableUserContent implements Notifiable {
     
-     private Date dateLastModified;
-     private final Date dateCreated;
-     private String content;
+    private Date dateLastModified;
+    private final Date dateCreated;
+    private String content;
+    
+    public ModifiableUserContent(String content){
+        dateCreated = new Date();
+        dateLastModified = dateCreated;
+        this.content = content;
+    }
      
-     public void modifyContent(String newContent){
+    public void modifyContent(String newContent){
         content = newContent;
         notifyModified();
     }
      
-     public ModifiableUserContent(){
+    public ModifiableUserContent(){
          this.dateLastModified = new Date();
          this.dateCreated = new Date();
      }
