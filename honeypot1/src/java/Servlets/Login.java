@@ -38,6 +38,7 @@ public class Login extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
+            out.println("<link rel='stylesheet' href='assets/css/login.css'/>");
             out.println("<script type=\"text/javascript\" src=\"assets/javascript/javascript.js\" ></script>");
             out.println("<title>Servlet Login</title>");            
             out.println("</head>");
@@ -55,9 +56,27 @@ public class Login extends HttpServlet {
             //end header
                       
             //content
-            out.println("<content>");
-            out.println("<h1>Login</h1>");
-            out.println("</content>");
+             out.println("<form action='/action_page.php'>");
+            out.println("<div class='imgcontainer'>");
+            out.println("<img src='/assets/img/logo_howest.jpg' alt='Avatar' class='avatar'>");
+            out.println("</div>");
+
+            out.println("<div class='container'>");
+            out.println("<label><b>Username</b></label>");
+            out.println("<input type='text' placeholder='Enter Username' name='uname' required>");
+
+            out.println("<label><b>Password</b></label>");
+            out.println("<input type='password' placeholder='Enter Password' name='psw' required>");
+        
+            out.println("<button type='submit'>Login</button>");
+            out.println("</div>");
+
+            
+            out.println("<div class='container'>");
+            out.println("<button type='button' class='cancelbtn'>Cancel</button>");
+            
+            out.println("</div>");
+            out.println("</form>");
             //end content
             
             //footer
