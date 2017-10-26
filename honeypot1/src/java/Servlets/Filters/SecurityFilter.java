@@ -41,6 +41,7 @@ public class SecurityFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) _response;
         HttpServletRequest _request = (HttpServletRequest) request;
         response.addHeader("X-Frame-Options", "DENY");
+        _request.getCookies();
         String path = ((HttpServletRequest) request).getRequestURI();
         String test = _request.getHeader("X-Requested-By");
         //response.addHeader("X-Requested-By", "192.168.30.29");
