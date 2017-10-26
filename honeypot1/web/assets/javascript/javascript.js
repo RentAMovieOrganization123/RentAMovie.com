@@ -18,7 +18,7 @@ console.log("ready");
        //XMLHttpRequest.setRequestHeader("X-Requested-By", "192.168.30.29");
         $("form").submit(function(event) {
 
-   var recaptcha = $("#g-recaptcha-response").val();
+   var recaptcha = grecaptcha.getResponse();
    if (recaptcha === "") {
       event.preventDefault();
       alert("Please check the recaptcha");
