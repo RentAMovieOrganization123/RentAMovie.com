@@ -31,8 +31,6 @@ public class cbehindRegister_submit extends HttpServlet {
            String username = request.getParameter("input_username").trim();
            String country = request.getParameter("input_country").trim();
            Date birth_date = new Date(request.getParameter("input_birth_date"));
-           
-           //passwords
            String password = request.getParameter("input_password");
            String verify_password = request.getParameter("input_verifypassword");
            
