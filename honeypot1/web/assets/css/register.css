@@ -12,6 +12,13 @@ content
 {
     width:75%;
     margin-left:12.5%;
+    border: 3px solid #C1CFDD;
+    margin-top: 4em;
+    
+}
+
+content h1{
+    text-align:center;
     
 }
 
@@ -23,14 +30,30 @@ content form li {
 
 content form table tbody tr td
 {
-    width: 25%;
+    width:33%;
+    
+}
+
+content form table
+{
+    margin-bottom: 20px;
+    
+}
+
+content form table tbody tr td:first-child label{
+    padding-left:10%;
+    
+}
+
+content form table tbody tr td:last-child label{
+    float:right;
+    padding-right:8px;
     
 }
 
 content form table tbody tr
 {
-    height: 45px;
-    
+    height: 45px;  
 }
 
 .val {
@@ -38,7 +61,18 @@ content form table tbody tr
     
 }
 
-#regsubmit{
-    width: 100%;
+.g-recaptcha {
+    margin-left:25%;
     
+}
+
+#regsubmit{
+    width: 90%;
+    height:80%;
+    margin-left:5%;
+    margin-right: 5%;
+    background-color: #C1CFDD;
+    color: white;
+    border: none;
+    cursor: pointer;
 }

@@ -5,6 +5,7 @@
  */
 package Servlets.cbehind;
 
+import java.awt.Image;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Parameter;
@@ -27,7 +28,10 @@ public class cbehindRegister_submit extends HttpServlet {
            String gebruikersnaam = request.getParameter("input_gebruikersnaam");
            String voornaam = request.getParameter("input_vorrnaam");
            String familienaam = request.getParameter("input_familienaam");
-           String profielfoto = request.getParameter("input_profielfoto");
+           //Image profielfoto = request.getParameter("input_profielfoto");
+           
+           
+           
            
            
           

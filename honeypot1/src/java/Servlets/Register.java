@@ -59,40 +59,57 @@ public class Register extends HttpServlet {
             //content
             out.println("<content>");
             out.println("<h1>Registreer je gratis</h1>");
-            out.println("<form action='register.php' method='post'>");
+            out.println("<form action='cbehindRegister_submit.php' method='post'>");
             out.println("<table>");
             out.println("<tbody>");
+
             out.println("<tr>");
-            out.println("<td><label>Gebruikersnaam/Login: </label></td>");
-            out.println("<td><input type='text' required name='input_gebruikersnaam'/></td>");
-            out.println("<td><label id='valGeb' class='val'>test </label>");
+            out.println("<td><label>Username: </label></td>");
+            out.println("<td><input type='text' required name='input_username'/></td>");
+            out.println("<td><label id='valusername' class='val'>test </label></td>");
             out.println("</tr>");
+            
             out.println("<tr>");
-            out.println("<td><label>Voornaam: </td>");
-            out.println("<td><input type='text' required name='input_voornaam'/></td>");
-            out.println("<td><label id='valVoorn' class='val'>test </label>");
+            out.println("<td><label>Country: </label></td>");
+            out.println("<td><input type='text' required name='input_country'/></td>");
+            out.println("<td><label id='valcountry' class='val'>test </label></td>");
             out.println("</tr>");
+            
             out.println("<tr>");
-            out.println("<td><label>Familienaam: </td>");
-            out.println("<td><input type='text' required name='input_familienaam'/></td>");
-            out.println("<td><label id='valFamil' class='val'>test </label>");
+            out.println("<td><label>Profile picture: </label></td>");
+            out.println("<td><input type='file' required name='input_profile_picture' /></td>");
+            out.println("<td><label id='valprofile_picture' class='val'>test </label></td>");
             out.println("</tr>");
+            
             out.println("<tr>");
-            out.println("<td><label>Profielfoto: </td>");
-            out.println("<td><input type='file' required name='input_profielfoto' /></td>");
-            out.println("<td><label id='valProfil' class='val'>test </label>");
+            out.println("<td><label>Birth date: </label></td>");
+            out.println("<td><input type='date' required name='input_birth_date' /></td>");
+            out.println("<td><label id='valbrith_date' class='val'>test </label></td>");
+            out.println("</tr>");
+            
+            out.println("<tr>");
+            out.println("<td><label>Password: </label></td>");
+            out.println("<td><input type='password' required name='input_password' /></td>");
+            out.println("<td><label id='valpassword' class='val'>test </label></td>");
+            out.println("</tr>");
+            
+            out.println("<tr>");
+            out.println("<td><label>Verify password: </label></td>");
+            out.println("<td><input type='password' required name='input_verifypassword' /></td>");
+            out.println("<td><label id='valverifypassword' class='val' >test </label></td>");
             out.println("</tr>");
          
             //request
             out.println("<tr>");
-            out.println("<td><input type='submit' name='submit' value='Registreer' id='regsubmit' /></td>");
+            out.println("<td height='45px' colspan='3'><input type='submit' name='submit' value='Registreer' id='regsubmit' /></td>");
             out.println("</tr>");
+            
             out.println("</tbody>");
             out.println("</table>");
             out.println("</form>");
             
              //captcha
-            out.println("<div class=\"g-recaptcha\" data-sitekey=\"6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ\"></div>");
+            out.println("<div class='g-recaptcha' data-sitekey='6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ'></div>");
 
             
             out.println("</content>");
