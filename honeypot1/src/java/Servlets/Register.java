@@ -64,27 +64,37 @@ public class Register extends HttpServlet {
             out.println("<tbody>");
             out.println("<tr>");
             out.println("<td><label>Gebruikersnaam/Login: </label></td>");
-            out.println("<td><input type='text'/></td>");
+            out.println("<td><input type='text' required name='input_gebruikersnaam'/></td>");
+            out.println("<td><label id='valGeb' class='val'>test </label>");
             out.println("</tr>");
             out.println("<tr>");
             out.println("<td><label>Voornaam: </td>");
-            out.println("<td><input type='text'/></td>");
+            out.println("<td><input type='text' required name='input_voornaam'/></td>");
+            out.println("<td><label id='valVoorn' class='val'>test </label>");
             out.println("</tr>");
             out.println("<tr>");
             out.println("<td><label>Familienaam: </td>");
-            out.println("<td><input type='text' /></td>");
+            out.println("<td><input type='text' required name='input_familienaam'/></td>");
+            out.println("<td><label id='valFamil' class='val'>test </label>");
             out.println("</tr>");
             out.println("<tr>");
             out.println("<td><label>Profielfoto: </td>");
-            out.println("<td></td>"); //to add
+            out.println("<td><input type='file' required name='input_profielfoto' /></td>");
+            out.println("<td><label id='valProfil' class='val'>test </label>");
             out.println("</tr>");
+         
+            //request
             out.println("<tr>");
-            out.println("<td><input type = \"submit\" name = \"submit\" value = \"Get!!!!\" /></td>");
+            out.println("<td><input type='submit' name='submit' value='Registreer' id='regsubmit' /></td>");
             out.println("</tr>");
             out.println("</tbody>");
             out.println("</table>");
-            out.println("<div class=\"g-recaptcha\" data-sitekey=\"6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ\"></div>");
             out.println("</form>");
+            
+             //captcha
+            out.println("<div class=\"g-recaptcha\" data-sitekey=\"6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ\"></div>");
+
+            
             out.println("</content>");
             //end content
             

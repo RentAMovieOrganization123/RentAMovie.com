@@ -56,6 +56,7 @@ public class Login extends HttpServlet {
             //end header
                       
             //content
+            out.println("<content>");
              out.println("<form action='/action_page.php'>");
             out.println("<div class='imgcontainer'>");
             out.println("<img src='/assets/img/logo_howest.jpg' alt='Avatar' class='avatar'>");
@@ -77,6 +78,7 @@ public class Login extends HttpServlet {
             
             out.println("</div>");
             out.println("</form>");
+            out.println("</content>");
             //end content
             
             //footer

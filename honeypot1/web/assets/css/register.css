@@ -8,9 +8,37 @@ and open the template in the editor.
     Author     : tom.watteny
 */
 
+content
+{
+    width:75%;
+    margin-left:12.5%;
+    
+}
 
 content form li {
     display: inline-block;
     border-color: #C1CFDD;
-    border-style: groove;
+}
+
+
+content form table tbody tr td
+{
+    width: 25%;
+    
+}
+
+content form table tbody tr
+{
+    height: 45px;
+    
+}
+
+.val {
+    color:red;
+    
+}
+
+#regsubmit{
+    width: 100%;
+    
 }
