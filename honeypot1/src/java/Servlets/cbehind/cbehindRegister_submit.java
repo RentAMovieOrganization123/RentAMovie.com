@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Parameter;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,16 +26,82 @@ public class cbehindRegister_submit extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           String gebruikersnaam = request.getParameter("input_gebruikersnaam");
-           String voornaam = request.getParameter("input_vorrnaam");
-           String familienaam = request.getParameter("input_familienaam");
-           //Image profielfoto = request.getParameter("input_profielfoto");
+            
+           //parameters request
+           String username = request.getParameter("input_username").trim();
+           String country = request.getParameter("input_country").trim();
+           Date birth_date = new Date(request.getParameter("input_birth_date"));
            
+           //passwords
+           String password = request.getParameter("input_password");
+           String verify_password = request.getParameter("input_verifypassword");
            
+           //image
+           String imageLocation = request.getParameter("input_profile_picture");
+           //... do more with picture
            
+           //VALIDATION
+           boolean valid = true;
            
+           //VALIDATION USERNAME
+           if(username.contains("<script>"))
+           {
+               valid = false;
+               //set validator label valusername value to...
+           }
            
-          
+           if(username.length() < 6)
+           {
+               valid = false;
+               //set validator label valusername value to...
+           }
+           
+           //CHECKUP IF EXISTS
+           //if(username == usernameExists())
+           //{
+               //valid =false;
+               //set validator label valusername value to...
+           //}
+           
+           //VALIDATION COUNTRY
+           if(country.contains("<script>"))
+           {
+               valid = false;
+               //set validator label valcountry value to...
+           }
+           
+           //VALIDATION PROFILE PICTURE
+           //CHECK SIZE
+           
+           //VALIDATION DATE 
+           //none?
+           
+           //VALIDATION PASSWORD
+           if(password.length() < 8)
+           {
+               valid = false;
+               //set validator label valpassword value to...
+           }
+           
+           if(password.contains("<script>"))
+           {
+               valid = false;
+               //set validator label valpassword value to...
+           }
+           
+           //VALIDATION PASSWORD VERIFY
+           if(!verify_password.equals(password))
+           {
+               valid = false;
+               //set validator label valverifypassword value to...
+           }
+           
+           //done validation
+           if(valid)
+           {
+               //do database stuff
+               response.sendRedirect("registersuccessful.php");
+           }
         }
     }
 

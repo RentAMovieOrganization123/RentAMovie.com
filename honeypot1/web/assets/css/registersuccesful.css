@@ -1,0 +1,14 @@
+
+content
+{
+    width: 75%;
+    margin-left: 12.5%;
+    margin-top: 10em; 
+}
+
+content h1{
+    border-bottom: 3px solid #C1CFDD;
+    padding-bottom: 5px;
+    text-align:center;
+    
+}

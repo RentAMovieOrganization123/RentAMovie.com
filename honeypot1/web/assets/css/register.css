@@ -19,6 +19,8 @@ content
 
 content h1{
     text-align:center;
+    padding-bottom: 5px;
+    border-bottom: 3px groove #C1CFDD;
     
 }
 
