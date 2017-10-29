@@ -64,6 +64,7 @@ public class Register extends HttpServlet {
             out.println("<content>");
             out.println("<h1>Register for free</h1>");
             out.println("<form action='cbehindRegister_submit.php' method='post'>");
+            //out.println("<form action='cbehindRegister_submit.php' method='post' enctype = \"multipart/form-data\">");
             out.println("<table>");
             out.println("<tbody>");
 
