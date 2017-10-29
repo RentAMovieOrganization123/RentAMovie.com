@@ -38,11 +38,14 @@ public class Register extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
+            
+            out.println("<script src=\"http://ajax.googleapis.com/ajax/libs/jquery/2.2.1/jquery.min.js\" type=\"text/javascript\"></script>");
             out.println("<script type=\"text/javascript\" src=\"assets/javascript/javascript.js\" ></script>");
-            out.println("<script type=\"text/javascript\" src=\"assets/javascript/registrationValidator.js\" ></script>");
+            
             out.println("<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>");
             out.println("<link rel='stylesheet' href='assets/css/register.css'/>");
-            out.println("<title>Register</title>");            
+            out.println("<title>Register</title>");    
+            
             out.println("</head>");
             out.println("<body>");
             //header
@@ -123,6 +126,7 @@ public class Register extends HttpServlet {
             out.println("<p>Hogeschool Howest Brugge - Honeypot project </p>");
             out.println("</footer>");
             //end footer
+            out.println("<script type=\"text/javascript\" src=\"assets/javascript/registrationValidator.js\" ></script>");
             out.println("</body>");
             out.println("</html>");
         }
