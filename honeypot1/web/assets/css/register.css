@@ -44,7 +44,7 @@ content form table tbody tr td:first-child label{
 
 content form table tbody tr td:last-child label{
     float:right;
-    padding-right:8px;  
+    padding-right:10%;  
 }
 
 content form table tbody tr

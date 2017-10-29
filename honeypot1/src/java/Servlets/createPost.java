@@ -51,6 +51,32 @@ public class createPost extends HttpServlet {
             //content
             out.println("<content>");
             out.println("<h1>Create a post </h1>");
+            out.println("<form action='' method='post'>");
+            out.println("<table>");
+            out.println("<tbody>");
+
+            out.println("<tr>");
+            out.println("<td><label>Subject:</label></td>");
+            out.println("<td><input type='text' required name='input_subject'/></td>");
+            out.println("<td><label id='valsubject' class='val'>test </label></td>");
+            out.println("</tr>");
+            
+            out.println("<tr>");
+            out.println("<td><label>Description:</label></td>");
+            out.println("<td><textarea rows='10' cols='30' required name='input_description'> </textarea></td>");
+            out.println("<td><label class='val' name='valdescription'> test </label></td>");
+            out.println("</tr>");
+            
+            out.println("<tr>");
+            out.println("<td height='45px' colspan='3'><input type='submit' name='submit' value='Submit' id='regsubmit' /></td>");
+            out.println("</tr>");
+            
+            out.println("</tbody>");
+            out.println("</table>");
+            
+             //captcha
+            out.println("<div class='g-recaptcha' data-sitekey='6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ'></div>");
+
             out.println("</content>");
             //end content
             

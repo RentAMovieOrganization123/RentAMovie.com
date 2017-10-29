@@ -28,6 +28,12 @@ content table
     width: 100%;  
 }
 
+content table
+{
+    margin-bottom: 20px;
+    
+}
+
 content table thead tr:last-child td:first-child label {
     padding-left:10%;   
 }
@@ -58,6 +64,5 @@ content thead tr:first-child td:last-child a{
 }
 
 content thead tr:last-child td:nth-child(2) {
-    text-align:center;
-    
+    text-align:center;   
 }

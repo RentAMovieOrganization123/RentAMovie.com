@@ -40,7 +40,7 @@ public class Forum extends HttpServlet {
             out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
             out.println("<link rel='stylesheet' href='assets/css/forum.css'/>");
             out.println("<script type=\"text/javascript\" src=\"assets/javascript/javascript.js\" ></script>");
-            out.println("<title>Servlet Forum</title>");            
+            out.println("<title>Forum</title>");            
             out.println("</head>");
             out.println("<body>");
             //header
