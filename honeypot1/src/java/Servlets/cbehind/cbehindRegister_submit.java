@@ -33,7 +33,7 @@ public class cbehindRegister_submit extends HttpServlet {
            Date birth_date = new Date(request.getParameter("input_birth_date"));
            String password = request.getParameter("input_password");
            String verify_password = request.getParameter("input_verifypassword");
-           
+           //byte[] image = request.getParameter("input_profile_picture");
            //image
            String imageLocation = request.getParameter("input_profile_picture");
            //... do more with picture
