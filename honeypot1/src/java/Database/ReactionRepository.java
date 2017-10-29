@@ -16,4 +16,5 @@ public interface ReactionRepository
     public List<Reaction> getReactionBySubject(Subject subject);
     public List<Reaction> getReactionBySubjectId(int id);
     public void addReaction(Reaction reaction);
+    public Subject getSubjectFromReaction(Reaction react);
 }

@@ -16,5 +16,5 @@ import java.util.List;
 public interface UserRepository {
     public List<User> getUsers();
     public User getUserByName(String name);   
-    public void insertUser(User user);   
+    public void insertUser(User user);
 }
