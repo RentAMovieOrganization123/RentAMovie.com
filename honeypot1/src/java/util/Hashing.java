@@ -1,15 +1,10 @@
-package test;
+package util;
 
-import Logging.Utility;
 import java.security.MessageDigest;
 
 
-public class runTest {
-    public static void main(String[] args) {
-        String test = sha256("");
-        System.out.println(test);
-        System.out.println(test.length());
-    }
+public class Hashing {
+
 
 
 public static String sha256(String base) {

@@ -38,7 +38,7 @@ public class TestLogin extends HttpServlet {
             System.out.println(userPassword);
             
             //User user=Repositories.getUserRepository().getUserByName(username);
-            User user = new User("BAKOUROS","MICHALIS","PEPIS",new Date(),"Greece");
+            User user = new User("BAKOUROS","MICHALIS","MichBak","PEPIS",new Date(),"Greece",new byte[5]);
             if (userPassword.equals(user.getPassword())) {
                 out.println("password correct");
                 session.setAttribute("userName", user.getName());

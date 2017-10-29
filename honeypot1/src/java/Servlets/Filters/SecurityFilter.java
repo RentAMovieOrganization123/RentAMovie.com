@@ -40,10 +40,15 @@ public class SecurityFilter implements Filter {
         }
         HttpServletResponse response = (HttpServletResponse) _response;
         HttpServletRequest _request = (HttpServletRequest) request;
+        String sessionid = _request.getSession().getId();
+        response.setHeader("SET-COOKIE", "JSESSIONID=" + sessionid + "; httponly");
         response.addHeader("X-Frame-Options", "DENY");
-        _request.getCookies();
-        String path = ((HttpServletRequest) request).getRequestURI();
-        String test = _request.getHeader("X-Requested-By");
+        response.addHeader("Cache-Control", "no-cache, no-store, max-age=0, must-revalidate");
+        response.addHeader("Pragma", "no-cache");
+        response.addHeader("X-Content-Type-Options","nosniff");
+        response.addHeader("X-XSS-Protection","1; mode=block");
+
+        
         //response.addHeader("X-Requested-By", "192.168.30.29");
          
            
