@@ -63,8 +63,12 @@ public class Forum extends HttpServlet {
             
             out.println("<thead>");
             out.println("<tr>");
+            out.println("<td colspan='3'><a href='createPost.php'>Create a post  <a/></td>");
+            out.println("</tr>");
+            out.println("<tr>");
             out.println("<td><label>Subject</label></td>");
-            out.println("<td colspan='2'><input type='submit' name='createPost' value='create a post' id='createPost' /></td>");
+            out.println("<td><label>Created by</label></td>");
+            out.println("<td><label>Date</label></td>");
             out.println("</tr>");
             
             out.println("<tbody>");

@@ -18,32 +18,46 @@ content table thead
     font-weight: bold; 
 }
 
+content table thead tr:last-child td
+{
+    width: 33%;  
+}
+
 content table
 {
     width: 100%;  
 }
 
-content table thead tr td:first-child label {
+content table thead tr:last-child td:first-child label {
     padding-left:10%;   
 }
 
-content table tbody tr td:first-child label{
+content table thead tr:last-child td:first-child label{
     padding-left:10%;   
 }
 
-content table tbody tr td:last-child label{
+content table thead tr:last-child td:last-child label{
     float:right;
-    padding-right:8px;  
+    padding-right:10%;  
 }
 
-#createPost{
-    width: 90%;
-    height:80%;
-    margin-left:5%;
-    margin-right: 5%;
+
+content thead tr:first-child td:last-child{
+    height:50px;
     background-color: #C1CFDD;
     color: white;
     border: none;
     cursor: pointer;
-    font-weight: bold;    
+    font-weight: bold; 
+    text-align:center;
+}
+
+content thead tr:first-child td:last-child a{
+    text-decoration: none;
+    color: black;   
+}
+
+content thead tr:last-child td:nth-child(2) {
+    text-align:center;
+    
 }

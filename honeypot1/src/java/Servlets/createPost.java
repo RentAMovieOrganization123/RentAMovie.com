@@ -15,12 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author AXANO
+ * @author tom.watteny
  */
-@WebServlet(name = "SupportTicket", urlPatterns = {"/support.php"})
-public class SupportTicket extends HttpServlet {
+@WebServlet(name = "createPost.php", urlPatterns = {"/createPost.php"})
+public class createPost extends HttpServlet {
 
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -29,13 +28,14 @@ public class SupportTicket extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            out.println("<title>Create a post</title>");     
             out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
-            out.println("<link rel='stylesheet' href='assets/css/SupportTicket.css'/>");
+            out.println("<link rel='stylesheet' href='assets/css/createPost.css'/>");
             out.println("<script type=\"text/javascript\" src=\"assets/javascript/javascript.js\" ></script>");
             out.println("<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>");
-            out.println("<title>Submit a ticket</title>");            
             out.println("</head>");
             out.println("<body>");
+            
             //header
             out.println("<header>");
             out.println("<nav>");
@@ -50,33 +50,7 @@ public class SupportTicket extends HttpServlet {
                       
             //content
             out.println("<content>");
-            out.println("<h1>Contact us</h1>");
-            out.println("<form action='cbehind_SupportTicket_submit.php' method='post'>");
-            out.println("<table>");
-            out.println("<tbody>");
-            
-            out.println("<tr>");
-            out.println("<td><label>Sender: </label></td>");
-            out.println("<td><input type='text' required name='input_sender' id='input'/></td>");
-            out.println("<td><label class='val' name='valsender'> test </label></td>");
-            out.println("</tr>");
-            
-            out.println("<tr>");
-            out.println("<td><label>Message: </label></td>");
-            out.println("<td><textarea rows='10' cols='30' required name='input_message' id='input'> </textarea></td>");
-            out.println("<td><label class='val' name='valmessage'> test </label></td>");
-            out.println("</tr>");
-            
-            out.println("<tr>");
-            out.println("<td colspan='3'><input type='submit' name='submit' value='Send message' id='formsubmit' /> </td>");
-            out.println("</tr>");
-            out.println("</tbody>");
-            out.println("</table>");
-            out.println("</form>");
-            
-             //captcha
-            out.println("<div class='g-recaptcha' data-sitekey='6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ'></div>");
-
+            out.println("<h1>Create a post </h1>");
             out.println("</content>");
             //end content
             
