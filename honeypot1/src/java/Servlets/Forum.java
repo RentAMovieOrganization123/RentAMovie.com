@@ -38,6 +38,7 @@ public class Forum extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
+            out.println("<link rel='stylesheet' href='assets/css/forum.css'/>");
             out.println("<script type=\"text/javascript\" src=\"assets/javascript/javascript.js\" ></script>");
             out.println("<title>Servlet Forum</title>");            
             out.println("</head>");
@@ -57,6 +58,21 @@ public class Forum extends HttpServlet {
             //content
             out.println("<content>");
             out.println("<h1>Forum </h1>");
+            
+            out.println("<table>");
+            
+            out.println("<thead>");
+            out.println("<tr>");
+            out.println("<td><label>Subject</label></td>");
+            out.println("<td colspan='2'><input type='submit' name='createPost' value='create a post' id='createPost' /></td>");
+            out.println("</tr>");
+            
+            out.println("<tbody>");
+            out.println("<tr>");
+            out.println("</tr>");
+            
+            out.println("</tbody>");
+            out.println("</table>");
             out.println("</content>");
             //end content
             

@@ -98,7 +98,7 @@ public class cbehindRegister_submit extends HttpServlet {
            if(valid)
            {
                //do database stuff
-               response.sendRedirect("/Registersuccessful.php");
+               response.sendRedirect("/registersuccessful.php");
            }
         }
     }
