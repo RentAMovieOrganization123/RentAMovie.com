@@ -39,6 +39,7 @@ public class Register extends HttpServlet {
             out.println("<head>");
             out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
             out.println("<script type=\"text/javascript\" src=\"assets/javascript/javascript.js\" ></script>");
+            out.println("<script type=\"text/javascript\" src=\"assets/javascript/registrationValidator.js\" ></script>");
             out.println("<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>");
             out.println("<link rel='stylesheet' href='assets/css/register.css'/>");
             out.println("<title>Register</title>");            
@@ -77,7 +78,7 @@ public class Register extends HttpServlet {
             
             out.println("<tr>");
             out.println("<td><label>Profile picture: </label></td>");
-            out.println("<td><input type='file' required name='input_profile_picture' accept='image/x-png,image/gif,image/jpeg' /></td>");
+            out.println("<td><input type='file' id=\"myFile\" required name='input_profile_picture' accept='image/x-png,image/gif,image/jpeg' /></td>");
             out.println("<td><label id='valprofile_picture' class='val'>test </label></td>");
             out.println("</tr>");
             
