@@ -41,7 +41,7 @@ public class Register extends HttpServlet {
             
             out.println("<script src=\"http://ajax.googleapis.com/ajax/libs/jquery/2.2.1/jquery.min.js\" type=\"text/javascript\"></script>");
             out.println("<script type=\"text/javascript\" src=\"assets/javascript/javascript.js\" ></script>");
-            
+            out.println("<script type='text/javascript' src='assets/javascript/registrationValidator.js' ></script>");
             out.println("<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>");
             out.println("<link rel='stylesheet' href='assets/css/register.css'/>");
             out.println("<title>Register</title>");    
@@ -70,43 +70,43 @@ public class Register extends HttpServlet {
 
             out.println("<tr>");
             out.println("<td><label>Username: </label></td>");
-            out.println("<td><input type='text' required name='input_username'/></td>");
-            out.println("<td><label id='valusername' class='val'>test </label></td>");
+            out.println("<td><input type='text' required id='input_username'/></td>");
+            out.println("<td><label id='valusername' class='val'> </label></td>");
             out.println("</tr>");
             
             out.println("<tr>");
             out.println("<td><label>Country: </label></td>");
-            out.println("<td><input type='text' required name='input_country'/></td>");
-            out.println("<td><label id='valcountry' class='val'>test </label></td>");
+            out.println("<td><input type='text' required id='input_country'/></td>");
+            out.println("<td><label id='valcountry' class='val'> </label></td>");
             out.println("</tr>");
             
             out.println("<tr>");
             out.println("<td><label>Profile picture: </label></td>");
-            out.println("<td><input type='file' id=\"myFile\" required name='input_profile_picture' accept='image/x-png,image/gif,image/jpeg' /></td>");
-            out.println("<td><label id='valprofile_picture' class='val'>test </label></td>");
+            out.println("<td><input type='file' required id='input_profile_picture' accept='image/x-png,image/gif,image/jpeg' /></td>");
+            out.println("<td><label id='valprofile_picture' class='val'> </label></td>");
             out.println("</tr>");
             
             out.println("<tr>");
             out.println("<td><label>Birth date: </label></td>");
-            out.println("<td><input type='date' required name='input_birth_date' /></td>");
-            out.println("<td><label id='valbrith_date' class='val'>test </label></td>");
+            out.println("<td><input type='date' required id='input_birth_date' /></td>");
+            out.println("<td><label id='valbrith_date' class='val'> </label></td>");
             out.println("</tr>");
             
             out.println("<tr>");
             out.println("<td><label>Password: </label></td>");
-            out.println("<td><input type='password' required name='input_password' /></td>");
-            out.println("<td><label id='valpassword' class='val'>test </label></td>");
+            out.println("<td><input type='password' required id='input_password' /></td>");
+            out.println("<td><label id='valpassword' class='val'> </label></td>");
             out.println("</tr>");
             
             out.println("<tr>");
             out.println("<td><label>Verify password: </label></td>");
-            out.println("<td><input type='password' required name='input_verifypassword' /></td>");
-            out.println("<td><label id='valverifypassword' class='val' >test </label></td>");
+            out.println("<td><input type='password' required id='input_verifypassword' /></td>");
+            out.println("<td><label id='valverifypassword' class='val' > </label></td>");
             out.println("</tr>");
          
             //request
             out.println("<tr>");
-            out.println("<td height='45px' colspan='3'><input type='submit' name='submit' value='Registreer' id='regsubmit' /></td>");
+            out.println("<td height='45px' colspan='3'><input type='submit' id='submit' value='Registreer' id='regsubmit' /></td>");
             out.println("</tr>");
             
             out.println("</tbody>");
