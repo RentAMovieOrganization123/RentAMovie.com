@@ -5,6 +5,8 @@
  */
 package Servlets;
 
+import Database.MySqlUserRepository;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -64,7 +67,7 @@ public class Login extends HttpServlet {
 
             out.println("<div class='container'>");
             out.println("<label><b>Username</b></label>");
-            out.println("<input type='text' placeholder='Enter Username' name='uname' required>");
+            out.println("<input id ='userName' type='text' placeholder='Enter Username' name='uname' required>");
 
             out.println("<label><b>Password</b></label>");
             out.println("<input type='password' placeholder='Enter Password' name='psw' required>");
@@ -105,7 +108,13 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        if(request.getSession()!= null){
+            response.sendRedirect("/");
+            System.out.println("<b>User with userId " + request.getParameter("userId") + " is already logged in</b>");
+        } else {
+            processRequest(request, response);
+        }       
     }
 
     /**
@@ -119,6 +128,21 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        MySqlUserRepository db = new MySqlUserRepository();
+        
+        String userName = request.getParameter("uname");
+        User user = db.getUserByName(userName);
+        
+        boolean flag = user.getPassword().equals(request.getParameter("psw"));
+        
+        if(flag){
+            HttpSession session = request.getSession(true);
+            session.setAttribute("userId", user.hashCode()); //We moeten dan wel een beter hashcode schrijven voor User.
+            response.sendRedirect("/AdminPage.php");
+        }
+        
+     
         processRequest(request, response);
     }
 
