@@ -6,6 +6,7 @@
 package Database;
 
 import Model.Reaction;
+import Model.Subject;
 import Model.User;
 import exceptions.UserException;
 import java.sql.*;
@@ -30,14 +31,29 @@ public class MySqlUserRepository implements UserRepository {
     private static final String SQL_SELECT_USER_BY_NAME = "SELECT * FROM `bloghoneypot`.`users` WHERE name = ?";
     private static final String SQL_INSERT_USER = "INSERT INTO `bloghoneypot`.`users`(`name`,`firstname`,`username`,`password`,`date`,`country`,`profilepicture`)"
                                                 + "VALUES(?,?,?,?,?,?,?)";
+    private static final String SQL_SELECT_ALL_THREADS = "SELECT * FROM `bloghoneypot`.`threads`";
+    private static final String SQL_INSERT_THREAD = "INSERT INTO `bloghoneypot`.`threads`(`threadText`,`userId`) VALUES(?,?)";
+    private static final String SQL_SELECT_ALL_COMMENTS = "SELECT * FROM `bloghoneypot`.`comments`";
+    private static final String SQL_INSERT_COMMENT = "INSERT INTO `bloghoneypot`.`comments`(`commentText`,`threadId`,`userId`) VALUES(?,?,?)";
     //alle collomen namen worden bijgehouden in static final vaiabele zo dat ze makelijk kunnen aangepast worden.
     private static final String NAME_COLUMN = "name";
-    private static final String FIRST_NAME_COLUMN = "firstname";
-    private static final String USER_NAME_COLUMN = "username";
+    private static final String FIRST_NAME_COLUMN = "firstName";
+    private static final String USER_NAME_COLUMN = "userName";
     private static final String PASSWORD_COLUMN = "password";
-    private static final String BIRTH_DATE_COLUMN = "birthdate";
+    private static final String BIRTH_DATE_COLUMN = "birthDate";
     private static final String COUNTRY_COLUMN = "country";
-    private static final String PROFILE_PICTURE_COLUMN = "profilepicture";
+    private static final String PROFILE_PICTURE_COLUMN = "profilePicture";
+    
+    private static final String Subject_Text_COLUMN = "threadText";
+    private static final String CREATIONDATETIME_COLUMN = "creationDateTime";
+    private static final String NBR_OF_REPLIES_COLUMN = "nbrOfReplies";
+    private static final String TOTAL_VIEWS_COLUMN = "totalViews";
+    private static final String USER_ID_SUBJECT_COLUMN = "userId";
+    
+    private static final String REACTION_TEXT_COLUMN = "commentText";
+    private static final String REACTION_DATE_TIME_COLUMN = "commentDateTime";
+    private static final String THREAD_ID_COLUMN = "threadId";
+    private static final String USER_ID_REACTION_COLUMN = "userId";
 
     
     public List<User> getUsers() {
@@ -113,5 +129,39 @@ public class MySqlUserRepository implements UserRepository {
           throw new UserException("Cannot create User");
       } 
     }
+    
+    //=======> the subject and reaction models does not have the varialbles where the db data can be stored......
+    //=======> creating fake variables for the subject class, until decided
+//    @Override
+//    public List<Subject> getSubjects(){
+//        try (Connection con = MySqlConnection.getConnection();
+//                    PreparedStatement prep = con.prepareStatement(SQL_SELECT_ALL_THREADS);
+//                    ResultSet rs = prep.executeQuery()) {
+//                List<Subject> subjects = new ArrayList<>();
+//
+//                while (rs.next()) {
+//                    Subject subject = this.subjectsResultSet(rs);
+//
+//                    subjects.add(subject);
+//                }
+//
+//                return subjects;
+//            } catch (SQLException ex) {
+//                throw new UserException("Unable to get users from database.");
+//        }
+//    }
+    
+    
+//    private Subject subjectsResultSet(ResultSet rs) {
+//        Subject subject = null;
+//        try {
+//            String subjectContent = rs.getString(NAME_COLUMN);
+//            subject = new Subject();
+//        } catch (SQLException ex) {
+//            throw new UserException("Unable to retreive the subjects from result set.");
+//        }
+//        return subject;
+//    }
+    
     }
 
