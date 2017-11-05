@@ -109,12 +109,13 @@ public class Login extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        if(request.getSession()!= null){
-            response.sendRedirect("/");
-            System.out.println("<b>User with userId " + request.getParameter("userId") + " is already logged in</b>");
+        /*     if(request.getSession()!= null){
+        response.sendRedirect("/");
+        System.out.println("<b>User with userId " + request.getParameter("userId") + " is already logged in</b>");
         } else {
-            processRequest(request, response);
-        }       
+        processRequest(request, response);
+        }       */
+        processRequest(request, response);
     }
 
     /**
