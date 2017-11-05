@@ -26,6 +26,7 @@ public class Home extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            //request.getSession().invalidate();
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -61,7 +62,7 @@ public class Home extends HttpServlet {
             out.println("<br />\n"
                     + "Password: <input type = \"password\" name = \"password\" />\n"
                     + "<input type = \"submit\" name = \"submit\" value = \"Get!!!!\" />");
-            out.println("<div class=\"g-recaptcha\" data-sitekey=\"6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ\"></div>");
+            //out.println("<div class=\"g-recaptcha\" data-sitekey=\"6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ\"></div>");
             out.println("</form>");
             
             out.println("</content>");
