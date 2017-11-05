@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,6 +33,7 @@ public class ProfileManagement extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        //User user = (User)request.getAttribute("userObject");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -53,7 +55,7 @@ public class ProfileManagement extends HttpServlet {
             out.println("</nav>");
             out.println("</header>");
             //end header
-                      
+
             //content
             out.println("<content>");
             out.println("<h1>ProfileManagement</h1>");
