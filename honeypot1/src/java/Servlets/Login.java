@@ -60,7 +60,7 @@ public class Login extends HttpServlet {
                       
             //content
             out.println("<content>");
-             out.println("<form action='/action_page.php'>");
+            out.println("<form action='/cbehindLogin_submit.php'>");
             out.println("<div class='imgcontainer'>");
             out.println("<img src='/assets/img/logo_howest.jpg' alt='Avatar' class='avatar'>");
             out.println("</div>");
@@ -70,7 +70,7 @@ public class Login extends HttpServlet {
             out.println("<input id ='userName' type='text' placeholder='Enter Username' name='uname' required>");
 
             out.println("<label><b>Password</b></label>");
-            out.println("<input type='password' placeholder='Enter Password' name='psw' required>");
+            out.println("<input type='password' id='password' placeholder='Enter Password' name='psw' required>");
         
             out.println("<button type='submit'>Login</button>");
             out.println("</div>");
