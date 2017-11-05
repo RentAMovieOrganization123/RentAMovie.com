@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import util.Hashing;
 
 /**
  *
@@ -33,15 +34,18 @@ public class TestLogin extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
            HttpSession session = request.getSession();
-           String username = request.getParameter("username");
+           String username = request.getParameter("userName");
            String userPassword = request.getParameter("password");
+           String hashedPassword = Hashing.sha256(userPassword);
             System.out.println(userPassword);
             
-            //User user=Repositories.getUserRepository().getUserByName(username);
-            User user = new User("BAKOUROS","MICHALIS","MichBak","PEPIS",new Date(),"Greece",new byte[5]);
-            if (userPassword.equals(user.getPassword())) {
+           User userTotest =  Repositories.getUserRepository().getUserByName(username);
+            request.setAttribute("userObject", userTotest);
+//User user=Repositories.getUserRepository().getUserByName(username);
+            //User user = new User("BAKOUROS","MICHALIS","MichBak","PEPIS",new Date(),"Greece",new byte[5]);
+            if (userPassword.equals(userTotest.getPassword())) {
                 out.println("password correct");
-                session.setAttribute("userName", user.getName());
+                session.setAttribute("userName", userTotest.getName());
                 response.sendRedirect("/TestLoginSuccess.php");
             }
             else{
