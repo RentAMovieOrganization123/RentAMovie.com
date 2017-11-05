@@ -5,6 +5,7 @@
  */
 package Servlets.cbehind;
 
+import Model.User;
 import java.awt.Image;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,8 +38,10 @@ public class cbehindRegister_submit extends HttpServlet {
            //image
            String imageLocation = request.getParameter("input_profile_picture");
            //... do more with picture
-           
+           //String userpassowrd =request.getParameter("Password");
+           //String hashedPassword = util.Hashing.sha256(userpassowrd);
            //VALIDATION
+           //User user = new User();
            boolean valid = true;
            
            //VALIDATION USERNAME
