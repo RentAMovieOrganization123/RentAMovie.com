@@ -5,6 +5,7 @@
  */
 package Servlets.cbehind;
 
+import Database.Repositories;
 import Model.User;
 import java.awt.Image;
 import java.io.IOException;
@@ -34,76 +35,73 @@ public class cbehindRegister_submit extends HttpServlet {
            Date birth_date = new Date(request.getParameter("input_birth_date"));
            String password = request.getParameter("input_password");
            String verify_password = request.getParameter("input_verifypassword");
-           //byte[] image = request.getParameter("input_profile_picture");
+           byte[] image = null;//request.getParameter("input_profile_picture");
            //image
            String imageLocation = request.getParameter("input_profile_picture");
-           //... do more with picture
-           //String userpassowrd =request.getParameter("Password");
-           //String hashedPassword = util.Hashing.sha256(userpassowrd);
-           //VALIDATION
-           //User user = new User();
-           boolean valid = true;
-           
-           //VALIDATION USERNAME
-           if(username.contains("<script>"))
-           {
-               valid = false;
-               //set validator label valusername value to...
-           }
-           
-           if(username.length() < 6)
-           {
-               valid = false;
-               //set validator label valusername value to...
-           }
-           
-           //CHECKUP IF EXISTS
-           //if(username == usernameExists())
-           //{
-               //valid =false;
-               //set validator label valusername value to...
-           //}
-           
-           //VALIDATION COUNTRY
-           if(country.contains("<script>"))
-           {
-               valid = false;
-               //set validator label valcountry value to...
-           }
-           
-           //VALIDATION PROFILE PICTURE
-           //CHECK SIZE
-           
-           //VALIDATION DATE 
-           //none?
-           
-           //VALIDATION PASSWORD
-           if(password.length() < 8)
-           {
-               valid = false;
-               //set validator label valpassword value to...
-           }
-           
-           if(password.contains("<script>"))
-           {
-               valid = false;
-               //set validator label valpassword value to...
-           }
-           
-           //VALIDATION PASSWORD VERIFY
-           if(!verify_password.equals(password))
-           {
-               valid = false;
-               //set validator label valverifypassword value to...
-           }
+           boolean valid = validate(username, country, password, verify_password);
            
            //done validation
            if(valid)
            {
-               //do database stuff
+               //  public User(String name, String firstName, String userName, String password, Date birthDate, String country, byte[] profilePicture) {
+               User user = new User("","",username,password,birth_date,country,image);
+               Repositories.getUserRepository().insertUser(user);
                response.sendRedirect("/registersuccessful.php");
            }
         }
+    }
+
+    private boolean validate(String username, String country, String password, String verify_password) {
+
+        boolean valid = true;
+        
+        if(username.contains("<script>"))
+        {
+            valid = false;
+            
+        }
+        if(username.length() < 6)
+        {
+            valid = false;
+            
+        }
+        //CHECKUP IF EXISTS
+        //if(username == usernameExists())
+        //{
+        //valid =false;
+        //set validator label valusername value to...
+        //}
+        
+        //VALIDATION COUNTRY
+        if(country.contains("<script>"))
+        {
+            valid = false;
+            //set validator label valcountry value to...
+        }
+        //VALIDATION PROFILE PICTURE
+        //CHECK SIZE
+        
+        //VALIDATION DATE
+        //none?
+        
+        //VALIDATION PASSWORD
+        if(password.length() < 8)
+        {
+            valid = false;
+            //set validator label valpassword value to...
+        }
+        if(password.contains("<script>"))
+        {
+            valid = false;
+            //set validator label valpassword value to...
+        }
+        //VALIDATION PASSWORD VERIFY
+        if(!verify_password.equals(password))
+        {
+            valid = false;
+            //set validator label valverifypassword value to...
+        }
+        return valid;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -63,44 +63,44 @@ public class Register extends HttpServlet {
             //content
             out.println("<content>");
             out.println("<h1>Register for free</h1>");
-            out.println("<form action='cbehindRegister_submit.php' method='post'>");
+            out.println("<form action='cbehindRegister_submit.php' method='post'enctype=\"multipart/form-data\">");
             //out.println("<form action='cbehindRegister_submit.php' method='post' enctype = \"multipart/form-data\">");
             out.println("<table>");
             out.println("<tbody>");
 
             out.println("<tr>");
             out.println("<td><label>Username: </label></td>");
-            out.println("<td><input type='text' required id='input_username'/></td>");
+            out.println("<td><input type='text' required id='input_username' name='input_username'/></td>");
             out.println("<td><label id='valusername' class='val'> </label></td>");
             out.println("</tr>");
             
             out.println("<tr>");
             out.println("<td><label>Country: </label></td>");
-            out.println("<td><input type='text' required id='input_country'/></td>");
+            out.println("<td><input type='text' required id='input_country' name='input_country'/></td>");
             out.println("<td><label id='valcountry' class='val'> </label></td>");
             out.println("</tr>");
             
             out.println("<tr>");
             out.println("<td><label>Profile picture: </label></td>");
-            out.println("<td><input type='file' required id='input_profile_picture' accept='image/x-png,image/gif,image/jpeg' /></td>");
+            out.println("<td><input type='file' required id='input_profile_picture' name='input_profile_picture' accept='image/x-png,image/gif,image/jpeg' /></td>");
             out.println("<td><label id='valprofile_picture' class='val'> </label></td>");
             out.println("</tr>");
             
             out.println("<tr>");
             out.println("<td><label>Birth date: </label></td>");
-            out.println("<td><input type='date' required id='input_birth_date' /></td>");
+            out.println("<td><input type='date' required id='input_birth_date' name='input_birth_date' /></td>");
             out.println("<td><label id='valbrith_date' class='val'> </label></td>");
             out.println("</tr>");
             
             out.println("<tr>");
             out.println("<td><label>Password: </label></td>");
-            out.println("<td><input type='password' required id='input_password' /></td>");
+            out.println("<td><input type='password' required id='input_password' name='input_password' /></td>");
             out.println("<td><label id='valpassword' class='val'> </label></td>");
             out.println("</tr>");
             
             out.println("<tr>");
             out.println("<td><label>Verify password: </label></td>");
-            out.println("<td><input type='password' required id='input_verifypassword' /></td>");
+            out.println("<td><input type='password' required id='input_verifypassword' name='input_verifypassword' /></td>");
             out.println("<td><label id='valverifypassword' class='val' > </label></td>");
             out.println("</tr>");
          

@@ -5,15 +5,11 @@
  */
 package Database;
 
-import Model.Reaction;
-import Model.Subject;
 import Model.User;
 import exceptions.UserException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import util.MySqlConnection;
 
 /**
