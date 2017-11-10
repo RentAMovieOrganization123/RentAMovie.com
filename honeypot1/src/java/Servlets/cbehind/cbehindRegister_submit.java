@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.lang.reflect.Parameter;
 import java.util.Date;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,7 @@ import org.apache.commons.io.IOUtils;
  * @author tom.watteny
  */
 @WebServlet(name = "cbehindRegister_submit.php", urlPatterns = {"/cbehindRegister_submit.php"})
+@MultipartConfig
 public class cbehindRegister_submit extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -33,14 +35,15 @@ public class cbehindRegister_submit extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             
            //parameters request
-           String username = request.getParameter("input_username").trim();
-           String country = request.getParameter("input_country").trim();
-           Date birth_date = new Date(request.getParameter("input_birth_date"));
-           String password = request.getParameter("input_password");
-           String verify_password = request.getParameter("input_verifypassword");
            final Part filePart = request.getPart("input_profile_picture"); 
            InputStream filecontent = filePart.getInputStream();
            byte[] image = IOUtils.toByteArray(filecontent);
+           String username = request.getParameter("input_username");
+           String country = request.getParameter("input_country");
+           Date birth_date = new Date(request.getParameter("input_birth_date"));
+           String password = request.getParameter("input_password");
+           String verify_password = request.getParameter("input_verifypassword");
+           
            boolean valid = validate(username, country, password, verify_password);
            
            //done validation
@@ -88,7 +91,7 @@ public class cbehindRegister_submit extends HttpServlet {
         //none?
         
         //VALIDATION PASSWORD
-        if(password.length() < 8)
+        if(password.length() < 6)
         {
             valid = false;
             //set validator label valpassword value to...

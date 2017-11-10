@@ -84,13 +84,13 @@ public class Register extends HttpServlet {
             out.println("</tr>");
             
             out.println("<tr>");
-            out.println("<td><label>Profile picture: </label></td>");
+            out.println("<td><label>Profile picture(max 16 MB): </label></td>");
             out.println("<td><input type='file' required id='input_profile_picture' name='input_profile_picture' accept='image/x-png,image/gif,image/jpeg' /></td>");
             out.println("<td><label id='valprofile_picture' class='val'> </label></td>");
             out.println("</tr>");
             
             out.println("<tr>");
-            out.println("<td><label>Birth date: </label></td>");
+            out.println("<td><label>Birth date(DD/MM/YYYY): </label></td>");
             out.println("<td><input type='date' required id='input_birth_date' name='input_birth_date' /></td>");
             out.println("<td><label id='valbrith_date' class='val'> </label></td>");
             out.println("</tr>");

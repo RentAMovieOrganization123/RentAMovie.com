@@ -10,6 +10,8 @@ import exceptions.UserException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.MySqlConnection;
 
 /**
@@ -25,7 +27,7 @@ public class MySqlUserRepository implements UserRepository {
     //er is geen sql connection nodig want dit gebeurd in de MySqlConnection object die opgehaald wordt in deze object
     private static final String SQL_SELECT_ALL_USERS = "SELECT * FROM `bloghoneypot`.`users`";
     private static final String SQL_SELECT_USER_BY_NAME = "SELECT * FROM `bloghoneypot`.`users` WHERE name = ?";
-    private static final String SQL_INSERT_USER = "INSERT INTO `bloghoneypot`.`users`(`name`,`firstname`,`username`,`password`,`date`,`country`,`profilepicture`)"
+    private static final String SQL_INSERT_USER = "INSERT INTO `bloghoneypot`.`users`(`name`,`firstname`,`username`,`password`,`birthDate`,`country`,`profilepicture`)"
                                                 + "VALUES(?,?,?,?,?,?,?)";
     private static final String SQL_SELECT_ALL_THREADS = "SELECT * FROM `bloghoneypot`.`threads`";
     private static final String SQL_INSERT_THREAD = "INSERT INTO `bloghoneypot`.`threads`(`threadText`,`userId`) VALUES(?,?)";
@@ -121,7 +123,8 @@ public class MySqlUserRepository implements UserRepository {
             prep.setBytes(7, user.getProfilePicture());   
             prep.executeUpdate();
             } catch (SQLException ex) { 
-          throw new UserException("Cannot create User");
+          //throw new UserException("Cannot create User",ex);
+           Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
       } 
     }
     
