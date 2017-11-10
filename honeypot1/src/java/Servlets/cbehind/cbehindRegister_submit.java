@@ -52,6 +52,7 @@ public class cbehindRegister_submit extends HttpServlet {
                //  public User(String name, String firstName, String userName, String password, Date birthDate, String country, byte[] profilePicture) {
                User user = new User("","",username,password,birth_date,country,image);
                Repositories.getUserRepository().insertUser(user);
+               request.setAttribute("user", user);
                response.sendRedirect("/registersuccessful.php");
            }
         }
