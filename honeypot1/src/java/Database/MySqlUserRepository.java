@@ -118,8 +118,7 @@ public class MySqlUserRepository implements UserRepository {
             prep.setString(4, user.getPassword());
             prep.setLong(5, user.getBirthDate().getTime());
             prep.setString(6, user.getCountry());
-            prep.setBytes(7, user.getProfilePicture());
-            
+            prep.setBytes(7, user.getProfilePicture());   
             prep.executeUpdate();
             } catch (SQLException ex) { 
           throw new UserException("Cannot create User");

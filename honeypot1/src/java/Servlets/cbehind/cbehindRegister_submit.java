@@ -9,6 +9,7 @@ import Database.Repositories;
 import Model.User;
 import java.awt.Image;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.lang.reflect.Parameter;
 import java.util.Date;
@@ -17,6 +18,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -35,9 +38,9 @@ public class cbehindRegister_submit extends HttpServlet {
            Date birth_date = new Date(request.getParameter("input_birth_date"));
            String password = request.getParameter("input_password");
            String verify_password = request.getParameter("input_verifypassword");
-           byte[] image = null;//request.getParameter("input_profile_picture");
-           //image
-           String imageLocation = request.getParameter("input_profile_picture");
+           final Part filePart = request.getPart("input_profile_picture"); 
+           InputStream filecontent = filePart.getInputStream();
+           byte[] image = IOUtils.toByteArray(filecontent);
            boolean valid = validate(username, country, password, verify_password);
            
            //done validation
