@@ -115,7 +115,7 @@ public class Register extends HttpServlet {
             out.println("</form>");
             
             //captcha
-            //out.println("<div class='g-recaptcha' data-sitekey='6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ'></div>");
+            out.println("<div class='g-recaptcha' data-sitekey='6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ'></div>");
 
             
             out.println("</content>");

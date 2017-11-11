@@ -84,8 +84,8 @@ public class cbehindRegister_submit extends HttpServlet {
             valid = false;
 
         }
-        if (image.length / 1024 * 1024 > 1) {
-            out.println("file is to big");
+        if (image.length / (1024 * 1024) > 1) {
+            out.println("file is too big");
             valid = false;
         }
         if (!checkIfByteArrayIsImage(image)) {
