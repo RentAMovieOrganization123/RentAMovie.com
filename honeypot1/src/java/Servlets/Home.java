@@ -62,7 +62,7 @@ public class Home extends HttpServlet {
             out.println("<br />\n"
                     + "Password: <input type = \"password\" name = \"password\" />\n"
                     + "<input type = \"submit\" name = \"submit\" value = \"Get!!!!\" />");
-            out.println("<div class=\"g-recaptcha\" data-sitekey=\"6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ\"></div>");
+            //out.println("<div class=\"g-recaptcha\" data-sitekey=\"6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ\"></div>");
             out.println("</form>");
             
             out.println("</content>");

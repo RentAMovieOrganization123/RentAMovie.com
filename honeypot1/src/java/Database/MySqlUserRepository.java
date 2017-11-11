@@ -26,14 +26,14 @@ public class MySqlUserRepository implements UserRepository {
     }
     //er is geen sql connection nodig want dit gebeurd in de MySqlConnection object die opgehaald wordt in deze object
     private static final String SQL_SELECT_ALL_USERS = "SELECT * FROM `bloghoneypot`.`users`";
-    private static final String SQL_SELECT_USER_BY_NAME = "SELECT * FROM `bloghoneypot`.`users` WHERE name = ?";
+    private static final String SQL_SELECT_USER_BY_NAME = "SELECT * FROM `bloghoneypot`.`users` WHERE userName = ?";
     private static final String SQL_INSERT_USER = "INSERT INTO `bloghoneypot`.`users`(`name`,`firstname`,`username`,`password`,`birthDate`,`country`,`profilepicture`)"
                                                 + "VALUES(?,?,?,?,?,?,?)";
-    private static final String SQL_SELECT_ALL_THREADS = "SELECT * FROM `bloghoneypot`.`threads`";
+    /*private static final String SQL_SELECT_ALL_THREADS = "SELECT * FROM `bloghoneypot`.`threads`";
     private static final String SQL_INSERT_THREAD = "INSERT INTO `bloghoneypot`.`threads`(`threadText`,`userId`) VALUES(?,?)";
     private static final String SQL_SELECT_ALL_COMMENTS = "SELECT * FROM `bloghoneypot`.`comments`";
     private static final String SQL_INSERT_COMMENT = "INSERT INTO `bloghoneypot`.`comments`(`commentText`,`threadId`,`userId`) VALUES(?,?,?)";
-    //alle collomen namen worden bijgehouden in static final vaiabele zo dat ze makelijk kunnen aangepast worden.
+    *///alle collomen namen worden bijgehouden in static final vaiabele zo dat ze makelijk kunnen aangepast worden.
     private static final String NAME_COLUMN = "name";
     private static final String FIRST_NAME_COLUMN = "firstName";
     private static final String USER_NAME_COLUMN = "userName";
@@ -42,7 +42,7 @@ public class MySqlUserRepository implements UserRepository {
     private static final String COUNTRY_COLUMN = "country";
     private static final String PROFILE_PICTURE_COLUMN = "profilePicture";
     
-    private static final String Subject_Text_COLUMN = "threadText";
+    /*private static final String Subject_Text_COLUMN = "threadText";
     private static final String CREATIONDATETIME_COLUMN = "creationDateTime";
     private static final String NBR_OF_REPLIES_COLUMN = "nbrOfReplies";
     private static final String TOTAL_VIEWS_COLUMN = "totalViews";
@@ -51,7 +51,7 @@ public class MySqlUserRepository implements UserRepository {
     private static final String REACTION_TEXT_COLUMN = "commentText";
     private static final String REACTION_DATE_TIME_COLUMN = "commentDateTime";
     private static final String THREAD_ID_COLUMN = "threadId";
-    private static final String USER_ID_REACTION_COLUMN = "userId";
+    private static final String USER_ID_REACTION_COLUMN = "userId";*/
 
     
     public List<User> getUsers() {
@@ -81,12 +81,13 @@ public class MySqlUserRepository implements UserRepository {
             String userFirstName = rs.getString(FIRST_NAME_COLUMN);
             String userName = rs.getString(USER_NAME_COLUMN);
             String password = rs.getString(PASSWORD_COLUMN);
-            int userBirthDate = rs.getInt(BIRTH_DATE_COLUMN);
+            long userBirthDate = rs.getLong(BIRTH_DATE_COLUMN);
             String userCountry = rs.getString(COUNTRY_COLUMN);
             byte[] profilePicture = rs.getBytes(PROFILE_PICTURE_COLUMN);
             user = new User(name, userFirstName,userName,password, new Date(userBirthDate), userCountry,profilePicture);
         } catch (SQLException ex) {
-            throw new UserException("Unable to make a user from result set.");
+           // throw new UserException("Unable to make a user from result set.");
+           Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
         return user;
     }
@@ -95,7 +96,9 @@ public class MySqlUserRepository implements UserRepository {
     public User getUserByName(String name) {
         try (Connection con = MySqlConnection.getConnection();
                     PreparedStatement prep = con.prepareStatement(SQL_SELECT_USER_BY_NAME);
-                    ResultSet rs = prep.executeQuery()) {
+                    ) {
+                    prep.setString(1, name);
+                    ResultSet rs = prep.executeQuery();
                 User user=null;
 
                 while (rs.next()) {
@@ -105,8 +108,10 @@ public class MySqlUserRepository implements UserRepository {
 
                 return user;
             } catch (SQLException ex) {
-                throw new UserException("Unable to get users from database.");
+                //throw new UserException("Unable to get users from database.");
+                 Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
             }
+        return null;
         }
 
     @Override
