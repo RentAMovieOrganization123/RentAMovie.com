@@ -84,7 +84,7 @@ public class MySqlUserRepository implements UserRepository {
             long userBirthDate = rs.getLong(BIRTH_DATE_COLUMN);
             String userCountry = rs.getString(COUNTRY_COLUMN);
             byte[] profilePicture = rs.getBytes(PROFILE_PICTURE_COLUMN);
-            user = new User(name, userFirstName,userName,password, new Date(userBirthDate*1000), userCountry,profilePicture);
+            user = new User(name, userFirstName,userName,password, new Date(userBirthDate), userCountry,profilePicture);
         } catch (SQLException ex) {
            // throw new UserException("Unable to make a user from result set.");
            Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);

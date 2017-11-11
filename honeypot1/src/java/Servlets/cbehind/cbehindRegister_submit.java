@@ -12,7 +12,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.lang.reflect.Parameter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -32,6 +37,7 @@ public class cbehindRegister_submit extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         try (PrintWriter out = response.getWriter()) {
             
            //parameters request
@@ -40,7 +46,7 @@ public class cbehindRegister_submit extends HttpServlet {
            byte[] image = IOUtils.toByteArray(filecontent);
            String username = request.getParameter("input_username");
            String country = request.getParameter("input_country");
-           Date birth_date = new Date(request.getParameter("input_birth_date"));
+           Date birth_date = df.parse(request.getParameter("input_birth_date"));
            String password = request.getParameter("input_password");
            String verify_password = request.getParameter("input_verifypassword");
            
@@ -56,6 +62,8 @@ public class cbehindRegister_submit extends HttpServlet {
                request.getSession().setAttribute("user", user);
                response.sendRedirect("/registersuccessful.php");
            }
+        } catch (ParseException ex) {
+            Logger.getLogger(cbehindRegister_submit.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
