@@ -42,7 +42,7 @@ public class TestRegistrationSuccesful extends HttpServlet {
             out.println("<title>Servlet TestRegistrationSuccesful</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Welcome" + user.getUserName() + "from "+ user.getCountry()+ "</h1>");
+            out.println("<h1>Welcome" + user.getUserName() + " from "+ user.getCountry()+ "</h1>");
             
             out.println("</body>");
             out.println("</html>");

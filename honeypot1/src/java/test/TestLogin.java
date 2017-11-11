@@ -40,13 +40,13 @@ public class TestLogin extends HttpServlet {
             System.out.println(userPassword);
             
            User userTotest =  Repositories.getUserRepository().getUserByName(username);
-            request.setAttribute("userObject", userTotest);
+            request.getSession().setAttribute("userObject", userTotest);
 //User user=Repositories.getUserRepository().getUserByName(username);
             //User user = new User("BAKOUROS","MICHALIS","MichBak","PEPIS",new Date(),"Greece",new byte[5]);
-            if (userPassword.equals(userTotest.getPassword())) {
+            if (hashedPassword.equals(userTotest.getPassword())) {
                 out.println("password correct");
-                session.setAttribute("userName", userTotest.getName());
-                response.sendRedirect("/TestLoginSuccess.php");
+                
+                
             }
             else{
                 
