@@ -43,7 +43,7 @@ public class TestLogin extends HttpServlet {
             request.getSession().setAttribute("userObject", userTotest);
             if (hashedPassword.equals(userTotest.getPassword())) {
                 out.println("password correct");
-                out.println("welcome "+userTotest.getName()+" born on "+userTotest.getBirthDate().toString());
+                out.println("welcome "+userTotest.getUserName()+" born on "+userTotest.getBirthDate().toString());
                 
                 
                 
