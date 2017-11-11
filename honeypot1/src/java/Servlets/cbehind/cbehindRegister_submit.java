@@ -8,17 +8,22 @@ package Servlets.cbehind;
 import Database.Repositories;
 import Model.User;
 import java.awt.Image;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.lang.reflect.Parameter;
+import static Logging.Logger.logScriptUpload;
+import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,86 +39,88 @@ import org.apache.commons.io.IOUtils;
 @WebServlet(name = "cbehindRegister_submit.php", urlPatterns = {"/cbehindRegister_submit.php"})
 @MultipartConfig
 public class cbehindRegister_submit extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         try (PrintWriter out = response.getWriter()) {
-            
-           //parameters request
-           final Part filePart = request.getPart("input_profile_picture"); 
-           InputStream filecontent = filePart.getInputStream();
-           byte[] image = IOUtils.toByteArray(filecontent);
-           String username = request.getParameter("input_username");
-           String country = request.getParameter("input_country");
-           Date birth_date = df.parse(request.getParameter("input_birth_date"));
-           String password = request.getParameter("input_password");
-           String verify_password = request.getParameter("input_verifypassword");
-           
-           boolean valid = validate(username, country, password, verify_password);
-           
-           //done validation
-           if(valid)
-           {
-               password = util.Hashing.sha256(password);
-               //  public User(String name, String firstName, String userName, String password, Date birthDate, String country, byte[] profilePicture) {
-               User user = new User("","",username,password,birth_date,country,image);
-               Repositories.getUserRepository().insertUser(user);
-               request.getSession().setAttribute("user", user);
-               response.sendRedirect("/registersuccessful.php");
-           }
+
+            //parameters request
+            final Part filePart = request.getPart("input_profile_picture");
+            InputStream filecontent = filePart.getInputStream();
+            byte[] image = IOUtils.toByteArray(filecontent);
+            String username = request.getParameter("input_username");
+            String country = request.getParameter("input_country");
+            Date birth_date = df.parse(request.getParameter("input_birth_date"));
+            String password = request.getParameter("input_password");
+            String verify_password = request.getParameter("input_verifypassword");
+
+            boolean valid = validate(username, country, password, verify_password, image, out,(ServletRequest)request);
+
+            //done validation
+            if (valid) {
+                password = util.Hashing.sha256(password);
+                //  public User(String name, String firstName, String userName, String password, Date birthDate, String country, byte[] profilePicture) {
+                User user = new User("", "", username, password, birth_date, country, image);
+                Repositories.getUserRepository().insertUser(user);
+                request.getSession().setAttribute("user", user);
+                response.sendRedirect("/registersuccessful.php");
+            }
         } catch (ParseException ex) {
             Logger.getLogger(cbehindRegister_submit.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private boolean validate(String username, String country, String password, String verify_password) {
+    private boolean validate(String username, String country, String password, String verify_password, byte[] image, PrintWriter out, ServletRequest request) {
 
         boolean valid = true;
-        
-        if(username.contains("<script>"))
-        {
+
+        if (username.contains("<script>")) {
             valid = false;
-            
+
         }
-        if(username.length() < 6)
-        {
+        if (username.length() < 6) {
             valid = false;
-            
+
+        }
+        if (image.length / 1024 * 1024 > 1) {
+            out.println("file is to big");
+            valid = false;
+        }
+        if (!checkIfByteArrayIsImage(image)) {
+            out.println("file uploaded is no image");
+            logScriptUpload(request);
+            valid = false;
         }
         //CHECKUP IF EXISTS
-        //if(username == usernameExists())
-        //{
-        //valid =false;
-        //set validator label valusername value to...
-        //}
-        
+        if (Repositories.getUserRepository().getUserByName(username) != null) {
+
+            valid = false;
+            out.println("User Exists");
+        }
+
         //VALIDATION COUNTRY
-        if(country.contains("<script>"))
-        {
+        if (country.contains("<script>")) {
             valid = false;
             //set validator label valcountry value to...
         }
         //VALIDATION PROFILE PICTURE
         //CHECK SIZE
-        
+
         //VALIDATION DATE
         //none?
-        
         //VALIDATION PASSWORD
-        if(password.length() < 6)
-        {
+        if (password.length() < 6) {
             valid = false;
             //set validator label valpassword value to...
         }
-        if(password.contains("<script>"))
-        {
+        if (password.contains("<script>")) {
             valid = false;
             //set validator label valpassword value to...
         }
         //VALIDATION PASSWORD VERIFY
-        if(!verify_password.equals(password))
-        {
+        if (!verify_password.equals(password)) {
             valid = false;
             //set validator label valverifypassword value to...
         }
@@ -158,5 +165,18 @@ public class cbehindRegister_submit extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private boolean checkIfByteArrayIsImage(byte[] imageByteArray) {
+        try {
+            Image image = ImageIO.read(new ByteArrayInputStream(imageByteArray));
+            if (image == null) {
+                return false;
+            }
+        } catch (IOException ex) {
+            return false;
+
+        }
+        return true;
+    }
 
 }

@@ -82,7 +82,7 @@ public class Register extends HttpServlet {
             out.println("</tr>");
             
             out.println("<tr>");
-            out.println("<td><label>Profile picture(max 16 MB): </label></td>");
+            out.println("<td><label>Profile picture(max 1 MB): </label></td>");
             out.println("<td><input type='file' required id='input_profile_picture' name='input_profile_picture' accept='image/x-png,image/gif,image/jpeg' /></td>");
             out.println("<td><label id='valprofile_picture' class='val'> </label></td>");
             out.println("</tr>");
@@ -115,7 +115,7 @@ public class Register extends HttpServlet {
             out.println("</form>");
             
             //captcha
-            out.println("<div class='g-recaptcha' data-sitekey='6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ'></div>");
+            //out.println("<div class='g-recaptcha' data-sitekey='6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ'></div>");
 
             
             out.println("</content>");
