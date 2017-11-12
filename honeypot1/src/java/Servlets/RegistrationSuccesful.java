@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author AXANO
  */
 @WebServlet(name = "/registersuccessful.php", urlPatterns = {"/registersuccessful.php"})
-public class RegistrationSuccesful extends HttpServlet {
+public class RegistrationSuccesful extends HttpServlet {       
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,6 +44,7 @@ public class RegistrationSuccesful extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Welcome " + user.getUserName() + " from "+ user.getCountry()+ "</h1>");
             
+            out.println("<img src=\"/ImagePresentation.php\" >");
             out.println("</body>");
             out.println("</html>");
         }

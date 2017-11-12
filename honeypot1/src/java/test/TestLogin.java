@@ -40,8 +40,8 @@ public class TestLogin extends HttpServlet {
             System.out.println(userPassword);
 
             User userTotest = Repositories.getUserRepository().getUserByName(username);
-            request.getSession().setAttribute("userObject", userTotest);
-            if (hashedPassword.equals(userTotest.getPassword())) {
+            request.getSession().setAttribute("user", userTotest);
+            if (userTotest != null && hashedPassword.equals(userTotest.getPassword())) {
 
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
@@ -51,7 +51,7 @@ public class TestLogin extends HttpServlet {
                 out.println("<body>");
                 out.println("password correct");
                 out.println("welcome " + userTotest.getUserName() + " born on " + userTotest.getBirthDate().toString());
-                
+                out.println("<img src=\"/ImagePresentation.php\" >");
                 out.println("</body>");
                 out.println("</html>");
 

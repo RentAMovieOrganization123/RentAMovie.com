@@ -55,7 +55,7 @@ public class Home extends HttpServlet {
             String loginFailed = (String)request.getSession().getAttribute("failedLogin");
             System.out.println((String)(String)request.getSession().getAttribute("failedLogin"));
             checkLoginStatus(loginFailed, out, request);
-             out.println(" <form action = \"Test.php\" method = \"GET\">");
+             out.println(" <form action = \"Test.php\" method = \"POST\">");
               
 
             out.println("Username: <input type = \"text\" name = \"userName\">");

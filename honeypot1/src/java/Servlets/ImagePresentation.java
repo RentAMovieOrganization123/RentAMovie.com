@@ -34,13 +34,13 @@ public class ImagePresentation extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        User user = (User) request.getSession().getAttribute("userObject");
-        try (PrintWriter out = response.getWriter()) {
+        User user = (User) request.getSession().getAttribute("user");
+
             response.setContentType("image/gif");
                 OutputStream out1 = response.getOutputStream();
                 out1.write(user.getProfilePicture());
             
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

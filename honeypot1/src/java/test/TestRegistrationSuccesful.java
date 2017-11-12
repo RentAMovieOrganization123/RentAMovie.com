@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AXANO
  */
-@WebServlet(name = "/registersuccessful.php", urlPatterns = {"/testRegistersuccessful.php"})
+@WebServlet(name = "/testRegistersuccessful.php", urlPatterns = {"/testRegistersuccessful.php"})
 public class TestRegistrationSuccesful extends HttpServlet {
 
     /**
