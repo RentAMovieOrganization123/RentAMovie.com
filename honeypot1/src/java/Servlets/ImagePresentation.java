@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package Servlets;
 
 import Model.User;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AXANO
  */
-@WebServlet(name = "/registersuccessful.php", urlPatterns = {"/testRegistersuccessful.php"})
-public class TestRegistrationSuccesful extends HttpServlet {
+@WebServlet(name = "ImagePresentation.php", urlPatterns = {"/ImagePresentation.php"})
+public class ImagePresentation extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,19 +34,12 @@ public class TestRegistrationSuccesful extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        User user  = (User) request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute("userObject");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet TestRegistrationSuccesful</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Welcome " + user.getUserName() + " from "+ user.getCountry()+ "</h1>");
-            out.println("<img src=\"/ImagePresentation.php\" >");
-            out.println("</body>");
-            out.println("</html>");
+            response.setContentType("image/gif");
+                OutputStream out1 = response.getOutputStream();
+                out1.write(user.getProfilePicture());
+            
         }
     }
 

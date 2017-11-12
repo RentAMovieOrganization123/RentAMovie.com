@@ -33,23 +33,30 @@ public class TestLogin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           HttpSession session = request.getSession();
-           String username = request.getParameter("userName");
-           String userPassword = request.getParameter("password");
-           String hashedPassword = Hashing.sha256(userPassword);
+            HttpSession session = request.getSession();
+            String username = request.getParameter("userName");
+            String userPassword = request.getParameter("password");
+            String hashedPassword = Hashing.sha256(userPassword);
             System.out.println(userPassword);
-            
-           User userTotest =  Repositories.getUserRepository().getUserByName(username);
+
+            User userTotest = Repositories.getUserRepository().getUserByName(username);
             request.getSession().setAttribute("userObject", userTotest);
             if (hashedPassword.equals(userTotest.getPassword())) {
+
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet TestLoginSuccess</title>");
+                out.println("</head>");
+                out.println("<body>");
                 out.println("password correct");
-                out.println("welcome "+userTotest.getUserName()+" born on "+userTotest.getBirthDate().toString());
+                out.println("welcome " + userTotest.getUserName() + " born on " + userTotest.getBirthDate().toString());
                 
-                
-                
-            }
-            else{
-                
+                out.println("</body>");
+                out.println("</html>");
+
+            } else {
+
                 session.setAttribute("failedLogin", "true");
                 response.sendRedirect("/index.php");
             }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package Servlets;
 
 import Model.User;
 import java.io.IOException;
@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AXANO
  */
-@WebServlet(name = "/registersuccessful.php", urlPatterns = {"/testRegistersuccessful.php"})
-public class TestRegistrationSuccesful extends HttpServlet {
+@WebServlet(name = "/registersuccessful.php", urlPatterns = {"/registersuccessful.php"})
+public class RegistrationSuccesful extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,7 +43,7 @@ public class TestRegistrationSuccesful extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Welcome " + user.getUserName() + " from "+ user.getCountry()+ "</h1>");
-            out.println("<img src=\"/ImagePresentation.php\" >");
+            
             out.println("</body>");
             out.println("</html>");
         }
