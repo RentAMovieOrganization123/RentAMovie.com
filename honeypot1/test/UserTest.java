@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
+/*
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -12,10 +8,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import java.util.Date;
 
-/**
- *
- * @author Cedric Cornelis
- */
+
 public class UserTest {
     
     Model.User u1;
@@ -62,4 +55,4 @@ public class UserTest {
     //
     // @Test
     // public void hello() {}
-}
+}*/

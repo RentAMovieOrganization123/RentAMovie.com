@@ -42,7 +42,7 @@ public class TestLogin extends HttpServlet {
             User userTotest = Repositories.getUserRepository().getUserByName(username);
             request.getSession().setAttribute("user", userTotest);
             if (userTotest != null && hashedPassword.equals(userTotest.getPassword())) {
-
+                request.getSession().setAttribute("isLoggedIn", true);
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
