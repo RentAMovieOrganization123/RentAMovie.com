@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package Servlets;
 
 import Database.Repositories;
 import Model.User;
-import googleReCAPTCHAv2.VerifyRecaptcha;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +22,7 @@ import util.Hashing;
  * @author AXANO
  */
 @WebServlet(name = "validate", urlPatterns = {"/validate"})
-public class TestLogin extends HttpServlet {
+public class LoginValidation extends HttpServlet {
 
     //VERWERKT EEN REQUEST EN CONTROLEERD OF DE PWD CORRECT IS 
     //ALS DIT ZO IS INITIALISEERD DEZE CLASS DE SESSION MET EEN PARAMETER

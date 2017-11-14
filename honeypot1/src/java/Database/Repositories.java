@@ -16,7 +16,7 @@ public class Repositories
     {
     } 
     
-    public static SubjectRepository getMovieRepository()
+    public static SubjectRepository getSubjectRepository()
     {
         return new MySqlSubjectRepository();
     }
@@ -29,6 +29,10 @@ public class Repositories
  public static UserRepository getUserRepository()
     {
         return  new MySqlUserRepository();
+    }
+ public static ReactionRepository getReactionRepository()
+    {
+        return  new MySqlReactionRepository();
     }
     
 }

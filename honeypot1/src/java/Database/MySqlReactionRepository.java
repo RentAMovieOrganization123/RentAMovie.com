@@ -17,6 +17,7 @@ import util.MySqlConnection;
 public class MySqlReactionRepository implements ReactionRepository {
 
     private static final String SQL_SELECT_REACTION_BY_SUBJECT_ID = "SELECT * FROM `bloghoneypot`.`reactions` WHERE idSubject= ?";
+    private static final String SQL_INSERT_REACTION = "INSERT INTO `bloghoneypot`.`reactions`(`nameUser`,`content`,`idSubject`) VALUES ?,?,?);";
 
     private static final String FIELD_ID_REACTION = "id";
     private static final String FIELD_NAME_USER = "nameUser";
@@ -59,13 +60,29 @@ public class MySqlReactionRepository implements ReactionRepository {
         try {
             String nameContentOwner = rs.getString(FIELD_NAME_USER);
             String content = rs.getString(FIELD_CONTENT);
-            
-            reaction = new Reaction(Repositories.getUserRepository().getUserByName(nameContentOwner), content);
+            int id = rs.getInt(FIELD_SUBJECT_ID);
+            reaction = new Reaction(Repositories.getUserRepository().getUserByName(nameContentOwner), content,Repositories.getSubjectRepository().getSubjectByID(id));
         } catch (SQLException ex) {
             // throw new UserException("Unable to make a user from result set.");
             Logger.getLogger(MySqlReactionRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
         return reaction;
+    }
+
+    @Override
+    public void insertReaction(Reaction reaction) {
+     try(Connection con = MySqlConnection.getConnection();
+            PreparedStatement prep = con.prepareStatement(SQL_INSERT_REACTION, PreparedStatement.RETURN_GENERATED_KEYS))
+        {
+            //"INSERT INTO `bloghoneypot`.`reactions`(`nameUser`,`content`,`idSubject`) VALUES ?,?,?);"
+            prep.setString(1, reaction.getContentOwner().getUserName());
+            prep.setString(2, reaction.getContent());
+            prep.setInt(3, reaction.getSubject().getID());
+            prep.executeUpdate();
+            } catch (SQLException ex) { 
+          //throw new UserException("Cannot create User",ex);
+           Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
+      }    
     }
 
 }

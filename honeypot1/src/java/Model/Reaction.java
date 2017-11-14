@@ -5,10 +5,19 @@ public class Reaction  {
     
     User contentOwner;
     String content;
-    
-    public Reaction(User contentOwner, String content) {
-        
+    Subject subject;
+    public Reaction(User contentOwner, String content,Subject subject) {
+        this.content = content;
         this.contentOwner = contentOwner;
+        this.subject = subject;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 
     public void changeContent(String content){

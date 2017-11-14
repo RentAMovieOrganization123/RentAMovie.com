@@ -14,6 +14,7 @@ import java.util.List;
  * @author AXANO
  */
 public interface ReactionRepository {
-    List<Reaction> getReactionsBySubjectId(Subject subject);
+    public List<Reaction> getReactionsBySubjectId(Subject subject);
+    public void insertReaction(Reaction reaction);
     
 }

@@ -25,7 +25,7 @@ public class MySqlSubjectRepository
         implements SubjectRepository
 {
     private static final String SQL_SELECT_ALL_SUBJECTS = "SELECT * FROM subject;";
-    //private static final String SQL_SELECT_REACTIONS_BY_ID = "select * from subject where subject_id = ?";
+    private static final String SQL_SELECT_SUBJECT_BY_ID = "select * from subject where subject_id = ?";
     private static final String SQL_ADD_SUBJECT = "insert into subject(name, creationDateTime, userName) values(?, ?, ?)";
 
 
@@ -74,7 +74,7 @@ public class MySqlSubjectRepository
           
             prep.setString(1, subject.getName());
             prep.setLong(2, subject.getDateOfCreation().getTime());
-           prep.setString(3, subject.getContentOwner().getName());
+           prep.setString(3, subject.getContentOwner().getUserName());
            
             
             prep.executeUpdate();
@@ -128,6 +128,28 @@ public class MySqlSubjectRepository
         }
 
         return subject;
+    }
+
+    @Override
+    public Subject getSubjectByID(int id) {
+       try (Connection con = MySqlConnection.getConnection();
+                    PreparedStatement prep = con.prepareStatement(SQL_SELECT_SUBJECT_BY_ID);
+                    ) {
+                    prep.setInt(1, id);
+                    ResultSet rs = prep.executeQuery();
+                Subject subject=null;
+
+                while (rs.next()) {
+                    subject = this.resultSet2Subject(rs);
+
+                }
+
+                return subject;
+            } catch (SQLException ex) {
+                //throw new UserException("Unable to get users from database.");
+                 Logger.getLogger(MySqlSubjectRepository.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return null;
     }
 
     

@@ -13,6 +13,7 @@ import java.util.List;
 public interface SubjectRepository
 {
     public List<Subject> getSubjects();
+    public Subject getSubjectByID(int id);
     public void addSubject(Subject subject);
     
 }
