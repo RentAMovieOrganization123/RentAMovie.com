@@ -1,19 +1,19 @@
 package Model;
 
 
-public class Reaction extends ModifiableUserContent {
+public class Reaction  {
     
     User contentOwner;
     String content;
 
     public Reaction(User contentOwner, String content) {
-        super(content);
+        
         this.contentOwner = contentOwner;
     }
 
     public void changeContent(String content){
         this.setContent(content);
-        super.notifyModified();
+        
     }
     
     public User getContentOwner() {

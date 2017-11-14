@@ -19,8 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class MySqlReactionRepository
-        implements ReactionRepository
+public class MySqlSubjectRepository
+        implements SubjectRepository
 {
     private static final String SQL_SELECT_ALL_REACTIONS = "select * from reaction";
     private static final String SQL_SELECT_REACTIONS_BY_ID = "select * from reaction where subject_id = ?";
@@ -30,7 +30,7 @@ public class MySqlReactionRepository
     private static final String FIELD_REACTION_ID = "subject_id";
     
 
-    MySqlReactionRepository()
+    MySqlSubjectRepository()
     {
     }
     

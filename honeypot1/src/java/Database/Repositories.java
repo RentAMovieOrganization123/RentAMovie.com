@@ -14,11 +14,11 @@ public class Repositories
     
     private Repositories()
     {
-    }
+    } 
     
-    public static ReactionRepository getMovieRepository()
+    public static SubjectRepository getMovieRepository()
     {
-        return new MySqlReactionRepository();
+        return new MySqlSubjectRepository();
     }
     
  public static LogEventRepository getLogEventRepository()

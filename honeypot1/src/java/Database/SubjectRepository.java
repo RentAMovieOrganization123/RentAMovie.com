@@ -10,7 +10,7 @@ import Model.Subject;
 import java.util.List;
 
 
-public interface ReactionRepository
+public interface SubjectRepository
 {
     public List<Reaction> getReaction();
     public List<Reaction> getReactionBySubject(Subject subject);

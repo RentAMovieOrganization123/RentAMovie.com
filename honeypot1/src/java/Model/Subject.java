@@ -3,15 +3,28 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-public class Subject extends ModifiableUserContent {
+public class Subject  {
     
+    private int ID;
     private User contentOwner;
     private ArrayList<Reaction> reactions;
-    
-    public Subject(User contentOwner, String content){
-        super(content);
+    private Date dateOfCreation;
+    private String name;
+
+    public Subject(int ID, User contentOwner, ArrayList<Reaction> reactions, Date dateOfCreation, String name) {
+        this.ID = ID;
         this.contentOwner = contentOwner;
-        this.reactions = new ArrayList<>();
+        this.reactions = reactions;
+        this.dateOfCreation = dateOfCreation;
+        this.name = name;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public User getContentOwner() {
@@ -21,28 +34,31 @@ public class Subject extends ModifiableUserContent {
     public void setContentOwner(User contentOwner) {
         this.contentOwner = contentOwner;
     }
-    
-    public void addReaction(Reaction newReaction){
-        reactions.add(newReaction);
+
+    public ArrayList<Reaction> getReactions() {
+        return reactions;
+    }
+
+    public void setReactions(ArrayList<Reaction> reactions) {
+        this.reactions = reactions;
+    }
+
+    public Date getDateOfCreation() {
+        return dateOfCreation;
+    }
+
+    public void setDateOfCreation(Date dateOfCreation) {
+        this.dateOfCreation = dateOfCreation;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
     
-    public Reaction getReaction(Reaction reaction){
-        Reaction theReaction = reactions.get(reactions.indexOf(reaction));
-        return theReaction;
-    }
     
-    public void alterReaction(Reaction reaction, String newContent){
-        Reaction theReaction = getReaction(reaction);
-        reactions.remove(theReaction);
-        theReaction.changeContent(newContent);
-        reactions.add(reaction);
-        
-    }
-    
-    public ArrayList<Reaction> getReactions(){
-        ArrayList<Reaction> returnReactions = new ArrayList<>();
-        returnReactions.addAll(reactions);
-        return returnReactions;
-    }
     
 }
