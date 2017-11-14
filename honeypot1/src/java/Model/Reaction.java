@@ -5,7 +5,7 @@ public class Reaction  {
     
     User contentOwner;
     String content;
-
+    
     public Reaction(User contentOwner, String content) {
         
         this.contentOwner = contentOwner;
