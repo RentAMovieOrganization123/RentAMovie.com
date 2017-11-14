@@ -12,9 +12,7 @@ import java.util.List;
 
 public interface SubjectRepository
 {
-    public List<Reaction> getReaction();
-    public List<Reaction> getReactionBySubject(Subject subject);
-    public List<Reaction> getReactionBySubjectId(int id);
-    public void addReaction(Reaction reaction);
-    public Subject getSubjectFromReaction(Reaction react);
+    public List<Subject> getSubjects();
+    public void addSubject(Subject subject);
+    
 }

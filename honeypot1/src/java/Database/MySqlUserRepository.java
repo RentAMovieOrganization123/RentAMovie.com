@@ -29,11 +29,7 @@ public class MySqlUserRepository implements UserRepository {
     private static final String SQL_SELECT_USER_BY_NAME = "SELECT * FROM `bloghoneypot`.`users` WHERE userName = ?";
     private static final String SQL_INSERT_USER = "INSERT INTO `bloghoneypot`.`users`(`name`,`firstname`,`username`,`password`,`birthDate`,`country`,`profilepicture`)"
                                                 + "VALUES(?,?,?,?,?,?,?)";
-    /*private static final String SQL_SELECT_ALL_THREADS = "SELECT * FROM `bloghoneypot`.`threads`";
-    private static final String SQL_INSERT_THREAD = "INSERT INTO `bloghoneypot`.`threads`(`threadText`,`userId`) VALUES(?,?)";
-    private static final String SQL_SELECT_ALL_COMMENTS = "SELECT * FROM `bloghoneypot`.`comments`";
-    private static final String SQL_INSERT_COMMENT = "INSERT INTO `bloghoneypot`.`comments`(`commentText`,`threadId`,`userId`) VALUES(?,?,?)";
-    *///alle collomen namen worden bijgehouden in static final vaiabele zo dat ze makelijk kunnen aangepast worden.
+    
     private static final String NAME_COLUMN = "name";
     private static final String FIRST_NAME_COLUMN = "firstName";
     private static final String USER_NAME_COLUMN = "userName";
@@ -42,16 +38,7 @@ public class MySqlUserRepository implements UserRepository {
     private static final String COUNTRY_COLUMN = "country";
     private static final String PROFILE_PICTURE_COLUMN = "profilePicture";
     
-    /*private static final String Subject_Text_COLUMN = "threadText";
-    private static final String CREATIONDATETIME_COLUMN = "creationDateTime";
-    private static final String NBR_OF_REPLIES_COLUMN = "nbrOfReplies";
-    private static final String TOTAL_VIEWS_COLUMN = "totalViews";
-    private static final String USER_ID_SUBJECT_COLUMN = "userId";
     
-    private static final String REACTION_TEXT_COLUMN = "commentText";
-    private static final String REACTION_DATE_TIME_COLUMN = "commentDateTime";
-    private static final String THREAD_ID_COLUMN = "threadId";
-    private static final String USER_ID_REACTION_COLUMN = "userId";*/
 
     
     public List<User> getUsers() {

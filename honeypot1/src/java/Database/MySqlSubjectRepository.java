@@ -8,12 +8,14 @@ package Database;
 import util.MySqlConnection;
 import Model.Subject;
 import Model.Reaction;
+import Model.User;
 import exceptions.ReactionException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,34 +24,38 @@ import java.util.logging.Logger;
 public class MySqlSubjectRepository
         implements SubjectRepository
 {
-    private static final String SQL_SELECT_ALL_REACTIONS = "select * from reaction";
-    private static final String SQL_SELECT_REACTIONS_BY_ID = "select * from reaction where subject_id = ?";
-    private static final String SQL_ADD_REACTION = "insert into reaction(title, subject_id, year, stars) values(?, ?, ?, ?)";
+    private static final String SQL_SELECT_ALL_SUBJECTS = "SELECT * FROM subject;";
+    //private static final String SQL_SELECT_REACTIONS_BY_ID = "select * from subject where subject_id = ?";
+    private static final String SQL_ADD_SUBJECT = "insert into subject(name, creationDateTime, userName) values(?, ?, ?)";
 
 
-    private static final String FIELD_REACTION_ID = "subject_id";
+    private static final String FIELD_SUBJECT_ID = "Id";
+    private static final String FIELD_SUBJECT_NAME = "name";
+    private static final String FIELD_SUBJECT_CREATIONDATETIME = "creationDateTime";
+    private static final String FIELD_SUBJECT_USER_NAME = "userName";
     
 
     MySqlSubjectRepository()
     {
     }
     
-    public List<Reaction> getReactions()
+    @Override
+    public List<Subject> getSubjects()
     {
         try(Connection con = MySqlConnection.getConnection();
-            PreparedStatement prep = con.prepareStatement(SQL_SELECT_ALL_REACTIONS);
+            PreparedStatement prep = con.prepareStatement(SQL_SELECT_ALL_SUBJECTS);
             ResultSet rs = prep.executeQuery())
         {
-            List<Reaction> reactions = new ArrayList<>();
+            List<Subject> subjects = new ArrayList<>();
             
             while (rs.next())
             {
-                Reaction reaction = this.resultSet2Subject(rs);
+                Subject subject = this.resultSet2Subject(rs);
                 
-                reactions.add(reaction);
+                subjects.add(subject);
             }
             
-            return reactions;
+            return subjects;
         }
         catch (SQLException ex)
         {
@@ -57,47 +63,19 @@ public class MySqlSubjectRepository
         }
     }
     
-    public List<Reaction> getReactionBySubjectId(int id)
-    {
-        List<Reaction> reactions = new ArrayList<>();
-        try(Connection con = MySqlConnection.getConnection();
-            PreparedStatement prep = con.prepareStatement(SQL_SELECT_REACTIONS_BY_ID);
-            )
-        {
-            
-            prep.setInt(1, id);
-            try(
-            ResultSet rs = prep.executeQuery()){
-            
-            
-            while (rs.next())
-            {
-                Reaction reaction = this.resultSet2Subject(rs);
-                
-                reactions.add(reaction);
-            }
-            
-            return reactions;
-        }
-        catch (SQLException ex)
-        {
-            throw new ReactionException("Unable to get reactions from database.");
-        }
-       
-    }   catch (SQLException ex) {
-            throw new ReactionException("Unable to get reactions from database.");
-        }
-         //return reactions;
-    }
-    public void addReaction(Reaction reaction)
+
+        
+    @Override
+    public void addSubject(Subject subject)
     {
         try(Connection con = MySqlConnection.getConnection();
-            PreparedStatement prep = con.prepareStatement(SQL_ADD_REACTION, PreparedStatement.RETURN_GENERATED_KEYS))
+            PreparedStatement prep = con.prepareStatement(SQL_ADD_SUBJECT, PreparedStatement.RETURN_GENERATED_KEYS))
         {
-            //prep.setString(1, reaction.getTitle());
-            //prep.setInt(2, reaction.getSubject().getId());
-           // prep.setInt(3, reaction.getYear());
-           // prep.setInt(4, reaction.getStars());
+          
+            prep.setString(1, subject.getName());
+            prep.setLong(2, subject.getDateOfCreation().getTime());
+           prep.setString(3, subject.getContentOwner().getName());
+           
             
             prep.executeUpdate();
                     
@@ -124,34 +102,35 @@ public class MySqlSubjectRepository
         }
     }
     
-    private Reaction resultSet2Subject(ResultSet rs) throws SQLException
+    private Subject resultSet2Subject(ResultSet rs) throws SQLException
     {
-        
+        /*
+         public Subject(int ID, User contentOwner, ArrayList<Reaction> reactions, Date dateOfCreation, String name) {
+        this.ID = ID;
+        this.contentOwner = contentOwner;
+        this.reactions = reactions;
+        this.dateOfCreation = dateOfCreation;
+        this.name = name;
+    }*/
 
-        //Reaction reaction = new Reaction(id, title, subject, year, stars);
-        //Reaction reaction = new Reaction();
+        Subject subject = null;
+        try {
+            int id = rs.getInt(FIELD_SUBJECT_ID);
+            User contentOwner = Repositories.getUserRepository().getUserByName(rs.getString(FIELD_SUBJECT_USER_NAME));
+            ArrayList<Reaction> reactions = null;//rs.getString(USER_NAME_COLUMN); TODO get reactons with subjectID
+            
+            long creationTimeMillis = rs.getLong(FIELD_SUBJECT_CREATIONDATETIME);
+            String name = rs.getString(FIELD_SUBJECT_NAME);
+            subject = new Subject(id, contentOwner,reactions,new Date(creationTimeMillis), name);
+        } catch (SQLException ex) {
+           // throw new UserException("Unable to make a user from result set.");
+           Logger.getLogger(MySqlSubjectRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        return null;
+        return subject;
     }
 
-    @Override
-    public List<Reaction> getReaction() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
- 
-
- 
-
-    @Override
-    public List<Reaction> getReactionBySubject(Subject subject) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Subject getSubjectFromReaction(Reaction react) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
    
     
