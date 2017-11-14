@@ -5,6 +5,8 @@
  */
 package Servlets;
 
+import Database.Repositories;
+import Model.Subject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -24,12 +26,15 @@ public class Home extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             //request.getSession().invalidate();
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+
             out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
             out.println("<script type=\"text/javascript\" src=\"assets/javascript/javascript.js\" ></script>");
             out.println("<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>");

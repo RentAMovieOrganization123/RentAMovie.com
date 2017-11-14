@@ -37,7 +37,7 @@ public class TestLogin extends HttpServlet {
             String username = request.getParameter("userName");
             String userPassword = request.getParameter("password");
             String hashedPassword = Hashing.sha256(userPassword);
-            System.out.println(userPassword);
+            
 
             User userTotest = Repositories.getUserRepository().getUserByName(username);
             request.getSession().setAttribute("user", userTotest);

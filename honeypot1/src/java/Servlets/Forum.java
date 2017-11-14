@@ -5,6 +5,9 @@
  */
 package Servlets;
 
+import Database.Repositories;
+import Model.Subject;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,15 +35,22 @@ public class Forum extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        /* List<Subject> subjects = new ArrayList();
+        subjects = Repositories.getMovieRepository().getReaction();*/
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            /* for (Subject s : subjects) {
+            
+            out.println(s.getContentOwner());
+            }*/
+            
             out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
             out.println("<link rel='stylesheet' href='assets/css/forum.css'/>");
             out.println("<script type=\"text/javascript\" src=\"assets/javascript/javascript.js\" ></script>");
-            out.println("<title>Forum</title>");            
+            out.println("<title>Forum</title>");
             out.println("</head>");
             out.println("<body>");
             //header
@@ -54,13 +64,13 @@ public class Forum extends HttpServlet {
             out.println("</nav>");
             out.println("</header>");
             //end header
-                      
+
             //content
             out.println("<content>");
             out.println("<h1>Forum </h1>");
-            
+
             out.println("<table>");
-            
+
             out.println("<thead>");
             out.println("<tr>");
             out.println("<td colspan='3'><a href='createPost.php'>Create a post  <a/></td>");
@@ -70,16 +80,16 @@ public class Forum extends HttpServlet {
             out.println("<td><label>Created by</label></td>");
             out.println("<td><label>Date</label></td>");
             out.println("</tr>");
-            
+
             out.println("<tbody>");
             out.println("<tr>");
             out.println("</tr>");
-            
+
             out.println("</tbody>");
             out.println("</table>");
             out.println("</content>");
             //end content
-            
+
             //footer
             out.println("<footer>");
             out.println("<a href='http://www.howest.be'><img></a>");
