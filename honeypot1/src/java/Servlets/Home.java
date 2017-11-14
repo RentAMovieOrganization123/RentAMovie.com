@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+ 
 /**
  *
  * @author AXANO
@@ -48,7 +48,7 @@ public class Home extends HttpServlet {
             out.println("<li><a href='forum.php'>Forum</a></li>");
             out.println("<li><a href='register.php'>Register</a></li>");
             out.println("<li><a href='profile.php'>Profile</a></li>");
-            out.println("<li><a href='login.php'>Login</a></li>");
+            out.println("<li><a href='logout.php'>Logout</a></li>");
             
             out.println("</nav>");
             out.println("</header>");
@@ -56,20 +56,20 @@ public class Home extends HttpServlet {
                       
             //content
             out.println("<content>");
-            out.println("<h1>Test Form</h1>");
+            out.println("<h1>Login</h1>");
             String loginFailed = (String)request.getSession().getAttribute("failedLogin");
             System.out.println((String)(String)request.getSession().getAttribute("failedLogin"));
             checkLoginStatus(loginFailed, out, request);
-             out.println(" <form action = \"Test.php\" method = \"POST\">");
+             out.println(" <form action = \"validate\" method = \"POST\">");
               
 
             out.println("Username: <input type = \"text\" name = \"userName\">");
             out.println("<br />\n"
                     + "Password: <input type = \"password\" name = \"password\" />\n"
                     + "<input type = \"submit\" name = \"submit\" value = \"Get!!!!\" />");
-            out.println("<div class=\"g-recaptcha\" data-sitekey=\"6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ\"></div>");
+            //out.println("<div class=\"g-recaptcha\" data-sitekey=\"6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ\"></div>");
             out.println("</form>");
-            
+            out.println("<p style=\"color:red;\">You can only go to the Forum and to your profile if you are logged in!</p>");
             out.println("</content>");
             //end content
             

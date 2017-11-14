@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AXANO
  */
-@WebServlet(name = "TestLogout.php", urlPatterns = {"/TestLogout.php"})
+@WebServlet(name = "TestLogout.php", urlPatterns = {"/logout.php"})
 public class TestLogout extends HttpServlet {
 
     /**

@@ -49,12 +49,12 @@ public class SecurityFilter implements Filter {
         response.addHeader("X-XSS-Protection", "1; mode=block");
         String test = (String) _request.getSession().getAttribute("isLoggedIn");
         String path = ((HttpServletRequest) request).getRequestURI();
-        if (path.contains(".php")) {
-            if (test == null) {
-
-                response.sendRedirect("/");
-
-            }
+        if (!path.contains("index.php") &&!path.contains("register.php") && path.contains(".php")) {
+        if (test == null) {
+        
+        response.sendRedirect("/");
+        
+        }
         }
 
         //response.addHeader("X-Requested-By", "192.168.30.29");

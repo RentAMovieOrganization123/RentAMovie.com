@@ -5,7 +5,6 @@
  */
 package Servlets;
 
-import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -51,7 +50,7 @@ public class ProfileManagement extends HttpServlet {
             out.println("<li><a href='forum.php'>Forum</a></li>");
             out.println("<li><a href='register.php'>Register</a></li>");
             out.println("<li><a href='profile.php'>Profile</a></li>");
-            out.println("<li><a href='login.php'>Login</a></li>");
+            out.println("<li><a href='logout.php'>Logout</a></li>");
             out.println("</nav>");
             out.println("</header>");
             //end header

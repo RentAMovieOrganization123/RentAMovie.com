@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AXANO
  */
-@WebServlet(name = "ImagePresentation.php", urlPatterns = {"/ImagePresentation.php"})
+@WebServlet(name = "ImagePresentation", urlPatterns = {"/ImagePresentation"})
 public class ImagePresentation extends HttpServlet {
 
     /**

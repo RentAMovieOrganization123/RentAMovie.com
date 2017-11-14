@@ -23,7 +23,7 @@ import util.Hashing;
  *
  * @author AXANO
  */
-@WebServlet(name = "Test.php", urlPatterns = {"/Test.php"})
+@WebServlet(name = "validate", urlPatterns = {"/validate"})
 public class TestLogin extends HttpServlet {
 
     //VERWERKT EEN REQUEST EN CONTROLEERD OF DE PWD CORRECT IS 
@@ -42,7 +42,7 @@ public class TestLogin extends HttpServlet {
             User userTotest = Repositories.getUserRepository().getUserByName(username);
             request.getSession().setAttribute("user", userTotest);
             if (userTotest != null && hashedPassword.equals(userTotest.getPassword())) {
-                request.getSession().setAttribute("isLoggedIn", true);
+                request.getSession().setAttribute("isLoggedIn", "true");
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
@@ -51,7 +51,7 @@ public class TestLogin extends HttpServlet {
                 out.println("<body>");
                 out.println("password correct");
                 out.println("welcome " + userTotest.getUserName() + " born on " + userTotest.getBirthDate().toString());
-                out.println("<img src=\"/ImagePresentation.php\" >");
+                out.println("<img src=\"/ImagePresentation\" >");
                 out.println("</body>");
                 out.println("</html>");
 
