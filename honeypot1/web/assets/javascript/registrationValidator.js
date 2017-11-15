@@ -4,13 +4,13 @@ $(document).ready(function () {$('#submit').on('click',validate);});
 
     function check(){
       var imgpath=document.getElementById('input_profile_picture');
-      console.log("test");
+      
       if (!imgpath.value==""){
         var img=imgpath.files[0].size;
         var imgsize=img/1024; 
-        alert(imgsize);
+        
       }
-      console.log("test2");
+      
     }
     
     function validate(){
