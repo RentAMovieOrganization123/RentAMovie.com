@@ -89,7 +89,7 @@ public class Register extends HttpServlet {
             
             out.println("<tr>");
             out.println("<td><label>Birth date(DD/MM/YYYY): </label></td>");
-            out.println("<td><input type='date' required id='input_birth_date' name='input_birth_date' /></td>");
+            out.println("<td><input type='date' required id='input_birth_date' name='input_birth_date' required pattern=\"[0-9]{2}/[0-9]{2}/[0-9]{4}\"/></td>");
             out.println("<td><label id='valbrith_date' class='val'> </label></td>");
             out.println("</tr>");
             
