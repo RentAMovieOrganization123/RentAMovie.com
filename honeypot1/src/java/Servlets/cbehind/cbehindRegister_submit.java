@@ -34,7 +34,7 @@ import org.apache.commons.io.IOUtils;
 
 /**
  *
- * @author tom.watteny
+ * @author AXANO
  */
 @WebServlet(name = "cbehindRegister_submit.php", urlPatterns = {"/cbehindRegister_submit.php"})
 @MultipartConfig
@@ -68,6 +68,7 @@ public class cbehindRegister_submit extends HttpServlet {
                 response.sendRedirect("/profile.php");
             }
         } catch (ParseException ex) {
+             request.getSession().setAttribute("messageToUser","You probably messed with the request please try again!");
             response.sendRedirect("/register.php");
             Logger.getLogger(cbehindRegister_submit.class.getName()).log(Level.SEVERE, null, ex);
         }

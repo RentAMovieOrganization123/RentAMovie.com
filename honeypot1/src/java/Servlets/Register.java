@@ -64,6 +64,10 @@ public class Register extends HttpServlet {
             //content
             out.println("<content>");
             out.println("<h1>Register for free</h1>");
+            String messageToUser = (String)request.getSession().getAttribute("messageToUser");
+            if (messageToUser!=null) {
+                out.println("<h2 style=\"color:red;\">"+messageToUser+"</h2>");
+            }
             out.println("<form action='cbehindRegister_submit.php' method='post'enctype=\"multipart/form-data\">");
 
             out.println("<table>");
