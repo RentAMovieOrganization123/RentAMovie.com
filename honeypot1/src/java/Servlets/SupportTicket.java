@@ -49,7 +49,7 @@ public class SupportTicket extends HttpServlet {
             out.println("</nav>");
             out.println("</header>");
             //end header
-                      
+                       
             //content
             out.println("<content>");
             out.println("<h1>Contact us</h1>");
