@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.owasp.encoder.Encode;
 import util.MySqlConnection;
 
 public class MySqlReactionRepository implements ReactionRepository {
@@ -75,8 +76,8 @@ public class MySqlReactionRepository implements ReactionRepository {
             PreparedStatement prep = con.prepareStatement(SQL_INSERT_REACTION, PreparedStatement.RETURN_GENERATED_KEYS))
         {
             //"INSERT INTO `bloghoneypot`.`reactions`(`nameUser`,`content`,`idSubject`) VALUES ?,?,?);"
-            prep.setString(1, reaction.getContentOwner().getUserName());
-            prep.setString(2, reaction.getContent());
+            prep.setString(1, Encode.forHtml(reaction.getContentOwner().getUserName()));
+            prep.setString(2, Encode.forHtml(reaction.getContent()));
             prep.setInt(3, reaction.getSubject().getID());
             prep.executeUpdate();
             } catch (SQLException ex) { 

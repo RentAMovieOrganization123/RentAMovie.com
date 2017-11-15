@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.owasp.encoder.Encode;
 
 
 public class MySqlSubjectRepository
@@ -72,9 +73,9 @@ public class MySqlSubjectRepository
             PreparedStatement prep = con.prepareStatement(SQL_ADD_SUBJECT, PreparedStatement.RETURN_GENERATED_KEYS))
         {
           
-            prep.setString(1, subject.getName());
+            prep.setString(1, Encode.forHtml(subject.getName()));
             prep.setLong(2, subject.getDateOfCreation().getTime());
-           prep.setString(3, subject.getContentOwner().getUserName());
+           prep.setString(3, Encode.forHtml(subject.getContentOwner().getUserName()));
            
             
             prep.executeUpdate();

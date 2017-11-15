@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.owasp.encoder.Encode;
 import util.MySqlConnection;
 
 /**
@@ -106,12 +107,12 @@ public class MySqlUserRepository implements UserRepository {
         try(Connection con = MySqlConnection.getConnection();
             PreparedStatement prep = con.prepareStatement(SQL_INSERT_USER, PreparedStatement.RETURN_GENERATED_KEYS))
         {
-            prep.setString(1, user.getName());
-            prep.setString(2, user.getFirstName());
-            prep.setString(3, user.getUserName());
-            prep.setString(4, user.getPassword());
+            prep.setString(1, Encode.forHtml(user.getName()));
+            prep.setString(2, Encode.forHtml(user.getFirstName()));
+            prep.setString(3, Encode.forHtml(user.getUserName()));
+            prep.setString(4, Encode.forHtml(user.getPassword()));
             prep.setLong(5, user.getBirthDate().getTime());
-            prep.setString(6, user.getCountry());
+            prep.setString(6, Encode.forHtml(user.getCountry()));
             prep.setBytes(7, user.getProfilePicture());   
             prep.executeUpdate();
             } catch (SQLException ex) { 
