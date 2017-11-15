@@ -36,14 +36,16 @@ import org.apache.commons.io.IOUtils;
  *
  * @author AXANO
  */
-@WebServlet(name = "cbehindRegister_submit.php", urlPatterns = {"/cbehindRegister_submit.php"})
+@WebServlet(name = "cbehindRegister_submit.php", urlPatterns = {"/cbehindRegister_submit"})
 @MultipartConfig
 public class cbehindRegister_submit extends HttpServlet {
+    String messageToUser= "";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        messageToUser= "";
         try (PrintWriter out = response.getWriter()) {
 
             //parameters request
@@ -67,11 +69,15 @@ public class cbehindRegister_submit extends HttpServlet {
                 request.getSession().setAttribute("user", user);
                 response.sendRedirect("/profile.php");
             }
+            else{
+                request.getSession().setAttribute("messageToUser",messageToUser);
+            response.sendRedirect("/register.php");}
         } catch (ParseException ex) {
-             request.getSession().setAttribute("messageToUser","You probably messed with the request please try again!");
+            request.getSession().setAttribute("messageToUser","You probably messed with the request. please try again!!");
             response.sendRedirect("/register.php");
             Logger.getLogger(cbehindRegister_submit.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 
     private boolean validate(String username, String country, String password, String verify_password, byte[] image, PrintWriter out, ServletRequest request) {
@@ -87,11 +93,11 @@ public class cbehindRegister_submit extends HttpServlet {
 
         }
         if (image.length / (1024 * 1024) > 1) {
-            out.println("file is too big");
+            messageToUser = messageToUser + "file is too big. ";
             valid = false;
         }
         if (!checkIfByteArrayIsImage(image)) {
-            out.println("file uploaded is no image");
+            messageToUser = messageToUser + "file uploaded is no image. ";
             logScriptUpload(request);
             valid = false;
         }
@@ -99,7 +105,7 @@ public class cbehindRegister_submit extends HttpServlet {
         if (Repositories.getUserRepository().getUserByName(username) != null) {
 
             valid = false;
-            out.println("User Exists");
+             messageToUser = messageToUser + "User Exists";
         }
 
         //VALIDATION COUNTRY
@@ -124,7 +130,7 @@ public class cbehindRegister_submit extends HttpServlet {
         //VALIDATION PASSWORD VERIFY
         if (!verify_password.equals(password)) {
             valid = false;
-            //set validator label valverifypassword value to...
+             messageToUser = messageToUser + "password doesnt match with verify password field.";
         }
         return valid;
     }

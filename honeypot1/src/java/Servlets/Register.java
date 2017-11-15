@@ -65,10 +65,14 @@ public class Register extends HttpServlet {
             out.println("<content>");
             out.println("<h1>Register for free</h1>");
             String messageToUser = (String)request.getSession().getAttribute("messageToUser");
+
             if (messageToUser!=null) {
                 out.println("<h2 style=\"color:red;\">"+messageToUser+"</h2>");
             }
-            out.println("<form action='cbehindRegister_submit.php' method='post'enctype=\"multipart/form-data\">");
+
+            if (messageToUser!=null) 
+                out.println("<h2 style=\"color:red;\">"+messageToUser+"</h2>");
+            out.println("<form action='cbehindRegister_submit' method='post'enctype=\"multipart/form-data\">");
 
             out.println("<table>");
             out.println("<tbody>");
@@ -119,7 +123,7 @@ public class Register extends HttpServlet {
             out.println("</form>");
             
             //captcha
-            out.println("<div class='g-recaptcha' data-sitekey='6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ'></div>");
+            //out.println("<div class='g-recaptcha' data-sitekey='6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ'></div>");
 
             
             out.println("</content>");
