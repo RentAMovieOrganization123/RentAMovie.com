@@ -60,6 +60,8 @@ public class AdminPage extends HttpServlet {
             //content
             out.println("<content>");
             out.println("<h1>Servlet AdminPage</h1>");
+            out.println("<h2>Support Tickets</h2>");
+            
             out.println(" <table style=\"width:100%\">\n"
                     +" <thead>"
                     + "  <tr>\n"
