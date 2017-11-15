@@ -60,6 +60,7 @@ public class Home extends HttpServlet {
             checkLoginStatus(loginFailed, out, request);
             if (messageToUser!=null) 
             out.println("<h2 style=\"color:red;\">"+messageToUser+"</h2>");
+            
              out.println(" <form action = \"validate\" method = \"POST\">");
               
 
