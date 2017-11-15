@@ -60,7 +60,8 @@ public class Login extends HttpServlet {
                       
             //content
             out.println("<content>");
-            out.println("<form action='/cbehindLogin_submit.php'>");
+            //out.println("<form action='/cbehindLogin_submit.php'>");
+            out.println("<form >");
             out.println("<div class='imgcontainer'>");
             out.println("<img src='/assets/img/logo_howest.jpg' alt='Avatar' class='avatar'>");
             out.println("</div>");

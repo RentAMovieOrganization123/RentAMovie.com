@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,7 +33,8 @@ public class ProfileManagement extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //User user = (User)request.getAttribute("userObject");
+
+        User user = (User) request.getSession().getAttribute("user");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -40,7 +42,7 @@ public class ProfileManagement extends HttpServlet {
             out.println("<head>");
             out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
             out.println("<script type=\"text/javascript\" src=\"assets/javascript/javascript.js\" ></script>");
-            out.println("<title>Servlet ProfileManagement</title>");            
+            out.println("<title>Servlet ProfileManagement</title>");
             out.println("</head>");
             out.println("<body>");
             //header
@@ -59,10 +61,17 @@ public class ProfileManagement extends HttpServlet {
             out.println("<content>");
             out.println("<h1>ProfileManagement</h1>");
             out.println("</content>");
-            //end content
-            
-            //footer
-            out.println("<footer>");
+            out.println("<table  style = \"width:100%\">"
+                    + "<tr>"
+                    + "< td > Username: "+user.getUserName()+" </td>"
+                    + " <td>Birthdate: "+user.getBirthDate().toString()+" </td> "
+                    + " <td>Country: "+user.getCountry()+" </td> "
+                    + "<td>Profile pic: <img src=\"/ImagePresentation\" height=\"42\" width=\"42\" ></td> "
+                    + "< / tr> "
+                    + "< / table>"); 
+                    //end content
+                    //footer
+                    out.println("<footer>");
             out.println("<a href='http://www.howest.be'><img></a>");
             out.println("<p>Heb je problemen? <a href='support.php' id='contact'>Contacteer ons!</a> </p>");
             out.println("<p>Hogeschool Howest Brugge - Honeypot project </p>");

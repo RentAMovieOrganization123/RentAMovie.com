@@ -41,7 +41,8 @@ public class LoginValidation extends HttpServlet {
             request.getSession().setAttribute("user", userTotest);
             if (userTotest != null && hashedPassword.equals(userTotest.getPassword())) {
                 request.getSession().setAttribute("isLoggedIn", "true");
-                out.println("<!DOCTYPE html>");
+                response.sendRedirect("/profile.php");
+                /*                out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
                 out.println("<title>Servlet TestLoginSuccess</title>");
@@ -49,9 +50,9 @@ public class LoginValidation extends HttpServlet {
                 out.println("<body>");
                 out.println("password correct");
                 out.println("welcome " + userTotest.getUserName() + " born on " + userTotest.getBirthDate().toString());
-                out.println("<img src=\"/ImagePresentation\" >");
+                out.println("<img src=\"/ImagePresentation\" height=\"42\" width=\"42\" >");
                 out.println("</body>");
-                out.println("</html>");
+                out.println("</html>");*/
 
             } else {
 
