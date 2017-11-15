@@ -68,6 +68,7 @@ public class cbehindRegister_submit extends HttpServlet {
                 response.sendRedirect("/profile.php");
             }
         } catch (ParseException ex) {
+            response.sendRedirect("/register.php");
             Logger.getLogger(cbehindRegister_submit.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
