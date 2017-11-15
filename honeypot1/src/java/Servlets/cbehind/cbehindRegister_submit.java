@@ -70,10 +70,10 @@ public class cbehindRegister_submit extends HttpServlet {
                 response.sendRedirect("/profile.php");
             }
             else{
-                request.getSession().setAttribute("messageToUser",messageToUser);
+                request.getSession().setAttribute("messageToUserRegister",messageToUser);
             response.sendRedirect("/register.php");}
         } catch (ParseException ex) {
-            request.getSession().setAttribute("messageToUser","You probably messed with the request. please try again!!");
+            request.getSession().setAttribute("messageToUserRegister","You probably messed with the request. please try again!!");
             response.sendRedirect("/register.php");
             Logger.getLogger(cbehindRegister_submit.class.getName()).log(Level.SEVERE, null, ex);
         }
