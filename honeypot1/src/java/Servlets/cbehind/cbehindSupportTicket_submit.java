@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author tom.watteny
  */
-@WebServlet(name = "cbehindSupportTicket_submit.php", urlPatterns = {"/cbehindSupportTicket_submit.php"})
+@WebServlet(name = "cbehindSupportTicket_submit.php", urlPatterns = {"/cbehind_SupportTicket_submit.php"})
 public class cbehindSupportTicket_submit extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

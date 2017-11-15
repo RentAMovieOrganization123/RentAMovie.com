@@ -90,7 +90,7 @@ public class Home extends HttpServlet {
 
     private void checkLoginStatus(String loginFailed, final PrintWriter out, HttpServletRequest request) {
         if (loginFailed != null &&loginFailed.equals("true")){
-            out.println("<h2>Something went wrong please try logging in again</h2>");
+            out.println("<h2 style=\"color:red;\">Something went wrong please try logging in again</h2>");
         }
         request.getSession().setAttribute("failedLogin", "false");
     }

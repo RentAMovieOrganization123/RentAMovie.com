@@ -28,7 +28,7 @@ import util.MySqlConnection;
  */
 public class MySqlTicketRepository implements TicketRepository{
     private static final String SQL_SELECT_ALL_TICKETS = "SELECT * FROM bloghoneypot.ticket;";
-    private static final String SQL_ADD_TICKET = "INSERT INTO `bloghoneypot`.`ticket` (`userID`,`dateofcreation`,`message`) VALUES (?,?,?);";
+    private static final String SQL_ADD_TICKET = "INSERT INTO `bloghoneypot`.`ticket` (`username`,`dateofcreation`,`message`) VALUES (?,?,?);";
 
 
     private static final String FIELD_TICKET_ID = "Id";

@@ -5,6 +5,7 @@
  */
 package Servlets.Filters;
 
+import Model.User;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -48,12 +49,13 @@ public class SecurityFilter implements Filter {
         response.addHeader("X-Content-Type-Options", "nosniff");
         response.addHeader("X-XSS-Protection", "1; mode=block");
         String test = (String) _request.getSession().getAttribute("isLoggedIn");
+        User user  = (User) _request.getSession().getAttribute("user");
         String path = ((HttpServletRequest) request).getRequestURI();
         if (!path.contains("index.php") &&!path.contains("register.php") && path.contains(".php")) {
-        if (test == null) {
+        if (test == null || user ==null) {
             _request.getSession().setAttribute("messageToUser","You have to be logged in to Acces this page!");
         response.sendRedirect("/");
-        
+         
         }
         }
 
