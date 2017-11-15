@@ -5,16 +5,14 @@
  */
 package Database;
 
-import Model.Reaction;
-import Model.Subject;
+import Model.Ticket;
 import java.util.List;
 
 /**
  *
- * @author AXANO
+ * @author AHANO
  */
-public interface ReactionRepository {
-    public List<Reaction> getReactionsBySubjectId(int id);
-    public void insertReaction(Reaction reaction);
-    
+public interface TicketRepository {
+    public void insertTicket(Ticket ticket);
+    public List<Ticket> getAllTickets();
 }

@@ -65,7 +65,7 @@ public class cbehindRegister_submit extends HttpServlet {
                 User user = new User("", "", username, password, birth_date, country, image);
                 Repositories.getUserRepository().insertUser(user);
                 request.getSession().setAttribute("user", user);
-                response.sendRedirect("/registersuccessful.php");
+                response.sendRedirect("/profile.php");
             }
         } catch (ParseException ex) {
             Logger.getLogger(cbehindRegister_submit.class.getName()).log(Level.SEVERE, null, ex);

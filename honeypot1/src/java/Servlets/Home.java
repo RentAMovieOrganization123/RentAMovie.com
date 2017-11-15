@@ -56,8 +56,10 @@ public class Home extends HttpServlet {
             out.println("<content>");
             out.println("<h1>Login</h1>");
             String loginFailed = (String)request.getSession().getAttribute("failedLogin");
-            System.out.println((String)(String)request.getSession().getAttribute("failedLogin"));
+            String messageToUser = (String)request.getSession().getAttribute("messageToUser");
             checkLoginStatus(loginFailed, out, request);
+            if (messageToUser!=null) 
+            out.println("<h2 style=\"color:red;\">"+messageToUser+"</h2>");
              out.println(" <form action = \"validate\" method = \"POST\">");
               
 
@@ -67,7 +69,7 @@ public class Home extends HttpServlet {
                     + "<input type = \"submit\" name = \"submit\" value = \"Get!!!!\" />");
             //out.println("<div class=\"g-recaptcha\" data-sitekey=\"6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ\"></div>");
             out.println("</form>");
-            out.println("<p style=\"color:red;\">You can only go to the Forum and to your profile if you are logged in!</p>");
+            
             out.println("</content>");
             //end content
             

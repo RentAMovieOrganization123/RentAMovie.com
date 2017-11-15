@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -23,6 +24,7 @@ public class SupportTicket extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("user");
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -57,13 +59,13 @@ public class SupportTicket extends HttpServlet {
             
             out.println("<tr>");
             out.println("<td><label>Sender: </label></td>");
-            out.println("<td><input type='text' required name='input_sender' id='input'/></td>");
-            out.println("<td><label class='val' name='valsender'> test </label></td>");
+            out.println("<td>"+user.getUserName()+"</td>");
+            out.println("<td><label class='val' name='sender'> test </label></td>");
             out.println("</tr>");
             
             out.println("<tr>");
             out.println("<td><label>Message: </label></td>");
-            out.println("<td><textarea rows='10' cols='30' required name='input_message' id='input'> </textarea></td>");
+            out.println("<td><textarea rows='10' cols='30' required name='message' id='input'> </textarea></td>");
             out.println("<td><label class='val' name='valmessage'> test </label></td>");
             out.println("</tr>");
             

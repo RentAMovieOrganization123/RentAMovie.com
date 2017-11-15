@@ -26,11 +26,11 @@ public class MySqlReactionRepository implements ReactionRepository {
     private static final String FIELD_SUBJECT_ID = "idSubject";
 
     @Override
-    public List<Reaction> getReactionsBySubjectId(Subject subject) {
+    public List<Reaction> getReactionsBySubjectId(int id) {
         List<Reaction> reactions = new ArrayList();
         try (Connection con = MySqlConnection.getConnection();
                 PreparedStatement prep = con.prepareStatement(SQL_SELECT_REACTION_BY_SUBJECT_ID);) {
-            prep.setInt(1, subject.getID());
+            prep.setInt(1, id);
             ResultSet rs = prep.executeQuery();
             Reaction reaction;
 

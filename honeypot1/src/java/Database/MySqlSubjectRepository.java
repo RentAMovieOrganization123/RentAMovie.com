@@ -25,9 +25,9 @@ import org.owasp.encoder.Encode;
 public class MySqlSubjectRepository
         implements SubjectRepository
 {
-    private static final String SQL_SELECT_ALL_SUBJECTS = "SELECT * FROM subject;";
-    private static final String SQL_SELECT_SUBJECT_BY_ID = "select * from subject where subject_id = ?";
-    private static final String SQL_ADD_SUBJECT = "insert into subject(name, creationDateTime, userName) values(?, ?, ?)";
+    private static final String SQL_SELECT_ALL_SUBJECTS = "SELECT * FROM bloghoneypot.subject;";
+    private static final String SQL_SELECT_SUBJECT_BY_ID = "select * from bloghoneypot.subject where id = ?";
+    private static final String SQL_ADD_SUBJECT = "insert into bloghoneypot.subject(name, creationDateTime, userName) values(?, ?, ?)";
 
 
     private static final String FIELD_SUBJECT_ID = "Id";
@@ -118,7 +118,7 @@ public class MySqlSubjectRepository
         try {
             int id = rs.getInt(FIELD_SUBJECT_ID);
             User contentOwner = Repositories.getUserRepository().getUserByName(rs.getString(FIELD_SUBJECT_USER_NAME));
-            ArrayList<Reaction> reactions = null;//rs.getString(USER_NAME_COLUMN); TODO get reactons with subjectID
+            List<Reaction> reactions = Repositories.getReactionRepository().getReactionsBySubjectId(id);//rs.getString(USER_NAME_COLUMN); TODO get reactons with subjectID
             
             long creationTimeMillis = rs.getLong(FIELD_SUBJECT_CREATIONDATETIME);
             String name = rs.getString(FIELD_SUBJECT_NAME);

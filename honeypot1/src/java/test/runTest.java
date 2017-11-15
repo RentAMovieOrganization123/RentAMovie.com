@@ -1,18 +1,19 @@
 package test;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import Database.Repositories;
+import Model.Subject;
+import Model.User;
+import java.util.ArrayList;
 import java.util.Date;
- import org.owasp.encoder.Encode;
 public class runTest {
 
     public static void main(String[] args) {
-     String message = "<Onvertrouwba'ar% bericht gehaald uit databes";
- String veiligeMessage = Encode.forHtml(message);
-    System.out.println(veiligeMessage);   
-        
-
+        byte[] b= {'b'};
+        User user = new User("","","emmanouil4","123456789",new Date(),"greece",b);
+        Subject subject  = new Subject(1,user,new ArrayList(),new Date(),"TEST");
+        Repositories.getSubjectRepository().addSubject(subject);
+        Subject s2 = Repositories.getSubjectRepository().getSubjectByID(2);
+        System.out.println(s2.getDateOfCreation().toString());
     }
 
 }

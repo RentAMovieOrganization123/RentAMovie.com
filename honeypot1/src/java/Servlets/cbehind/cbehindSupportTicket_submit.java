@@ -5,6 +5,9 @@
  */
 package Servlets.cbehind;
 
+import Database.Repositories;
+import Model.Ticket;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -22,31 +25,18 @@ public class cbehindSupportTicket_submit extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("user");
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String sender = request.getParameter("input_sender");
-            String message = request.getParameter("input_message");
             
-            //basic validation
-            boolean valid = true;
-            if(sender.contains("<script>"))
-            {
-                valid = false;
-                //set label valsender to ...
-            }
+            String message = request.getParameter("message");
+            Ticket ticket = new Ticket(0,user,message);
+            Repositories.getTicketRepository().insertTicket(ticket);
+            String resultMessage = "Ticket successfully send";
+            request.getSession().setAttribute("messageToUser",resultMessage);
+            response.sendRedirect("/");
+                   
             
-            if(message.contains("<script>"))
-            {
-                valid = false;
-                //set label valmessage to...
-            }
-            
-            //validation done
-            if(valid)
-            {
-                //do database stuff
-                response.sendRedirect("/supportsuccesful.php");
-            }
             
         }
     }

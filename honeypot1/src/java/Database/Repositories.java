@@ -34,5 +34,8 @@ public class Repositories
     {
         return  new MySqlReactionRepository();
     }
-    
+     public static TicketRepository getTicketRepository()
+    {
+        return  new MySqlTicketRepository();
+    }
 }

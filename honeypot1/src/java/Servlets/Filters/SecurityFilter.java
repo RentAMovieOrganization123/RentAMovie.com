@@ -51,7 +51,7 @@ public class SecurityFilter implements Filter {
         String path = ((HttpServletRequest) request).getRequestURI();
         if (!path.contains("index.php") &&!path.contains("register.php") && path.contains(".php")) {
         if (test == null) {
-        
+            _request.getSession().setAttribute("messageToUser","You have to be logged in to Acces this page!");
         response.sendRedirect("/");
         
         }

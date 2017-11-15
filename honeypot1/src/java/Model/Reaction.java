@@ -1,15 +1,16 @@
 package Model;
 
-
 public class Reaction  {
     
-    User contentOwner;
-    String content;
-    Subject subject;
+    private User contentOwner;
+    private String content;
+    private Subject subject;
+    
     public Reaction(User contentOwner, String content,Subject subject) {
         this.content = content;
         this.contentOwner = contentOwner;
         this.subject = subject;
+        
     }
 
     public Subject getSubject() {

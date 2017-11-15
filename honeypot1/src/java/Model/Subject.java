@@ -1,21 +1,29 @@
 package Model;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class Subject  {
     
     private int ID;
     private User contentOwner;
-    private ArrayList<Reaction> reactions;
+    private List<Reaction> reactions;
     private Date dateOfCreation;
     private String name;
 
-    public Subject(int ID, User contentOwner, ArrayList<Reaction> reactions, Date dateOfCreation, String name) {
+    public Subject(int ID, User contentOwner, List<Reaction> reactions, Date dateOfCreation, String name) {
         this.ID = ID;
         this.contentOwner = contentOwner;
         this.reactions = reactions;
         this.dateOfCreation = dateOfCreation;
+        this.name = name;
+    }
+    public Subject(int ID, User contentOwner, ArrayList<Reaction> reactions, String name) {
+        this.ID = ID;
+        this.contentOwner = contentOwner;
+        this.reactions = reactions;
+        this.dateOfCreation = new Date();
         this.name = name;
     }
 
@@ -35,7 +43,7 @@ public class Subject  {
         this.contentOwner = contentOwner;
     }
 
-    public ArrayList<Reaction> getReactions() {
+    public List<Reaction> getReactions() {
         return reactions;
     }
 
