@@ -38,6 +38,7 @@ public class MySqlUserRepository implements UserRepository {
     private static final String BIRTH_DATE_COLUMN = "birthDate";
     private static final String COUNTRY_COLUMN = "country";
     private static final String PROFILE_PICTURE_COLUMN = "profilePicture";
+    private static final String ISADMIN_COLUMN = "isAdmin";
     
     
 
@@ -72,11 +73,12 @@ public class MySqlUserRepository implements UserRepository {
             long userBirthDate = rs.getLong(BIRTH_DATE_COLUMN);
             String userCountry = rs.getString(COUNTRY_COLUMN);
             byte[] profilePicture = rs.getBytes(PROFILE_PICTURE_COLUMN);
-            user = new User(name, userFirstName,userName,password, new Date(userBirthDate), userCountry,profilePicture);
+            String isAdmin = rs.getString(ISADMIN_COLUMN);
+            user = new User(name, userFirstName,userName,password, new Date(userBirthDate), userCountry,profilePicture,isAdmin);
         } catch (SQLException ex) {
            // throw new UserException("Unable to make a user from result set.");
            Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
         return user;
     }
 

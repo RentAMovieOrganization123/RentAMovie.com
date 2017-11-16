@@ -55,7 +55,7 @@ public class SecurityFilter implements Filter {
         if (test == null || user ==null) {
             _request.getSession().setAttribute("messageToUser","You have to be logged in to Acces this page!");
         response.sendRedirect("/");
-         
+        
         }
         }
 

@@ -62,13 +62,13 @@ public class ProfileManagement extends HttpServlet {
             out.println("<h1>ProfileManagement</h1>");
             out.println("</content>");
             out.println("<table  style = \"width:100%\">"
-                    + "<tr>"
-                    + "< td > Username: "+user.getUserName()+" </td>"
-                    + " <td>Birthdate: "+user.getBirthDate().toString()+" </td> "
-                    + " <td>Country: "+user.getCountry()+" </td> "
-                    + "<td>Profile pic: <img src=\"/ImagePresentation\" height=\"42\" width=\"42\" ></td> "
-                    + "< / tr> "
-                    + "< / table>"); 
+                    + "<tr><td></td></tr>"
+                    + "<tr><td>Username: "+user.getUserName()+" </td></tr>"
+                    + " <tr><td>Birthdate: "+user.getBirthDate().toString()+"</td> </tr> "
+                    + " <tr><td>Country: "+user.getCountry()+"</td> </tr> "
+                    + "<tr><td>Profile pic: <img src=\"/ImagePresentation\" height=\"42\" width=\"42\" ></td></tr> "
+                    
+                    + "</table>"); 
                     //end content
                     //footer
                     out.println("<footer>");

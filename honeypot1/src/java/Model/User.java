@@ -14,8 +14,8 @@ public class User {
     private byte[] profilePicture;
     private int age;
     private String country;
-
-    public User(String name, String firstName, String userName, String password, Date birthDate, String country, byte[] profilePicture) {
+    private String isAdmin;
+    public User(String name, String firstName, String userName, String password, Date birthDate, String country, byte[] profilePicture,String isAdmin) {
         this.name = name;
         this.firstName = firstName;
         this.userName = userName;
@@ -23,9 +23,17 @@ public class User {
         this.birthDate = birthDate;
         this.country = country;
         this.profilePicture = profilePicture;
-
+        this.isAdmin = isAdmin;
         calculateAge();
         // incrementProfilePicGlobalId();
+    }
+
+    public String getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(String isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
     public void setName(String name) {

@@ -7,6 +7,7 @@ package Servlets;
 
 import Database.Repositories;
 import Model.Ticket;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -35,6 +36,11 @@ public class AdminPage extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Ticket> tickets = Repositories.getTicketRepository().getAllTickets();
+        User admin = (User) request.getSession().getAttribute("user");
+        if (!admin.getIsAdmin().equals("SuperUnpredictableStringUsedToIdentifyAdmins123456789???")) {
+            request.getSession().setAttribute("messageToUser","Only Admins can Access this page!");
+            response.sendRedirect("/");
+        }
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -56,7 +62,7 @@ public class AdminPage extends HttpServlet {
             out.println("</nav>");
             out.println("</header>");
             //end header
-
+                
             //content
             out.println("<content>");
             out.println("<h1>Servlet AdminPage</h1>");
