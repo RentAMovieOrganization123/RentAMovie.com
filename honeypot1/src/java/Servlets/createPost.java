@@ -58,13 +58,13 @@ public class createPost extends HttpServlet {
             out.println("<tr>");
             out.println("<td><label>Subject:</label></td>");
             out.println("<td><input type='text' required name='input_subject'/></td>");
-            out.println("<td><label id='valsubject' class='val'>test </label></td>");
+            out.println("<td><label id='valsubject' class='val'></label></td>");
             out.println("</tr>");
             
             out.println("<tr>");
             out.println("<td><label>Description:</label></td>");
             out.println("<td><textarea rows='10' cols='30' required name='input_description'> </textarea></td>");
-            out.println("<td><label class='val' name='valdescription'> test </label></td>");
+            out.println("<td><label class='val' name='valdescription'></label></td>");
             out.println("</tr>");
             
             out.println("<tr>");
