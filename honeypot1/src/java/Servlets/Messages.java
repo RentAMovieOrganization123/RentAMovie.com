@@ -6,8 +6,8 @@
 package Servlets;
 
 import Database.Repositories;
+import Model.Reaction;
 import Model.Subject;
-import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -20,10 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author AXANO
+ * @author tom.watteny
  */
-@WebServlet(name = "Forum", urlPatterns = {"/forum.php"})
-public class Forum extends HttpServlet {
+@WebServlet(name = "Messages", urlPatterns = {"/Messages.php"})
+public class Messages extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,20 +37,28 @@ public class Forum extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        int param = Integer.parseInt(request.getParameter("id"));
+        Subject s = Repositories.getSubjectRepository().getSubjectByID(param);
+        List<Reaction> reactions = new ArrayList();
+        reactions = s.getReactions();
         
-        List<Subject> subjects = new ArrayList();
-        subjects = Repositories.getSubjectRepository().getSubjects();
+        boolean validPage;
         
+        if(s == null)
+        {
+            //invalid page request
+            validPage = false;
+        } else { validPage = true;}
         
         try (PrintWriter out = response.getWriter()) {
-          
+            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
-            out.println("<link rel='stylesheet' href='assets/css/forum.css'/>");
             out.println("<script type=\"text/javascript\" src=\"assets/javascript/javascript.js\" ></script>");
-            out.println("<title>Forum</title>");
+            out.println("<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>");
+            out.println("<title>Messages</title>");            
             out.println("</head>");
             out.println("<body>");
             //header
@@ -64,40 +72,63 @@ public class Forum extends HttpServlet {
             out.println("</nav>");
             out.println("</header>");
             //end header
-
+            
             //content
             out.println("<content>");
-            out.println("<h1>Forum </h1>");
+            
+            if(validPage == false)
+            {
+                out.println("<h1>Invalid page request</h1>");
+            } else {
+            
+                out.println("<table id='post'>");  
+                out.println("<tbody>");
+                
+                out.println("<tr>");
+                out.println("<td><label>Subject: </label></td>");
+                out.println("<td><label>"+ s.getName() +"</label></td>");
+                out.println("</tr>");
+                
+                out.println("<tr>");
+                out.println("<td><label>Created by: </label></td>");
+                out.println("<td><label>" +s.getContentOwner().getUserName() + "</label></td>");
+                out.println("</tr>");
+                
+                out.println("<tr>");
+                out.println("<td><label>Date created post: </label></td>");
+                out.println("<td><label>" +s.getDateOfCreation() + "</label></td>");
+                out.println("</tr>");
+                
+                out.println("</tbody>");
+                out.println("</table>");
+                
+                out.println("<table id='messages'>");
+                out.println("<tbody>");
+                
+                for (Reaction r : reactions) {
+                    out.println("<tr>");
+                    out.println("<td><label> Message by: " + r.getContentOwner().getUserName() + "</label></td>");
+                    out.println("<td><label>" + r.getContent() +"</label></td>");   
+                    out.println("</tr>");
+                }
+                
+                
+                //INPUT POST A MESSAGE
+                out.println("<tr id='diffrentiate'>");
+                out.println("<td><label>Post a message: </label></td>");
+                out.println("<td><textarea rows='10' cols='30' required name='message' id='input'> </textarea></td>");
+                out.println("</tr>");
+                //captcha
+                out.println("<div class='g-recaptcha' data-sitekey='6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ'></div>");
 
-            out.println("<table>");
-
-            out.println("<thead>");
-            out.println("<tr>");
-            out.println("<td colspan='3'><a href='createPost.php'>Create a post  <a/></td>");
-            out.println("</tr>");
-            out.println("</thead>");
-            out.println("<tr>");
-            out.println("<td><label>Subject</label></td>");
-            out.println("<td><label>Created by</label></td>");
-            out.println("<td><label>Date</label></td>");
-            out.println("</tr>");
-
-            out.println("<tbody>");
-  
-            for (Subject s : subjects) {
-            out.println("<a href='post.php?id='" + s.getID() +"' class='posthover'>");
-            out.println("<tr>");
-            out.println("<td><label>" + s.getName() + "</label></td>");
-            out.println("<td><label>" + s.getContentOwner().getUserName() + "</label></td>");
-            out.println("<td><label>" + s.getDateOfCreation() + "</label></td>");
-            out.println("</tr>");
-            out.println("</a>");
+            
+                
+                out.println("</tbody>");
+                out.println("</table>");
+            
             }
             
-
-            out.println("</tbody>");
-            out.println("</table>");
-            out.println("</content>");
+             out.println("</content>");
             //end content
 
             //footer
@@ -107,8 +138,9 @@ public class Forum extends HttpServlet {
             out.println("<p>Hogeschool Howest Brugge - Honeypot project </p>");
             out.println("</footer>");
             //end footer
-            out.println("</body>");
+            
             out.println("</html>");
+            
         }
     }
 
