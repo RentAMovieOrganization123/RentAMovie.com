@@ -85,13 +85,11 @@ public class Forum extends HttpServlet {
             out.println("<tbody>");
   
             for (Subject s : subjects) {
-            out.println("<a href='Messages.php?id='" + s.getID() +"' class='posthover'>");
             out.println("<tr>");
-            out.println("<td><label>" + s.getName() + "</label></td>");
+            out.println("<td><a href='Messages.php?id='" + s.getID() + "'>Go to post from: " + s.getName() + "</a></td>");
             out.println("<td><label>" + s.getContentOwner().getUserName() + "</label></td>");
             out.println("<td><label>" + s.getDateOfCreation() + "</label></td>");
             out.println("</tr>");
-            out.println("</a>");
             }
             
 
