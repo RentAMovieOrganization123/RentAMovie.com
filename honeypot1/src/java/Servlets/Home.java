@@ -58,9 +58,10 @@ public class Home extends HttpServlet {
             String loginFailed = (String)request.getSession().getAttribute("failedLogin");
             String messageToUser = (String)request.getSession().getAttribute("messageToUser");
             checkLoginStatus(loginFailed, out, request);
-            if (messageToUser!=null) 
+            if (messageToUser!=null){
             out.println("<h2 style=\"color:red;\">"+messageToUser+"</h2>");
-            
+            request.getSession().setAttribute("messageToUserRegister",null);
+            }
              out.println(" <form action = \"validate\" method = \"POST\">");
               
 

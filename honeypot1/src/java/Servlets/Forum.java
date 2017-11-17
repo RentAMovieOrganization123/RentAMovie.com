@@ -73,6 +73,7 @@ public class Forum extends HttpServlet {
 
             if (messageToUser!=null) {
                 out.println("<h2 style=\"color:red;\">"+messageToUser+"</h2>");
+                request.getSession().setAttribute("messageToUserRegister",null);
             }
             out.println("<table>");
 
