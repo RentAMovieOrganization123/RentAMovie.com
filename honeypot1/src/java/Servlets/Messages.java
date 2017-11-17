@@ -126,6 +126,9 @@ public class Messages extends HttpServlet {
                 out.println("<td><label>Post a message: </label></td>");
                 out.println("<td><textarea rows='10' cols='30' required name='message' id='input'> </textarea></td>");
                 out.println("</tr>");
+                out.println("<tr>");
+                out.println("<td height='45px' colspan='2'><input type='submit' id='submit' value='post a message'/></td>");
+                out.println("</tr>");
 
             
                 
