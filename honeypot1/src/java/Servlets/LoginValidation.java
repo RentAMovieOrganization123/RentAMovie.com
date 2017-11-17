@@ -24,9 +24,6 @@ import util.Hashing;
 @WebServlet(name = "validate", urlPatterns = {"/validate"})
 public class LoginValidation extends HttpServlet {
 
-    //VERWERKT EEN REQUEST EN CONTROLEERD OF DE PWD CORRECT IS 
-    //ALS DIT ZO IS INITIALISEERD DEZE CLASS DE SESSION MET EEN PARAMETER
-    //userName EN MET ALS WAARDE DE NAAM VAN HET USER OBJECT
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -43,17 +40,7 @@ public class LoginValidation extends HttpServlet {
                 request.getSession().setAttribute("isLoggedIn", "true");
                 response.sendRedirect("/profile.php");
                 request.getSession().setAttribute("messageToUser",null);
-                /*                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet TestLoginSuccess</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("password correct");
-                out.println("welcome " + userTotest.getUserName() + " born on " + userTotest.getBirthDate().toString());
-                out.println("<img src=\"/ImagePresentation\" height=\"42\" width=\"42\" >");
-                out.println("</body>");
-                out.println("</html>");*/
+
 
             } else {
 
