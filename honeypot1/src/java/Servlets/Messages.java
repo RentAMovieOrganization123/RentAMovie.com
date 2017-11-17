@@ -44,15 +44,21 @@ public class Messages extends HttpServlet {
         int param = Integer.parseInt(request.getParameter("id"));
         Subject s = Repositories.getSubjectRepository().getSubjectByID(param);
         List<Reaction> reactions = new ArrayList();
-        reactions = s.getReactions();
-        
-        boolean validPage;
+       
         
         if(s == null)
         {
-            //invalid page request
-            validPage = false;
-        } else { validPage = true;}
+           request.getSession().setAttribute("messageToUserRegister","Please dont mess with the request!");
+            try {
+                response.sendRedirect("forum.php");
+            } catch (IOException ex) {
+                Logger.getLogger(Messages.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        } 
+        reactions = s.getReactions();
+        
+        
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -80,10 +86,7 @@ public class Messages extends HttpServlet {
             //content
             out.println("<content>");
             
-            if(validPage == false)
-            {
-                out.println("<h1>Invalid page request</h1>");
-            } else {
+            
             
                 out.println("<table id='post'>");  
                 out.println("<tbody>");
@@ -130,7 +133,7 @@ public class Messages extends HttpServlet {
                 out.println("</tbody>");
                 out.println("</table>");
             
-            }
+            
             
              out.println("</content>");
             //end content
@@ -152,7 +155,8 @@ public class Messages extends HttpServlet {
             } catch (IOException ex1) {
                 Logger.getLogger(Messages.class.getName()).log(Level.SEVERE, null, ex1);
             }
-            Logger.getLogger(Messages.class.getName()).log(Level.SEVERE, null, ex);
+            
+            
         }
     }
 
