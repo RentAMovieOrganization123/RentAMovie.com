@@ -18,7 +18,7 @@ import util.MySqlConnection;
 public class MySqlReactionRepository implements ReactionRepository {
 
     private static final String SQL_SELECT_REACTION_BY_SUBJECT_ID = "SELECT * FROM `bloghoneypot`.`reactions` WHERE idSubject= ?";
-    private static final String SQL_INSERT_REACTION = "INSERT INTO `bloghoneypot`.`reactions`(`nameUser`,`content`,`idSubject`) VALUES ?,?,?);";
+    private static final String SQL_INSERT_REACTION = "INSERT INTO `bloghoneypot`.`reactions`(`nameUser`,`content`,`idSubject`) VALUES (?,?,?);";
 
     private static final String FIELD_ID_REACTION = "id";
     private static final String FIELD_NAME_USER = "nameUser";

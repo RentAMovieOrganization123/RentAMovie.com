@@ -44,7 +44,7 @@ public class Messages extends HttpServlet {
         int param = Integer.parseInt(request.getParameter("id"));
         Subject s = Repositories.getSubjectRepository().getSubjectByID(param);
         List<Reaction> reactions = new ArrayList();
-       
+        
         
         if(s == null)
         {
@@ -56,6 +56,7 @@ public class Messages extends HttpServlet {
             }
             
         } 
+        request.getSession().setAttribute("subject",s);
         reactions = s.getReactions();
         
         
@@ -89,6 +90,7 @@ public class Messages extends HttpServlet {
             
             
                 out.println("<h1>Forum post</h1>");
+                out.println("<form action='cbehindCreateMessage.php' method='post'>");
                 out.println("<table id='sender'>");  
                 out.println("<tbody>");
                 
@@ -119,10 +121,14 @@ public class Messages extends HttpServlet {
                     out.println("<td><label>" + r.getContent() +"</label></td>");   
                     out.println("</tr>");
                 }
-                
+                out.println("<br>");
+                out.println("<br>");
+                out.println("<br>");
+                out.println("<br>");
                 
                 //INPUT POST A MESSAGE
                 out.println("<tr id='diffrentiate'>");
+                
                 out.println("<td><label>Post a message: </label></td>");
                 out.println("<td><textarea rows='10' cols='30' required name='message' id='input'> </textarea></td>");
                 out.println("</tr>");
@@ -134,8 +140,9 @@ public class Messages extends HttpServlet {
                 
                 out.println("</tbody>");
                 out.println("</table>");
+                out.println("</form>");
                 //captcha
-                out.println("<div class='g-recaptcha' data-sitekey='6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ'></div>");
+                //out.println("<div class='g-recaptcha' data-sitekey='6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ'></div>");
             
             
              out.println("</content>");

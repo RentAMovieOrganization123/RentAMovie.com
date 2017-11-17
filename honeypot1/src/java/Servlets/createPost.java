@@ -51,7 +51,7 @@ public class createPost extends HttpServlet {
             //content
             out.println("<content>");
             out.println("<h1>Create a post </h1>");
-            out.println("<form action='C' method='post'>");
+            out.println("<form action='cbehindCreateForumSubject.php' method='post'>");
             out.println("<table>");
             out.println("<tbody>");
 
@@ -71,7 +71,7 @@ public class createPost extends HttpServlet {
             out.println("</table>");
             
              //captcha
-            out.println("<div class='g-recaptcha' data-sitekey='6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ'></div>");
+            //out.println("<div class='g-recaptcha' data-sitekey='6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ'></div>");
 
             out.println("</content>");
             //end content
