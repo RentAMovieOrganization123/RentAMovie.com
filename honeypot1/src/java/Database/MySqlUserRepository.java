@@ -75,6 +75,7 @@ public class MySqlUserRepository implements UserRepository {
             byte[] profilePicture = rs.getBytes(PROFILE_PICTURE_COLUMN);
             String isAdmin = rs.getString(ISADMIN_COLUMN);
             user = new User(name, userFirstName,userName,password, new Date(userBirthDate), userCountry,profilePicture,isAdmin);
+            
         } catch (SQLException ex) {
            // throw new UserException("Unable to make a user from result set.");
            Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,7 +96,7 @@ public class MySqlUserRepository implements UserRepository {
                     user = this.resultSet2Subject(rs);
 
                 }
-
+                rs.close();
                 return user;
             } catch (SQLException ex) {
                 //throw new UserException("Unable to get users from database.");

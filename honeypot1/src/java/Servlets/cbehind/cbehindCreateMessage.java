@@ -39,7 +39,7 @@ public class cbehindCreateMessage extends HttpServlet {
         String message = (String) request.getParameter("message");
             User user = (User) request.getSession().getAttribute("user");
             Subject subject = (Subject) request.getSession().getAttribute("subject");
-            Reaction reaction = new Reaction(user,message,subject);
+            Reaction reaction = new Reaction(user,message,subject.getID());
             Repositories.getReactionRepository().insertReaction(reaction);
             request.getSession().setAttribute("messageToUserRegister","Message sent successfully");
             response.sendRedirect("/Messages.php?id="+subject.getID()+"");

@@ -38,12 +38,12 @@ public class MySqlReactionRepository implements ReactionRepository {
                 reaction = this.resultSet2Subject(rs);
                 reactions.add(reaction);
             }
-
+              rs.close();
             return reactions;
         } catch (SQLException ex) {
             //throw new UserException("Unable to get users from database.");
             Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
         return null;
     }
 
@@ -62,7 +62,7 @@ public class MySqlReactionRepository implements ReactionRepository {
             String nameContentOwner = rs.getString(FIELD_NAME_USER);
             String content = rs.getString(FIELD_CONTENT);
             int id = rs.getInt(FIELD_SUBJECT_ID);
-            reaction = new Reaction(Repositories.getUserRepository().getUserByName(nameContentOwner), content,Repositories.getSubjectRepository().getSubjectByID(id));
+            reaction = new Reaction(Repositories.getUserRepository().getUserByName(nameContentOwner), content, id);
         } catch (SQLException ex) {
             // throw new UserException("Unable to make a user from result set.");
             Logger.getLogger(MySqlReactionRepository.class.getName()).log(Level.SEVERE, null, ex);
@@ -72,18 +72,17 @@ public class MySqlReactionRepository implements ReactionRepository {
 
     @Override
     public void insertReaction(Reaction reaction) {
-     try(Connection con = MySqlConnection.getConnection();
-            PreparedStatement prep = con.prepareStatement(SQL_INSERT_REACTION, PreparedStatement.RETURN_GENERATED_KEYS))
-        {
+        try (Connection con = MySqlConnection.getConnection();
+                PreparedStatement prep = con.prepareStatement(SQL_INSERT_REACTION, PreparedStatement.RETURN_GENERATED_KEYS)) {
             //"INSERT INTO `bloghoneypot`.`reactions`(`nameUser`,`content`,`idSubject`) VALUES ?,?,?);"
             prep.setString(1, Encode.forHtml(reaction.getContentOwner().getUserName()));
             prep.setString(2, Encode.forHtml(reaction.getContent()));
-            prep.setInt(3, reaction.getSubject().getID());
+            prep.setInt(3, reaction.getSubjectId());
             prep.executeUpdate();
-            } catch (SQLException ex) { 
-          //throw new UserException("Cannot create User",ex);
-           Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
-      }    
+        } catch (SQLException ex) {
+            //throw new UserException("Cannot create User",ex);
+            Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

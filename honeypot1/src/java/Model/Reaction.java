@@ -4,20 +4,20 @@ public class Reaction  {
     
     private User contentOwner;
     private String content;
-    private Subject subject;
-    public Reaction(User contentOwner, String content,Subject subject) {
+    private int subjectId;
+    public Reaction(User contentOwner, String content,int subjectId) {
         this.content = content;
         this.contentOwner = contentOwner;
-        this.subject = subject;
+        this.subjectId = subjectId;
         
     }
 
-    public Subject getSubject() {
-        return subject;
+    public int getSubjectId() {
+        return subjectId;
     }
 
-    public void setSubject(Subject subject) {
-        this.subject = subject;
+    public void setSubjectId(int subjectId) {
+        this.subjectId = subjectId;
     }
 
     public void changeContent(String content){

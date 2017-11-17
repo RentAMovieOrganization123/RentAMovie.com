@@ -105,14 +105,7 @@ public class MySqlSubjectRepository
     
     private Subject resultSet2Subject(ResultSet rs) throws SQLException
     {
-        /*
-         public Subject(int ID, User contentOwner, ArrayList<Reaction> reactions, Date dateOfCreation, String name) {
-        this.ID = ID;
-        this.contentOwner = contentOwner;
-        this.reactions = reactions;
-        this.dateOfCreation = dateOfCreation;
-        this.name = name;
-    }*/
+       
 
         Subject subject = null;
         try {
@@ -144,7 +137,8 @@ public class MySqlSubjectRepository
                     subject = this.resultSet2Subject(rs);
 
                 }
-
+                    
+                        rs.close();
                 return subject;
             } catch (SQLException ex) {
                 //throw new UserException("Unable to get users from database.");
