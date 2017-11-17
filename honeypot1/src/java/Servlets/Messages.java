@@ -66,6 +66,7 @@ public class Messages extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<link rel='stylesheet' href='assets/css/template.css'/>");
+            out.println("<link rel='stylesheet' href='assets/css/messages.css' />");
             out.println("<script type=\"text/javascript\" src=\"assets/javascript/javascript.js\" ></script>");
             out.println("<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>");
             out.println("<title>Messages</title>");            
@@ -87,8 +88,8 @@ public class Messages extends HttpServlet {
             out.println("<content>");
             
             
-            
-                out.println("<table id='post'>");  
+                out.println("<h1>Forum post</h1>");
+                out.println("<table id='sender'>");  
                 out.println("<tbody>");
                 
                 out.println("<tr>");
@@ -125,14 +126,13 @@ public class Messages extends HttpServlet {
                 out.println("<td><label>Post a message: </label></td>");
                 out.println("<td><textarea rows='10' cols='30' required name='message' id='input'> </textarea></td>");
                 out.println("</tr>");
-                //captcha
-                out.println("<div class='g-recaptcha' data-sitekey='6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ'></div>");
 
             
                 
                 out.println("</tbody>");
                 out.println("</table>");
-            
+                //captcha
+                out.println("<div class='g-recaptcha' data-sitekey='6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ'></div>");
             
             
              out.println("</content>");
