@@ -60,7 +60,7 @@ public class MySqlSubjectRepository
         }
         catch (SQLException ex)
         {
-            throw new ReactionException("Unable to get reactions from database.", ex);
+            throw new ReactionException("Unable to get subjects from database.", ex);
         }
     }
     
@@ -91,7 +91,7 @@ public class MySqlSubjectRepository
                 
                 if (newReactionId < 0)
                 {
-                    throw new ReactionException("Unable to add reaction to database.");
+                    throw new ReactionException("Unable to add subject to database.");
                 }
                 
                 //reaction.setId(newReactionId);
@@ -99,7 +99,7 @@ public class MySqlSubjectRepository
         }
         catch (SQLException ex)
         {
-            throw new ReactionException("Unable to add reaction to database.");
+            throw new ReactionException("Unable to add subject to database.");
         }
     }
     
@@ -117,8 +117,8 @@ public class MySqlSubjectRepository
             String name = rs.getString(FIELD_SUBJECT_NAME);
             subject = new Subject(id, contentOwner,reactions,new Date(creationTimeMillis), name);
         } catch (SQLException ex) {
-           // throw new UserException("Unable to make a user from result set.");
-           Logger.getLogger(MySqlSubjectRepository.class.getName()).log(Level.SEVERE, null, ex);
+           throw new ReactionException("Unable to make a subject from result set.");
+          //Logger.getLogger(MySqlSubjectRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return subject;
@@ -141,10 +141,10 @@ public class MySqlSubjectRepository
                         rs.close();
                 return subject;
             } catch (SQLException ex) {
-                //throw new UserException("Unable to get users from database.");
-                 Logger.getLogger(MySqlSubjectRepository.class.getName()).log(Level.SEVERE, null, ex);
+                throw new ReactionException("Unable to add subject to database.");
+                 //Logger.getLogger(MySqlSubjectRepository.class.getName()).log(Level.SEVERE, null, ex);
             }
-        return null;
+       
     }
 
     

@@ -3,6 +3,7 @@ package Database;
 import Model.Reaction;
 import Model.Subject;
 import Model.User;
+import exceptions.UserException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -41,31 +42,25 @@ public class MySqlReactionRepository implements ReactionRepository {
               rs.close();
             return reactions;
         } catch (SQLException ex) {
-            //throw new UserException("Unable to get users from database.");
-            Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
+            throw new UserException("Unable to get users from database.");
+            
+            
+            //Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
         } 
-        return null;
+        
     }
 
     private Reaction resultSet2Subject(ResultSet rs) {
         Reaction reaction = null;
-        /*
-        User contentOwner;
-        String content;
 
-         public Reaction(User contentOwner, String content) {
-        
-        this.contentOwner = contentOwner;
-         }
-         */
         try {
             String nameContentOwner = rs.getString(FIELD_NAME_USER);
             String content = rs.getString(FIELD_CONTENT);
             int id = rs.getInt(FIELD_SUBJECT_ID);
             reaction = new Reaction(Repositories.getUserRepository().getUserByName(nameContentOwner), content, id);
         } catch (SQLException ex) {
-            // throw new UserException("Unable to make a user from result set.");
-            Logger.getLogger(MySqlReactionRepository.class.getName()).log(Level.SEVERE, null, ex);
+            throw new UserException("Unable to make a user from result set.");
+            //Logger.getLogger(MySqlReactionRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
         return reaction;
     }
@@ -80,8 +75,8 @@ public class MySqlReactionRepository implements ReactionRepository {
             prep.setInt(3, reaction.getSubjectId());
             prep.executeUpdate();
         } catch (SQLException ex) {
-            //throw new UserException("Cannot create User",ex);
-            Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
+            throw new UserException("Cannot create User",ex);
+            //Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

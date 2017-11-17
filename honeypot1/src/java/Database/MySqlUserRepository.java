@@ -77,8 +77,8 @@ public class MySqlUserRepository implements UserRepository {
             user = new User(name, userFirstName,userName,password, new Date(userBirthDate), userCountry,profilePicture,isAdmin);
             
         } catch (SQLException ex) {
-           // throw new UserException("Unable to make a user from result set.");
-           Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
+            throw new UserException("Unable to make a user from result set.");
+           //Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
         } 
         return user;
     }
@@ -99,10 +99,10 @@ public class MySqlUserRepository implements UserRepository {
                 rs.close();
                 return user;
             } catch (SQLException ex) {
-                //throw new UserException("Unable to get users from database.");
-                 Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
+                throw new UserException("Unable to get users from database.");
+                // Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
             }
-        return null;
+       
         }
 
     @Override
@@ -119,43 +119,11 @@ public class MySqlUserRepository implements UserRepository {
             prep.setBytes(7, user.getProfilePicture());   
             prep.executeUpdate();
             } catch (SQLException ex) { 
-          //throw new UserException("Cannot create User",ex);
-           Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
+          throw new UserException("Cannot create User",ex);
+           //Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
       } 
     }
-    
-    //=======> the subject and reaction models does not have the varialbles where the db data can be stored......
-    //=======> creating fake variables for the subject class, until decided
-//    @Override
-//    public List<Subject> getSubjects(){
-//        try (Connection con = MySqlConnection.getConnection();
-//                    PreparedStatement prep = con.prepareStatement(SQL_SELECT_ALL_THREADS);
-//                    ResultSet rs = prep.executeQuery()) {
-//                List<Subject> subjects = new ArrayList<>();
-//
-//                while (rs.next()) {
-//                    Subject subject = this.subjectsResultSet(rs);
-//
-//                    subjects.add(subject);
-//                }
-//
-//                return subjects;
-//            } catch (SQLException ex) {
-//                throw new UserException("Unable to get users from database.");
-//        }
-//    }
-    
-    
-//    private Subject subjectsResultSet(ResultSet rs) {
-//        Subject subject = null;
-//        try {
-//            String subjectContent = rs.getString(NAME_COLUMN);
-//            subject = new Subject();
-//        } catch (SQLException ex) {
-//            throw new UserException("Unable to retreive the subjects from result set.");
-//        }
-//        return subject;
-//    }
+
     
     }
 

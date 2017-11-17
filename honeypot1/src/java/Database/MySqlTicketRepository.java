@@ -10,6 +10,7 @@ import Model.Subject;
 import Model.Ticket;
 import Model.User;
 import exceptions.ReactionException;
+import exceptions.UserException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,8 +48,8 @@ public class MySqlTicketRepository implements TicketRepository{
             prep.setString(3, Encode.forHtml(ticket.getMessage()));
             prep.executeUpdate();
             } catch (SQLException ex) { 
-          //throw new UserException("Cannot create User",ex);
-           Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
+          throw new UserException("Cannot create ticket",ex);
+           //Logger.getLogger(MySqlUserRepository.class.getName()).log(Level.SEVERE, null, ex);
       } 
     }
 
@@ -71,7 +72,7 @@ public class MySqlTicketRepository implements TicketRepository{
         }
         catch (SQLException ex)
         {
-            throw new ReactionException("Unable to get reactions from database.", ex);
+            throw new ReactionException("Unable to get tickets from database.", ex);
         }
     }
  
@@ -89,8 +90,7 @@ public class MySqlTicketRepository implements TicketRepository{
             String message= rs.getString(FIELD_MESSAGE);
             ticket = new Ticket(id, contentOwner,new Date(creationTimeMillis),message);
         } catch (SQLException ex) {
-           // throw new UserException("Unable to make a user from result set.");
-           Logger.getLogger(MySqlSubjectRepository.class.getName()).log(Level.SEVERE, null, ex);
+           throw new ReactionException("Unable to create ticket from result set.", ex);
         }
 
         return ticket;
