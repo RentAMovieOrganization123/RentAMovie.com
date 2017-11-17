@@ -8,10 +8,14 @@ package Servlets;
 import Database.Repositories;
 import Model.Reaction;
 import Model.Subject;
+import Servlets.cbehind.cbehindRegister_submit;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +39,7 @@ public class Messages extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+             {
         response.setContentType("text/html;charset=UTF-8");
         int param = Integer.parseInt(request.getParameter("id"));
         Subject s = Repositories.getSubjectRepository().getSubjectByID(param);
@@ -141,6 +145,14 @@ public class Messages extends HttpServlet {
             
             out.println("</html>");
             
+        }  catch (IOException ex) {
+            try {
+                request.getSession().setAttribute("messageToUserRegister","Please dont mess with the request!");
+                response.sendRedirect("forum.php");
+            } catch (IOException ex1) {
+                Logger.getLogger(Messages.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+            Logger.getLogger(Messages.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

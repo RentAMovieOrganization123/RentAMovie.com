@@ -54,6 +54,7 @@ public class Forum extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             //header
+            
             out.println("<header>");
             out.println("<nav>");
             out.println("<li><a href='index.php'>Home</a></li>");
@@ -68,7 +69,11 @@ public class Forum extends HttpServlet {
             //content
             out.println("<content>");
             out.println("<h1>Forum </h1>");
+            String messageToUser = (String)request.getSession().getAttribute("messageToUserRegister");
 
+            if (messageToUser!=null) {
+                out.println("<h2 style=\"color:red;\">"+messageToUser+"</h2>");
+            }
             out.println("<table>");
 
             out.println("<thead>");
