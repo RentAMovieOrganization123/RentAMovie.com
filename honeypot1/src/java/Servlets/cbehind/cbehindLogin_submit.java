@@ -17,10 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Gill
- */
+
 @WebServlet(name = "cbehindLogin_submit", urlPatterns = {"/cbehindLogin_submit.php"})
 public class cbehindLogin_submit extends HttpServlet {
 

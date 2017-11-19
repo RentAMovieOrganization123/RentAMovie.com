@@ -16,10 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author tom.watteny
- */
 @WebServlet(name = "cbehindSupportTicket_submit.php", urlPatterns = {"/cbehind_SupportTicket_submit.php"})
 public class cbehindSupportTicket_submit extends HttpServlet {
 

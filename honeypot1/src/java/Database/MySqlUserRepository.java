@@ -15,10 +15,7 @@ import java.util.logging.Logger;
 import org.owasp.encoder.Encode;
 import util.MySqlConnection;
 
-/**
- *
- * @author maysam
- */
+
 //werk altijd met interfaces zodat je automarisch kan zien welke methodes je vergeten bent
 public class MySqlUserRepository implements UserRepository {
 

@@ -5,10 +5,7 @@
  */
 package Model;
 
-/**
- *
- * @author Cedric Cornelis
- */
+
 interface Notifiable {
     public void notifyModified();
 }
