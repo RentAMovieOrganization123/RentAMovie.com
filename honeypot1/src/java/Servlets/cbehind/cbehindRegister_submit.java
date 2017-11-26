@@ -31,6 +31,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import org.apache.commons.io.IOUtils;
+import org.json.JSONException;
+import static util.RecaptchaValidator.verifyResponse;
 
 /**
  *
@@ -57,9 +59,13 @@ public class cbehindRegister_submit extends HttpServlet {
             Date birth_date = df.parse(request.getParameter("input_birth_date"));
             String password = request.getParameter("input_password");
             String verify_password = request.getParameter("input_verifypassword");
-
+             
             boolean valid = validate(username, country, password, verify_password, image, out,(ServletRequest)request);
-
+            String googleResponse = request.getParameter("g-recaptcha-response");
+            if (!verifyResponse(googleResponse)) {
+                request.getSession().setAttribute("messageToUserRegister","Captcha niet ingevuld!");
+            response.sendRedirect("/register.php");
+            }
             //done validation
             if (valid) {
                 password = util.Hashing.sha256(password);
@@ -76,6 +82,8 @@ public class cbehindRegister_submit extends HttpServlet {
         } catch (ParseException ex) {
             request.getSession().setAttribute("messageToUserRegister","You probably messed with the request. please try again!!");
             response.sendRedirect("/register.php");
+            Logger.getLogger(cbehindRegister_submit.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JSONException ex) {
             Logger.getLogger(cbehindRegister_submit.class.getName()).log(Level.SEVERE, null, ex);
         }
         

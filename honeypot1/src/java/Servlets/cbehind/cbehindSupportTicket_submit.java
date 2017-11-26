@@ -10,11 +10,15 @@ import Model.Ticket;
 import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONException;
+import static util.RecaptchaValidator.verifyResponse;
 
 @WebServlet(name = "cbehindSupportTicket_submit.php", urlPatterns = {"/cbehind_SupportTicket_submit.php"})
 public class cbehindSupportTicket_submit extends HttpServlet {
@@ -28,12 +32,19 @@ public class cbehindSupportTicket_submit extends HttpServlet {
             String message = request.getParameter("message");
             Ticket ticket = new Ticket(0,user,message);
             Repositories.getTicketRepository().insertTicket(ticket);
+            String googleResponse = request.getParameter("g-recaptcha-response");
+            if (!verifyResponse(googleResponse)) {
+                request.getSession().setAttribute("messageToUser","Captcha niet ingevuld!");
+            response.sendRedirect("/register.php");
+            }
             String resultMessage = "Ticket successfully send";
             request.getSession().setAttribute("messageToUser",resultMessage);
-            response.sendRedirect("/");
+            response.sendRedirect("/support.php");
                    
             
             
+        } catch (JSONException ex) {
+            Logger.getLogger(cbehindSupportTicket_submit.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

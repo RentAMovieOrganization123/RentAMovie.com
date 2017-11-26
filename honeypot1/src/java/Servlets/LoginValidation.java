@@ -9,13 +9,17 @@ import Database.Repositories;
 import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.JSONException;
 import util.Hashing;
+import static util.RecaptchaValidator.verifyResponse;
 
 /**
  *
@@ -31,6 +35,11 @@ public class LoginValidation extends HttpServlet {
             HttpSession session = request.getSession();
             String username = request.getParameter("userName");
             String userPassword = request.getParameter("password");
+            String googleResponse = request.getParameter("g-recaptcha-response");
+            if (!verifyResponse(googleResponse)) {
+                request.getSession().setAttribute("messageToUser","Captcha niet ingevuld!");
+                response.sendRedirect("/index.php");
+            }
             String hashedPassword = Hashing.sha256(userPassword);
             
 
@@ -47,6 +56,8 @@ public class LoginValidation extends HttpServlet {
                 session.setAttribute("failedLogin", "true");
                 response.sendRedirect("/index.php");
             }
+        } catch (JSONException ex) {
+            Logger.getLogger(LoginValidation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -10,12 +10,16 @@ import Model.Subject;
 import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.JSONException;
+import static util.RecaptchaValidator.verifyResponse;
 
 /**
  *
@@ -36,7 +40,15 @@ public class cbehindCreateForumSubject extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+            String googleResponse = request.getParameter("g-recaptcha-response");
+        try {
+            if (!verifyResponse(googleResponse)) {
+                request.getSession().setAttribute("messageToUserRegister","Captcha niet ingevuld!");
+                response.sendRedirect("/forum.php");
+            }
+        } catch (JSONException ex) {
+            Logger.getLogger(cbehindCreateForumSubject.class.getName()).log(Level.SEVERE, null, ex);
+        }
             String subject_name = (String) request.getParameter("input_subject");
             User user = (User) request.getSession().getAttribute("user");
             Subject subject = new Subject(0,user,null,subject_name);

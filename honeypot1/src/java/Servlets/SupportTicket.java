@@ -53,6 +53,11 @@ public class SupportTicket extends HttpServlet {
             //content
             out.println("<content>");
             out.println("<h1>Contact us</h1>");
+            String messageToUser = (String)request.getSession().getAttribute("messageToUser");
+            if (messageToUser!=null){
+            out.println("<h2 style=\"color:red;\">"+messageToUser+"</h2>");
+            request.getSession().setAttribute("messageToUserRegister",null);
+            }
             out.println("<form action='cbehind_SupportTicket_submit.php' method='post'>");
             out.println("<table>");
             out.println("<tbody>");
