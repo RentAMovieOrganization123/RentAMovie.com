@@ -62,9 +62,10 @@ public class cbehindRegister_submit extends HttpServlet {
              
             boolean valid = validate(username, country, password, verify_password, image, out,(ServletRequest)request);
             String googleResponse = request.getParameter("g-recaptcha-response");
-            if (!verifyResponse(googleResponse)) {
+            if (verifyResponse(googleResponse)) {
                 request.getSession().setAttribute("messageToUserRegister","Captcha niet ingevuld!");
             response.sendRedirect("/register.php");
+            return;
             }
             //done validation
             if (valid) {
@@ -75,6 +76,7 @@ public class cbehindRegister_submit extends HttpServlet {
                 request.getSession().setAttribute("isLoggedIn", "true");
                 request.getSession().setAttribute("user", user);
                 response.sendRedirect("/profile.php");
+                
             }
             else{
                 request.getSession().setAttribute("messageToUserRegister",messageToUser);

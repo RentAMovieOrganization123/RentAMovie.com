@@ -11,7 +11,7 @@ import org.json.JSONTokener;
 
 
 public class RecaptchaValidator {
-private static final String URL="https://www.google.com/recaptcha/api/siteverify?secret=6LcciDUUAAAAAMs0rvPs5jg-oKg40t9_yBz3RRxJ&response=";//response_string&remoteip=user_ip_address";
+private static final String URL="https://www.google.com/recaptcha/api/siteverify?secret=6LcciDUUAAAAAPfGZjKA_pwVve1qNeueGClO7qsw&response=";//response_string&remoteip=user_ip_address";
 
 
 

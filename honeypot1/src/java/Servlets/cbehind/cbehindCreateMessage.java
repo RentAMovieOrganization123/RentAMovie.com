@@ -42,9 +42,10 @@ public class cbehindCreateMessage extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String googleResponse = request.getParameter("g-recaptcha-response");
         try {
-            if (!verifyResponse(googleResponse)) {
+            if (verifyResponse(googleResponse)) {
                 request.getSession().setAttribute("messageToUserRegister","Captcha niet ingevuld!");
                 response.sendRedirect("/forum.php");
+                return;
             }
         } catch (JSONException ex) {
             Logger.getLogger(cbehindCreateMessage.class.getName()).log(Level.SEVERE, null, ex);

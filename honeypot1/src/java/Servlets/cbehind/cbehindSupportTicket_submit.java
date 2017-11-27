@@ -33,9 +33,10 @@ public class cbehindSupportTicket_submit extends HttpServlet {
             Ticket ticket = new Ticket(0,user,message);
             Repositories.getTicketRepository().insertTicket(ticket);
             String googleResponse = request.getParameter("g-recaptcha-response");
-            if (!verifyResponse(googleResponse)) {
+            if (verifyResponse(googleResponse)) {
                 request.getSession().setAttribute("messageToUser","Captcha niet ingevuld!");
             response.sendRedirect("/register.php");
+            return;
             }
             String resultMessage = "Ticket successfully send";
             request.getSession().setAttribute("messageToUser",resultMessage);
