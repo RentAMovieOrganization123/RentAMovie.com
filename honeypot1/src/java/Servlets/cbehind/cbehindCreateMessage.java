@@ -51,12 +51,20 @@ public class cbehindCreateMessage extends HttpServlet {
             Logger.getLogger(cbehindCreateMessage.class.getName()).log(Level.SEVERE, null, ex);
         }
         String message = (String) request.getParameter("message");
-            User user = (User) request.getSession().getAttribute("user");
-            Subject subject = (Subject) request.getSession().getAttribute("subject");
-            Reaction reaction = new Reaction(user,message,subject.getID());
-            Repositories.getReactionRepository().insertReaction(reaction);
-            request.getSession().setAttribute("messageToUserRegister","Message sent successfully");
-            response.sendRedirect("/Messages.php?id="+subject.getID()+"");
+        
+            if(message.length() <= 500){
+                User user = (User) request.getSession().getAttribute("user");
+                Subject subject = (Subject) request.getSession().getAttribute("subject");
+                Reaction reaction = new Reaction(user,message,subject.getID());
+                Repositories.getReactionRepository().insertReaction(reaction);
+                request.getSession().setAttribute("messageToUserRegister","Message sent successfully");
+                response.sendRedirect("/Messages.php?id="+subject.getID()+"");
+            } else {
+                
+                 request.getSession().setAttribute("messageToUserRegister","Message length too long!");
+                 response.sendRedirect("/Messages.php");
+            
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

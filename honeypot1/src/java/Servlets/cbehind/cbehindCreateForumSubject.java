@@ -51,11 +51,21 @@ public class cbehindCreateForumSubject extends HttpServlet {
             Logger.getLogger(cbehindCreateForumSubject.class.getName()).log(Level.SEVERE, null, ex);
         }
             String subject_name = (String) request.getParameter("input_subject");
-            User user = (User) request.getSession().getAttribute("user");
-            Subject subject = new Subject(0,user,null,subject_name);
-            Repositories.getSubjectRepository().addSubject(subject);
-            request.getSession().setAttribute("messageToUserRegister","Post Created successful");
-            response.sendRedirect("/forum.php");
+            
+            if(subject_name.length() <= 500){
+                User user = (User) request.getSession().getAttribute("user");
+                Subject subject = new Subject(0,user,null,subject_name);
+                Repositories.getSubjectRepository().addSubject(subject);
+                request.getSession().setAttribute("messageToUserRegister","Post Created successful");
+                response.sendRedirect("/forum.php");
+            } else {
+                    request.getSession().setAttribute("messageToUserRegister","Subject name to long!");
+                    response.sendRedirect("/forum.php");
+            }
+            
+         
+            
+           
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

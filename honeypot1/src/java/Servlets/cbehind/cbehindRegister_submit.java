@@ -143,6 +143,27 @@ public class cbehindRegister_submit extends HttpServlet {
             valid = false;
              messageToUser = messageToUser + "password doesnt match with verify password field.";
         }
+        
+        
+        //Length validation. Strings can only have a length of 500 max
+        
+        if(username.length() > 500){
+            valid = false;
+            messageToUser = messageToUser + "Username to long";
+        }
+        
+        if(country.length() > 500){
+            valid = false;
+            messageToUser = messageToUser + "Country to long";
+        }
+        
+        if(password.length() > 100) {
+            valid = false;
+            messageToUser = messageToUser + "Passwordlength is invalid";
+        }
+        
+        
+        
         return valid;
     }
 
